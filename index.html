@@ -3,51 +3,34 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 <title>Pratibha Mishra | Learning Experience Designer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
-/* ======================================================
-ROOT
-====================================================== */
-
 :root{
-
---bg:#f7f5f1;
---bg2:#f0f3ff;
---bg3:#fdf7ef;
-
---card:#ffffff;
---border:rgba(0,0,0,.06);
-
+--bg:#f7f4ef;
+--surface:#ffffff;
+--soft:#f1ece5;
 --text:#18181b;
 --muted:#6b7280;
+--line:rgba(0,0,0,.08);
 
 --purple:#6D4AFF;
---teal:#0EA5A0;
---orange:#FF8A00;
---pink:#FF4D8D;
---blue:#4385F5;
---green:#18B26B;
+--blue:#3B82F6;
+--teal:#14B8A6;
+--orange:#F59E0B;
+--pink:#EC4899;
+--green:#22C55E;
 
---shadow:
-0 12px 40px rgba(0,0,0,.07);
-
+--shadow:0 10px 40px rgba(0,0,0,.08);
 --radius:24px;
-
 }
-
-/* ======================================================
-RESET
-====================================================== */
 
 *{
 margin:0;
@@ -60,12 +43,10 @@ scroll-behavior:smooth;
 }
 
 body{
-
-font-family:'Inter',sans-serif;
+font-family:'Instrument Sans',sans-serif;
 background:var(--bg);
 color:var(--text);
 overflow-x:hidden;
-
 }
 
 img{
@@ -78,106 +59,47 @@ text-decoration:none;
 color:inherit;
 }
 
-/* ======================================================
-TYPOGRAPHY
-====================================================== */
-
-.section-tag{
-
-display:inline-block;
-
-padding:.45rem 1rem;
-
-border-radius:100px;
-
-border:1px solid rgba(0,0,0,.08);
-
-font-size:.68rem;
-
-letter-spacing:.18em;
-
-text-transform:uppercase;
-
-color:#7b7b85;
-
-margin-bottom:1rem;
-
+section{
+padding:90px 7%;
 }
 
-.section-title{
+.container{
+max-width:1300px;
+margin:auto;
+}
 
+h1,h2,h3{
 font-family:'DM Serif Display',serif;
-
-font-size:clamp(2.5rem,5vw,5rem);
-
-line-height:.95;
-
-letter-spacing:-.05em;
-
-font-weight:400;
-
-margin-bottom:1rem;
-
+letter-spacing:-1px;
 }
 
-.section-sub{
-
-max-width:650px;
-
-font-size:1rem;
-
-line-height:1.9;
-
-color:var(--muted);
-
+.mono{
+font-family:'JetBrains Mono',monospace;
 }
 
-/* ======================================================
-NAVBAR
-====================================================== */
-
-nav{
-
+.nav{
 position:fixed;
-
 top:0;
 left:0;
 width:100%;
-
-padding:1.3rem 0;
-
 z-index:999;
-
-backdrop-filter:blur(18px);
-
-background:rgba(247,245,241,.72);
-
-border-bottom:1px solid rgba(0,0,0,.04);
-
+backdrop-filter:blur(20px);
+background:rgba(247,244,239,.7);
+border-bottom:1px solid rgba(0,0,0,.05);
 }
 
 .nav-inner{
-
-width:min(1200px,92%);
-
+max-width:1300px;
 margin:auto;
-
+padding:18px 7%;
 display:flex;
-
 align-items:center;
-
 justify-content:space-between;
-
 }
 
 .logo{
-
+font-size:26px;
 font-family:'DM Serif Display',serif;
-
-font-size:1.5rem;
-
-letter-spacing:-.03em;
-
 }
 
 .logo span{
@@ -185,854 +107,706 @@ color:var(--purple);
 }
 
 .nav-links{
-
 display:flex;
-
-gap:1rem;
-
+gap:34px;
 align-items:center;
-
 }
 
-.nav-btn{
-
-padding:.95rem 1.8rem;
-
-border-radius:100px;
-
+.nav-links a{
+font-size:14px;
 font-weight:600;
-
-font-size:.95rem;
-
-transition:.3s ease;
-
-display:flex;
-
-align-items:center;
-
-gap:.7rem;
-
+color:#555;
+transition:.3s;
 }
 
-/* buttons */
+.nav-links a:hover{
+color:var(--purple);
+}
+
+.hero{
+padding-top:170px;
+min-height:100vh;
+position:relative;
+overflow:hidden;
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:70px;
+align-items:center;
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:10px 18px;
+border-radius:999px;
+background:#ede8ff;
+color:var(--purple);
+font-size:12px;
+font-weight:700;
+margin-bottom:30px;
+}
+
+.dot{
+width:8px;
+height:8px;
+border-radius:50%;
+background:var(--purple);
+}
+
+.hero h1{
+font-size:84px;
+line-height:.95;
+margin-bottom:20px;
+}
+
+.hero h1 span{
+color:var(--purple);
+}
+
+.hero p{
+font-size:18px;
+line-height:1.8;
+color:#5f6368;
+max-width:640px;
+margin-bottom:40px;
+}
+
+.hero-buttons{
+display:flex;
+flex-wrap:wrap;
+gap:16px;
+}
+
+.btn{
+padding:16px 26px;
+border-radius:999px;
+font-size:15px;
+font-weight:700;
+display:flex;
+align-items:center;
+gap:10px;
+transition:.35s;
+border:none;
+cursor:pointer;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+}
 
 .btn-dark{
-
 background:#111;
-
-color:white;
-
-box-shadow:
-0 12px 30px rgba(0,0,0,.14);
-
+color:#fff;
 }
 
 .btn-purple{
-
-background:
-linear-gradient(135deg,#7a5cff,#5f33ff);
-
-color:white;
-
-box-shadow:
-0 15px 35px rgba(109,74,255,.25);
-
+background:linear-gradient(135deg,#6D4AFF,#9F85FF);
+color:#fff;
 }
 
-.btn-white{
-
-background:white;
-
-border:1px solid rgba(0,0,0,.06);
-
-box-shadow:
-0 10px 25px rgba(0,0,0,.05);
-
+.btn-teal{
+background:linear-gradient(135deg,#14B8A6,#67E8F9);
+color:#fff;
 }
 
-.btn-contact{
-
-background:
-linear-gradient(135deg,#fff7ed,#ffffff);
-
-border:1px solid rgba(255,138,0,.15);
-
-box-shadow:
-0 10px 25px rgba(255,138,0,.08);
-
+.btn-orange{
+background:linear-gradient(135deg,#F59E0B,#FDBA74);
+color:#fff;
 }
 
-.nav-btn:hover{
-
-transform:translateY(-4px);
-
-}
-
-/* ======================================================
-HERO
-====================================================== */
-
-.hero{
-
-padding-top:140px;
-
-padding-bottom:100px;
-
+.hero-visual{
 position:relative;
-
-overflow:hidden;
-
+height:650px;
 }
 
-.hero-inner{
-
-width:min(1200px,92%);
-
-margin:auto;
-
-display:grid;
-
-grid-template-columns:1.1fr .9fr;
-
-gap:4rem;
-
-align-items:center;
-
-}
-
-.hero-title{
-
-font-family:'DM Serif Display',serif;
-
-font-size:clamp(4rem,8vw,7rem);
-
-line-height:.88;
-
-letter-spacing:-.06em;
-
-font-weight:400;
-
-margin-bottom:1.2rem;
-
-}
-
-.hero-title span{
-
-color:var(--purple);
-
-font-style:italic;
-
-}
-
-.hero-desc{
-
-max-width:580px;
-
-font-size:1rem;
-
-line-height:2;
-
-color:var(--muted);
-
-margin-bottom:2rem;
-
-}
-
-.hero-actions{
-
-display:flex;
-
-gap:1rem;
-
-flex-wrap:wrap;
-
-}
-
-/* ======================================================
-DASHBOARD HERO CARD
-====================================================== */
-
-.dashboard-wrapper{
-
-position:relative;
-
-height:520px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-}
-
-.dashboard-card{
-
+.main-dashboard{
+position:absolute;
+right:0;
+top:50px;
 width:100%;
-
-max-width:620px;
-
 background:white;
-
-padding:2rem;
-
 border-radius:32px;
-
-box-shadow:
-0 30px 60px rgba(0,0,0,.08);
-
-border:1px solid rgba(0,0,0,.04);
-
-position:relative;
-
-z-index:1;
-
+padding:30px;
+box-shadow:var(--shadow);
+border:1px solid rgba(0,0,0,.05);
 }
 
-.dashboard-card h4{
-
-font-size:.78rem;
-
-letter-spacing:.18em;
-
+.main-dashboard h4{
+font-size:13px;
+letter-spacing:2px;
 text-transform:uppercase;
-
-margin-bottom:1rem;
-
-color:#8b8b95;
-
+margin-bottom:25px;
+color:#888;
+font-family:'JetBrains Mono',monospace;
 }
 
-canvas{
-
-filter:
-drop-shadow(0 10px 24px rgba(0,0,0,.05));
-
+.metric-cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+margin-bottom:25px;
 }
 
-/* floating cards */
+.metric{
+padding:22px;
+border-radius:20px;
+background:#fafafa;
+border:1px solid rgba(0,0,0,.05);
+}
+
+.metric h3{
+font-size:42px;
+margin-bottom:8px;
+}
+
+.metric p{
+font-size:13px;
+margin:0;
+color:#777;
+line-height:1.6;
+}
 
 .floating{
-
 position:absolute;
-
 background:white;
-
-padding:1.5rem;
-
-border-radius:28px;
-
-box-shadow:
-0 25px 50px rgba(0,0,0,.09);
-
-z-index:3;
-
-}
-
-.float-a{
-
-top:10px;
-right:10px;
-
-width:190px;
-
-}
-
-.float-b{
-
-left:-20px;
-bottom:50px;
-
-width:200px;
-
-}
-
-.float-label{
-
-font-size:.72rem;
-
-letter-spacing:.18em;
-
-text-transform:uppercase;
-
-color:#9ca3af;
-
-margin-bottom:.5rem;
-
-}
-
-.float-number{
-
-font-family:'DM Serif Display',serif;
-
-font-size:3rem;
-
-line-height:1;
-
-margin-bottom:.3rem;
-
-}
-
-.float-purple{
-color:var(--purple);
-}
-
-.float-teal{
-color:var(--teal);
-}
-
-.float-sub{
-
-font-size:.9rem;
-
-color:#7b7b85;
-
-}
-
-/* ======================================================
-SECTION
-====================================================== */
-
-section{
-
-padding:120px 0;
-
-}
-
-.container{
-
-width:min(1200px,92%);
-
-margin:auto;
-
-}
-
-/* ======================================================
-PROJECTS
-====================================================== */
-
-.projects{
-
-background:linear-gradient(
-180deg,
-#f1f3ff 0%,
-#f7f5f1 100%
-);
-
-}
-
-.project-grid{
-
-display:grid;
-
-gap:2rem;
-
-margin-top:4rem;
-
-}
-
-.project-card{
-
-background:white;
-
-border-radius:30px;
-
-padding:2.2rem;
-
-border:1px solid rgba(0,0,0,.05);
-
-box-shadow:
-0 20px 50px rgba(0,0,0,.06);
-
-transition:.35s ease;
-
-}
-
-.project-card:hover{
-
-transform:translateY(-8px);
-
-box-shadow:
-0 35px 70px rgba(0,0,0,.09);
-
-}
-
-.project-top{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:flex-start;
-
-margin-bottom:2rem;
-
-gap:1rem;
-
-}
-
-.project-title{
-
-font-family:'DM Serif Display',serif;
-
-font-size:2rem;
-
-line-height:1.05;
-
-letter-spacing:-.04em;
-
-margin-bottom:.6rem;
-
-}
-
-.project-sub{
-
-color:var(--muted);
-
-line-height:1.8;
-
-font-size:.95rem;
-
-max-width:650px;
-
-}
-
-.project-badge{
-
-padding:.6rem 1rem;
-
-border-radius:100px;
-
-font-size:.72rem;
-
-font-weight:700;
-
-letter-spacing:.12em;
-
-text-transform:uppercase;
-
-white-space:nowrap;
-
-}
-
-.badge-purple{
-
-background:rgba(109,74,255,.1);
-
-color:var(--purple);
-
-}
-
-.badge-teal{
-
-background:rgba(14,165,160,.1);
-
-color:var(--teal);
-
-}
-
-.badge-orange{
-
-background:rgba(255,138,0,.1);
-
-color:var(--orange);
-
-}
-
-/* ======================================================
-PROJECT SECTIONS
-====================================================== */
-
-.project-layout{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:1.5rem;
-
-margin-bottom:1.5rem;
-
-}
-
-.project-box{
-
-background:
-linear-gradient(
-180deg,
-#ffffff 0%,
-#fafafa 100%
-);
-
-border:1px solid rgba(0,0,0,.04);
-
-padding:1.5rem;
-
+padding:24px;
 border-radius:24px;
-
-}
-
-.project-box h5{
-
-font-size:.8rem;
-
-letter-spacing:.16em;
-
-text-transform:uppercase;
-
-color:#8a8a95;
-
-margin-bottom:1rem;
-
-}
-
-.project-box ul{
-
-padding-left:1rem;
-
-display:flex;
-
-flex-direction:column;
-
-gap:.8rem;
-
-}
-
-.project-box li{
-
-line-height:1.8;
-
-color:#5f6470;
-
-}
-
-/* ======================================================
-TOOLS
-====================================================== */
-
-.tools-row{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(220px,1fr));
-
-gap:1rem;
-
-margin-top:1rem;
-
-}
-
-.tool-card{
-
-background:white;
-
-border-radius:22px;
-
-padding:1rem;
-
-display:flex;
-
-align-items:center;
-
-gap:1rem;
-
+box-shadow:var(--shadow);
 border:1px solid rgba(0,0,0,.05);
-
-box-shadow:
-0 12px 25px rgba(0,0,0,.05);
-
-transition:.3s ease;
-
+animation:float 5s ease-in-out infinite;
 }
 
-.tool-card:hover{
-
-transform:translateY(-5px);
-
+.float1{
+left:-40px;
+top:160px;
 }
 
-.tool-icon{
+.float2{
+right:-20px;
+top:-20px;
+animation-delay:1.5s;
+}
 
-width:58px;
-height:58px;
+.float3{
+bottom:20px;
+right:80px;
+animation-delay:2s;
+}
 
-border-radius:18px;
+.floating h2{
+font-size:46px;
+margin-bottom:5px;
+}
 
+.floating p{
+margin:0;
+font-size:13px;
+color:#666;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+.section-title{
+margin-bottom:70px;
+}
+
+.section-title span{
+font-size:12px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#777;
+font-family:'JetBrains Mono',monospace;
+display:block;
+margin-bottom:14px;
+}
+
+.section-title h2{
+font-size:62px;
+line-height:1;
+margin-bottom:18px;
+}
+
+.section-title p{
+max-width:700px;
+line-height:1.8;
+color:#666;
+font-size:17px;
+}
+
+.accordion{
 display:flex;
+flex-direction:column;
+gap:22px;
+}
 
+.accordion-item{
+background:white;
+border-radius:28px;
+overflow:hidden;
+box-shadow:var(--shadow);
+border:1px solid rgba(0,0,0,.05);
+}
+
+.accordion-header{
+padding:30px;
+display:flex;
 align-items:center;
+justify-content:space-between;
+cursor:pointer;
+}
 
+.accordion-left{
+display:flex;
+gap:24px;
+align-items:center;
+}
+
+.number{
+width:54px;
+height:54px;
+border-radius:18px;
+display:flex;
+align-items:center;
 justify-content:center;
-
-font-size:1.4rem;
-
-flex-shrink:0;
-
-}
-
-.tool-title{
-
 font-weight:700;
-
-margin-bottom:.2rem;
-
+background:#f5f3ff;
+color:var(--purple);
 }
 
-.tool-sub{
-
-font-size:.82rem;
-
-color:#8a8a95;
-
+.accordion-title h3{
+font-size:32px;
+margin-bottom:8px;
 }
 
-/* ======================================================
-REALISTIC ICON COLORS
-====================================================== */
-
-.storyline{
-background:linear-gradient(135deg,#d9eeff,#b9dcff);
-color:#0f6cbd;
+.accordion-title p{
+font-size:15px;
+color:#666;
 }
 
-.rise{
-background:linear-gradient(135deg,#ece6ff,#d7cbff);
-color:#6D4AFF;
+.icon{
+font-size:20px;
+color:#666;
+transition:.4s;
 }
 
-.powerbi{
-background:linear-gradient(135deg,#fff6d6,#ffe38a);
-color:#f2a900;
+.accordion-item.active .icon{
+transform:rotate(45deg);
+color:var(--purple);
 }
 
-.vyond{
-background:linear-gradient(135deg,#ffe8de,#ffc7af);
-color:#ff6a2b;
+.accordion-content{
+max-height:0;
+overflow:hidden;
+transition:max-height .6s ease;
 }
 
-.sap{
-background:linear-gradient(135deg,#dff1ff,#bfdfff);
-color:#0085ff;
+.accordion-inner{
+padding:0 30px 40px;
 }
 
-.whatfix{
-background:linear-gradient(135deg,#e4faef,#c1f0d7);
-color:#18B26B;
+.case-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:24px;
+margin-top:24px;
 }
 
-.moodle{
-background:linear-gradient(135deg,#fff1dc,#ffd7a3);
-color:#ff7f00;
+.case-card{
+background:#fafafa;
+border-radius:22px;
+padding:24px;
+border:1px solid rgba(0,0,0,.05);
 }
 
-.ga{
-background:linear-gradient(135deg,#e7f0ff,#c9dbff);
-color:#4385F5;
+.case-card h4{
+font-size:14px;
+letter-spacing:2px;
+text-transform:uppercase;
+margin-bottom:18px;
+color:#888;
+font-family:'JetBrains Mono',monospace;
 }
 
-/* ======================================================
-CONTACT
-====================================================== */
+.case-card ul{
+padding-left:18px;
+display:flex;
+flex-direction:column;
+gap:12px;
+color:#555;
+line-height:1.7;
+font-size:15px;
+}
+
+.chart-wrap{
+margin-top:28px;
+padding:24px;
+background:#fafafa;
+border-radius:24px;
+border:1px solid rgba(0,0,0,.05);
+}
+
+.chart-wrap h4{
+margin-bottom:24px;
+font-size:13px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#888;
+font-family:'JetBrains Mono',monospace;
+}
+
+.metrics-row{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+margin-bottom:26px;
+}
+
+.metric-box{
+background:white;
+padding:20px;
+border-radius:20px;
+border:1px solid rgba(0,0,0,.05);
+}
+
+.metric-box h3{
+font-size:38px;
+margin-bottom:8px;
+}
+
+.metric-box p{
+font-size:13px;
+color:#777;
+}
+
+.timeline{
+position:relative;
+padding-left:50px;
+}
+
+.timeline::before{
+content:'';
+position:absolute;
+left:10px;
+top:0;
+width:2px;
+height:100%;
+background:#ddd;
+}
+
+.timeline-item{
+position:relative;
+margin-bottom:40px;
+}
+
+.timeline-dot{
+position:absolute;
+left:-47px;
+top:6px;
+width:22px;
+height:22px;
+border-radius:50%;
+background:var(--purple);
+border:5px solid white;
+box-shadow:0 0 0 1px rgba(0,0,0,.06);
+}
+
+.timeline-card{
+background:white;
+padding:28px;
+border-radius:24px;
+box-shadow:var(--shadow);
+border:1px solid rgba(0,0,0,.05);
+}
+
+.timeline-card h3{
+font-size:28px;
+margin-bottom:8px;
+}
+
+.timeline-card h5{
+font-size:15px;
+margin-bottom:18px;
+color:var(--purple);
+}
+
+.timeline-card p{
+line-height:1.8;
+color:#555;
+font-size:15px;
+}
+
+.skills-section{
+background:#f3efe8;
+}
+
+.skill-group{
+margin-bottom:60px;
+}
+
+.skill-group h3{
+font-size:14px;
+letter-spacing:3px;
+text-transform:uppercase;
+margin-bottom:24px;
+color:#777;
+font-family:'JetBrains Mono',monospace;
+}
+
+.skills-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+
+.skill-card{
+background:white;
+padding:22px;
+border-radius:24px;
+display:flex;
+align-items:center;
+gap:18px;
+box-shadow:var(--shadow);
+border:1px solid rgba(0,0,0,.05);
+transition:.35s;
+}
+
+.skill-card:hover{
+transform:translateY(-5px);
+}
+
+.skill-icon{
+width:60px;
+height:60px;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+color:white;
+flex-shrink:0;
+}
+
+.skill-info h4{
+font-size:18px;
+margin-bottom:4px;
+}
+
+.skill-info p{
+font-size:13px;
+color:#777;
+}
+
+.cert-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:22px;
+}
+
+.cert-card{
+background:white;
+padding:28px;
+border-radius:24px;
+box-shadow:var(--shadow);
+border:1px solid rgba(0,0,0,.05);
+}
+
+.cert-card h3{
+font-size:24px;
+margin-bottom:10px;
+}
+
+.cert-card p{
+color:#666;
+line-height:1.7;
+}
 
 .contact{
-
-background:#121212;
-
+background:#18181B;
 color:white;
-
 }
 
 .contact-grid{
-
 display:grid;
+grid-template-columns:.9fr .8fr;
+gap:70px;
+align-items:start;
+}
 
-grid-template-columns:1fr 1fr;
-
-gap:4rem;
-
-margin-top:4rem;
-
+.contact-left{
+display:flex;
+flex-direction:column;
+gap:20px;
 }
 
 .contact-card{
-
-background:rgba(255,255,255,.04);
-
-padding:1.3rem;
-
+padding:24px;
 border-radius:24px;
-
-display:flex;
-
-gap:1rem;
-
-align-items:center;
-
+background:rgba(255,255,255,.04);
 border:1px solid rgba(255,255,255,.06);
-
-margin-bottom:1rem;
-
-transition:.3s ease;
-
-}
-
-.contact-card:hover{
-
-background:rgba(109,74,255,.12);
-
-transform:translateX(5px);
-
+display:flex;
+gap:18px;
+align-items:center;
 }
 
 .contact-icon{
-
-width:52px;
-height:52px;
-
-border-radius:16px;
-
-background:rgba(109,74,255,.18);
-
+width:58px;
+height:58px;
+border-radius:18px;
+background:#6D4AFF;
 display:flex;
-
 align-items:center;
-
 justify-content:center;
-
-font-size:1.1rem;
-
-color:#8e6cff;
-
+font-size:22px;
+flex-shrink:0;
 }
 
-.contact-label{
-
-font-size:.72rem;
-
-letter-spacing:.18em;
-
+.contact-card h5{
+font-size:12px;
+letter-spacing:2px;
 text-transform:uppercase;
-
-color:#8a8a95;
-
-margin-bottom:.3rem;
-
+color:#aaa;
+margin-bottom:8px;
+font-family:'JetBrains Mono',monospace;
 }
 
-.contact-value{
-
-font-size:1rem;
-
+.contact-card p{
+font-size:22px;
 font-weight:600;
-
 }
 
-.consulting-box{
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:flex-end;
-
+.consulting-heading{
 text-align:right;
-
-height:100%;
-
+font-size:38px;
+margin-bottom:34px;
 }
 
-.consulting-box h2{
-
-font-family:'DM Serif Display',serif;
-
-font-size:4rem;
-
-line-height:.95;
-
-letter-spacing:-.05em;
-
-margin-bottom:1rem;
-
+.form-group{
+margin-bottom:18px;
 }
 
-.consulting-box p{
-
-max-width:400px;
-
-color:#b4b4c0;
-
-line-height:1.9;
-
+.form-group label{
+display:block;
+margin-bottom:10px;
+font-size:12px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#aaa;
+font-family:'JetBrains Mono',monospace;
 }
 
-/* ======================================================
-FOOTER
-====================================================== */
+.form-group input,
+.form-group textarea{
+width:100%;
+padding:18px 20px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+border-radius:18px;
+color:white;
+font-size:15px;
+outline:none;
+}
 
-footer{
+.form-group textarea{
+min-height:160px;
+resize:none;
+}
 
-padding:2rem 0;
+.footer-note{
+margin-top:30px;
+color:#aaa;
+line-height:1.8;
+font-size:14px;
+}
 
-background:#121212;
-
-border-top:1px solid rgba(255,255,255,.06);
-
+.footer{
+padding:28px 7%;
+background:#18181B;
+border-top:1px solid rgba(255,255,255,.08);
 text-align:center;
-
-color:#8a8a95;
-
-font-size:.92rem;
-
+color:#999;
+font-size:14px;
 }
 
-/* ======================================================
-RESPONSIVE
-====================================================== */
+@media(max-width:1100px){
 
-@media(max-width:980px){
-
-.hero-inner,
-.contact-grid,
-.project-layout{
-
+.hero-grid,
+.contact-grid{
 grid-template-columns:1fr;
-
 }
 
-.dashboard-wrapper{
-
-margin-top:2rem;
-
+.hero-visual{
+height:auto;
 }
 
-.consulting-box{
+.main-dashboard{
+position:relative;
+}
 
-align-items:flex-start;
+.float1,
+.float2,
+.float3{
+display:none;
+}
+
+.skills-grid,
+.cert-grid,
+.metrics-row{
+grid-template-columns:repeat(2,1fr);
+}
+
+.case-grid{
+grid-template-columns:1fr;
+}
+
+.consulting-heading{
 text-align:left;
-
 }
 
 }
 
-@media(max-width:700px){
+@media(max-width:768px){
 
-.hero-actions{
-flex-direction:column;
+.hero h1{
+font-size:58px;
+}
+
+.section-title h2{
+font-size:44px;
+}
+
+.metric-cards,
+.skills-grid,
+.cert-grid,
+.metrics-row{
+grid-template-columns:1fr;
 }
 
 .nav-links{
 display:none;
 }
 
-.hero-title{
-font-size:4rem;
+section{
+padding:80px 22px;
 }
 
-.section-title{
-font-size:3rem;
+.nav-inner{
+padding:18px 22px;
+}
+
+.contact-card p{
+font-size:17px;
+}
+
+.accordion-title h3{
+font-size:24px;
 }
 
 }
@@ -1042,155 +816,110 @@ font-size:3rem;
 
 <body>
 
-<!-- ======================================================
-NAV
-====================================================== -->
-
-<nav>
-
+<nav class="nav">
 <div class="nav-inner">
-
-<div class="logo">
-Pratibha<span>.</span>
-</div>
+<div class="logo">Pratibha<span>.</span></div>
 
 <div class="nav-links">
-
-<a href="#projects" class="nav-btn btn-dark">
-<i class="fa-solid fa-folder-open"></i>
-Case Studies
-</a>
-
-<a href="#projects" class="nav-btn btn-purple">
-<i class="fa-solid fa-chart-line"></i>
-Projects
-</a>
-
-<a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/"
-target="_blank"
-class="nav-btn btn-white">
-
-<i class="fa-brands fa-github"></i>
-GitHub
-
-</a>
-
-<a href="#contact"
-class="nav-btn btn-contact">
-
-<i class="fa-solid fa-paper-plane"></i>
-Contact
-
-</a>
-
+<a href="#home">Home</a>
+<a href="#projects">Case Studies</a>
+<a href="#experience">Experience</a>
+<a href="#skills">Skills</a>
+<a href="#certifications">Certifications</a>
+<a href="#contact">Contact</a>
 </div>
-
 </div>
-
 </nav>
 
-<!-- ======================================================
-HERO
-====================================================== -->
+<section class="hero" id="home">
 
-<section class="hero">
-
-<div class="hero-inner">
+<div class="container hero-grid">
 
 <div>
 
-<div class="section-tag">
-Available for Full Time & Consulting
+<div class="badge">
+<div class="dot"></div>
+Available for Full-time & Consulting
 </div>
 
-<h1 class="hero-title">
-
-Pratibha
-<span>Mishra</span>
-
+<h1>
+Learning<br>
+Experience<br>
+<span>Designer</span>
 </h1>
 
-<p class="hero-desc">
-
-Enterprise Learning Experience Designer specializing in instructional design, LMS ecosystems, SCORM/xAPI reporting, compliance learning simulations, onboarding transformation, digital adoption, and learning analytics dashboards using Power BI and enterprise reporting workflows.
-
+<p>
+Pratibha Mishra is a Learning Experience Designer and LMS Analytics Specialist with 6+ years of experience designing SCORM-compliant digital learning ecosystems, onboarding journeys, workflow simulations, accessibility-compliant training, and enterprise LMS reporting solutions across Pharma, EdTech, and Higher Education environments.
 </p>
 
-<div class="hero-actions">
+<div class="hero-buttons">
 
-<a href="#projects" class="nav-btn btn-dark">
+<a href="#projects" class="btn btn-dark">
 <i class="fa-solid fa-folder-open"></i>
-Case Studies
+View Case Studies
 </a>
 
-<a href="#projects" class="nav-btn btn-purple">
-<i class="fa-solid fa-chart-line"></i>
-Projects
-</a>
-
-<a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/"
-target="_blank"
-class="nav-btn btn-white">
-
+<a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/" target="_blank" class="btn btn-purple">
 <i class="fa-brands fa-github"></i>
-GitHub
-
+GitHub Portfolio
 </a>
 
-<a href="#contact"
-class="nav-btn btn-contact">
-
+<a href="#contact" class="btn btn-teal">
 <i class="fa-solid fa-paper-plane"></i>
 Contact
+</a>
 
+<a href="#contact" class="btn btn-orange">
+<i class="fa-solid fa-briefcase"></i>
+Consulting Inquiry
 </a>
 
 </div>
 
 </div>
 
-<div class="dashboard-wrapper">
+<div class="hero-visual">
 
-<div class="dashboard-card">
+<div class="main-dashboard">
 
-<h4>
-Learner Engagement & Completion — 2026
-</h4>
+<h4>Learning Metrics Snapshot</h4>
 
-<canvas id="heroChart"></canvas>
+<div class="metric-cards">
 
+<div class="metric">
+<h3 style="color:#6D4AFF;">94%</h3>
+<p>Compliance completion across LMS-based learning workflows</p>
 </div>
 
-<div class="floating float-a">
-
-<div class="float-label">
-Compliance Rate
+<div class="metric">
+<h3 style="color:#14B8A6;">1,500+</h3>
+<p>Learners supported across enterprise & EdTech platforms</p>
 </div>
 
-<div class="float-number float-purple">
-94%
-</div>
-
-<div class="float-sub">
-↑ 21% vs baseline
+<div class="metric">
+<h3 style="color:#F59E0B;">20%</h3>
+<p>Learner engagement improvement through interactive activities</p>
 </div>
 
 </div>
 
-<div class="floating float-b">
+<canvas id="heroChart" height="160"></canvas>
 
-<div class="float-label">
-Learners Supported
 </div>
 
-<div class="float-number float-teal">
-1,500+
+<div class="floating float1">
+<h2 style="color:#14B8A6;">87%</h2>
+<p>Assessment Pass Rate</p>
 </div>
 
-<div class="float-sub">
-Enterprise platforms
+<div class="floating float2">
+<h2 style="color:#6D4AFF;">15+</h2>
+<p>SCORM Modules</p>
 </div>
 
+<div class="floating float3">
+<h2 style="color:#EC4899;">82%</h2>
+<p>Readiness Score</p>
 </div>
 
 </div>
@@ -1199,379 +928,436 @@ Enterprise platforms
 
 </section>
 
-<!-- ======================================================
-PROJECTS
-====================================================== -->
-
-<section class="projects" id="projects">
+<section id="projects">
 
 <div class="container">
 
-<div class="section-tag">
-Enterprise Portfolio
-</div>
-
-<h2 class="section-title">
-Learning Transformation
-Case Studies
-</h2>
-
-<p class="section-sub">
-
-A curated portfolio of enterprise instructional design, onboarding, compliance, digital adoption, analytics, LMS reporting, and workforce enablement initiatives aligned to real-world learning ecosystems.
-
+<div class="section-title">
+<span>Flagship Learning Projects</span>
+<h2>Interactive Enterprise Case Studies</h2>
+<p>
+Instructional design, SCORM deployment, workflow learning systems, onboarding ecosystems, learning analytics, Power BI reporting, and LMS-enabled learner journeys aligned with real enterprise learning operations.
 </p>
+</div>
 
-<div class="project-grid">
+<div class="accordion">
 
-<!-- ======================================================
-PROJECT 1
-====================================================== -->
+<div class="accordion-item active">
 
-<div class="project-card">
+<div class="accordion-header">
+<div class="accordion-left">
+<div class="number">01</div>
 
-<div class="project-top">
+<div class="accordion-title">
+<h3>Compliance Simulation & Workflow Learning Program</h3>
+<p>Storyline 360 · SCORM · LMS Reporting · Pharma Learning</p>
+</div>
+</div>
 
-<div>
+<div class="icon">
+<i class="fa-solid fa-plus"></i>
+</div>
+</div>
 
-<h3 class="project-title">
-Compliance Simulation & Workflow Readiness Program
-</h3>
+<div class="accordion-content" style="max-height:5000px;">
 
-<p class="project-sub">
+<div class="accordion-inner">
 
-Enterprise compliance learning ecosystem designed using Storyline 360, SCORM/xAPI tracking, branching scenarios, and Power BI learning intelligence dashboards to improve SOP adherence and operational readiness.
+<div class="metrics-row">
 
-</p>
+<div class="metric-box">
+<h3 style="color:#6D4AFF;">94%</h3>
+<p>Compliance Completion</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#14B8A6;">21%</h3>
+<p>Engagement Increase</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#F59E0B;">87%</h3>
+<p>Assessment Performance</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#22C55E;">15+</h3>
+<p>SCORM Modules</p>
+</div>
 
 </div>
 
-<div class="project-badge badge-purple">
-Flagship
-</div>
+<div class="case-grid">
 
-</div>
-
-<div class="project-layout">
-
-<div class="project-box">
-
-<h5>
-Business Challenge
-</h5>
-
+<div class="case-card">
+<h4>Executive Summary</h4>
 <ul>
-
-<li>Low SOP adherence across operational teams</li>
-
-<li>Audit readiness inconsistencies</li>
-
-<li>Static training causing low retention</li>
-
-<li>Limited manager visibility into completion data</li>
-
-<li>Lack of enterprise reporting workflows</li>
-
+<li>Developed enterprise compliance simulations using Articulate Storyline 360.</li>
+<li>Designed branching workflows and learner decision activities.</li>
+<li>Integrated SCORM deployment workflows into LMS environments.</li>
+<li>Enabled learner tracking and completion visibility.</li>
 </ul>
-
 </div>
 
-<div class="project-box">
-
-<h5>
-Learning Strategy
-</h5>
-
+<div class="case-card">
+<h4>Business Challenge</h4>
 <ul>
-
-<li>Interactive compliance simulations</li>
-
-<li>Decision-based workflow learning</li>
-
-<li>SCORM/xAPI event tracking</li>
-
-<li>Manager-level reporting dashboards</li>
-
-<li>Power BI learner intelligence integration</li>
-
+<li>Low learner retention in compliance modules.</li>
+<li>Inconsistent process adherence across teams.</li>
+<li>Lack of visibility into learner completion analytics.</li>
+<li>Review cycles delayed deployment timelines.</li>
 </ul>
-
 </div>
 
-</div>
-
-<canvas id="projectChart1"></canvas>
-
-<div class="tools-row">
-
-<div class="tool-card">
-
-<div class="tool-icon storyline">
-<i class="fa-solid fa-film"></i>
-</div>
-
-<div>
-
-<div class="tool-title">
-Storyline 360
-</div>
-
-<div class="tool-sub">
-Interactive Simulations
-</div>
-
-</div>
-
-</div>
-
-<div class="tool-card">
-
-<div class="tool-icon rise">
-<i class="fa-solid fa-layer-group"></i>
-</div>
-
-<div>
-
-<div class="tool-title">
-Rise 360
-</div>
-
-<div class="tool-sub">
-Microlearning
-</div>
-
-</div>
-
-</div>
-
-<div class="tool-card">
-
-<div class="tool-icon powerbi">
-<i class="fa-brands fa-microsoft"></i>
-</div>
-
-<div>
-
-<div class="tool-title">
-Power BI
-</div>
-
-<div class="tool-sub">
-Learning Dashboards
-</div>
-
-</div>
-
-</div>
-
-<div class="tool-card">
-
-<div class="tool-icon vyond">
-<i class="fa-solid fa-circle-play"></i>
-</div>
-
-<div>
-
-<div class="tool-title">
-Vyond
-</div>
-
-<div class="tool-sub">
-Animated Explainers
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ======================================================
-PROJECT 2
-====================================================== -->
-
-<div class="project-card">
-
-<div class="project-top">
-
-<div>
-
-<h3 class="project-title">
-Digital Employee Onboarding & Readiness Journey
-</h3>
-
-<p class="project-sub">
-
-Role-based onboarding architecture designed to reduce time-to-productivity using guided learning pathways, onboarding dashboards, workflow simulations, and manager-driven learning checkpoints.
-
-</p>
-
-</div>
-
-<div class="project-badge badge-orange">
-Onboarding
-</div>
-
-</div>
-
-<div class="project-layout">
-
-<div class="project-box">
-
-<h5>
-Operational Outcomes
-</h5>
-
+<div class="case-card">
+<h4>Learning Strategy</h4>
 <ul>
-
-<li>Reduced onboarding friction points</li>
-
-<li>Improved learner readiness</li>
-
-<li>Higher completion rates</li>
-
-<li>Enhanced onboarding visibility</li>
-
-<li>Faster role alignment</li>
-
+<li>Interactive scenario-based learning architecture.</li>
+<li>Workflow-driven simulations and assessments.</li>
+<li>Feedback-driven learner pathways.</li>
+<li>Accessibility-compliant content development.</li>
 </ul>
-
 </div>
 
-<div class="project-box">
-
-<h5>
-Experience Architecture
-</h5>
-
+<div class="case-card">
+<h4>Tools & Platforms</h4>
 <ul>
-
-<li>Preboarding learning journeys</li>
-
-<li>Role-specific modules</li>
-
-<li>Interactive assessments</li>
-
-<li>Manager approval workflows</li>
-
-<li>Feedback-driven learning paths</li>
-
+<li>Storyline 360</li>
+<li>Rise 360</li>
+<li>Moodle LMS</li>
+<li>Power BI</li>
+<li>SCORM/xAPI</li>
 </ul>
-
 </div>
 
 </div>
 
-<canvas id="projectChart2"></canvas>
+<div class="chart-wrap">
 
-</div>
+<h4>Completion & Engagement Trend</h4>
 
-<!-- ======================================================
-PROJECT 3
-====================================================== -->
+<canvas id="chart1"></canvas>
 
-<div class="project-card">
-
-<div class="project-top">
-
-<div>
-
-<h3 class="project-title">
-Digital Adoption & Workflow Learning Ecosystem
-</h3>
-
-<p class="project-sub">
-
-Contextual learning ecosystem using Whatfix, SAP Enable Now, and workflow guidance systems to improve platform adoption and reduce support dependency.
-
-</p>
-
-</div>
-
-<div class="project-badge badge-teal">
-Digital Adoption
-</div>
-
-</div>
-
-<div class="tools-row">
-
-<div class="tool-card">
-
-<div class="tool-icon whatfix">
-<i class="fa-solid fa-route"></i>
-</div>
-
-<div>
-
-<div class="tool-title">
-Whatfix
-</div>
-
-<div class="tool-sub">
-Workflow Guidance
 </div>
 
 </div>
 
 </div>
 
-<div class="tool-card">
-
-<div class="tool-icon sap">
-<i class="fa-solid fa-database"></i>
 </div>
 
-<div>
+<div class="accordion-item">
 
-<div class="tool-title">
-SAP Enable Now
+<div class="accordion-header">
+<div class="accordion-left">
+<div class="number">02</div>
+
+<div class="accordion-title">
+<h3>LMS Learning Analytics Dashboard</h3>
+<p>Power BI · Excel Reporting · LMS Analytics</p>
+</div>
 </div>
 
-<div class="tool-sub">
-Enterprise Enablement
+<div class="icon">
+<i class="fa-solid fa-plus"></i>
+</div>
+</div>
+
+<div class="accordion-content">
+
+<div class="accordion-inner">
+
+<div class="metrics-row">
+
+<div class="metric-box">
+<h3 style="color:#6D4AFF;">4,280</h3>
+<p>Active Learners</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#14B8A6;">88%</h3>
+<p>Monthly Completion</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#F59E0B;">84%</h3>
+<p>Assessment Scores</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#22C55E;">38%</h3>
+<p>Reporting Efficiency</p>
+</div>
+
+</div>
+
+<div class="case-grid">
+
+<div class="case-card">
+<h4>Executive Summary</h4>
+<ul>
+<li>Designed LMS-based learning analytics dashboards using Power BI.</li>
+<li>Created learner engagement visualizations.</li>
+<li>Enabled completion and assessment reporting workflows.</li>
+<li>Integrated LMS export workflows with Excel reporting.</li>
+</ul>
+</div>
+
+<div class="case-card">
+<h4>Analytics Layer</h4>
+<ul>
+<li>LMS completion tracking</li>
+<li>xAPI engagement insights</li>
+<li>Assessment performance analytics</li>
+<li>Excel-based reporting workflows</li>
+</ul>
+</div>
+
+</div>
+
+<div class="chart-wrap">
+<h4>Learning Analytics Dashboard</h4>
+<canvas id="chart2"></canvas>
 </div>
 
 </div>
 
 </div>
 
-<div class="tool-card">
-
-<div class="tool-icon moodle">
-<i class="fa-solid fa-graduation-cap"></i>
 </div>
 
-<div>
+<div class="accordion-item">
 
-<div class="tool-title">
-Moodle LMS
+<div class="accordion-header">
+<div class="accordion-left">
+<div class="number">03</div>
+
+<div class="accordion-title">
+<h3>Digital Employee Onboarding & Readiness Journey</h3>
+<p>Role-based onboarding · Learning Journeys · Assessments</p>
+</div>
 </div>
 
-<div class="tool-sub">
-Learning Platform
+<div class="icon">
+<i class="fa-solid fa-plus"></i>
+</div>
+</div>
+
+<div class="accordion-content">
+
+<div class="accordion-inner">
+
+<div class="metrics-row">
+
+<div class="metric-box">
+<h3 style="color:#6D4AFF;">91%</h3>
+<p>Onboarding Completion</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#14B8A6;">82%</h3>
+<p>Readiness Score</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#F59E0B;">24</h3>
+<p>Days to Productivity</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#22C55E;">14%</h3>
+<p>Attrition Reduction</p>
+</div>
+
+</div>
+
+<div class="case-grid">
+
+<div class="case-card">
+<h4>Learning Experience Architecture</h4>
+<ul>
+<li>Role-based onboarding pathways.</li>
+<li>Interactive readiness checkpoints.</li>
+<li>AI-assisted learner support workflows.</li>
+<li>Assessment-driven onboarding validation.</li>
+</ul>
+</div>
+
+<div class="case-card">
+<h4>Operational Outcomes</h4>
+<ul>
+<li>Improved onboarding engagement.</li>
+<li>Faster role readiness.</li>
+<li>Better onboarding consistency.</li>
+<li>Improved learner confidence.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="chart-wrap">
+<h4>Readiness & Completion Analytics</h4>
+<canvas id="chart3"></canvas>
 </div>
 
 </div>
 
 </div>
 
-<div class="tool-card">
-
-<div class="tool-icon ga">
-<i class="fa-brands fa-google"></i>
 </div>
 
-<div>
+<div class="accordion-item">
 
-<div class="tool-title">
-Google Analytics 4
+<div class="accordion-header">
+<div class="accordion-left">
+<div class="number">04</div>
+
+<div class="accordion-title">
+<h3>Workflow Learning & Digital Adoption Ecosystem</h3>
+<p>Whatfix · SAP Enable Now · Workflow Learning</p>
+</div>
 </div>
 
-<div class="tool-sub">
-Engagement Tracking
+<div class="icon">
+<i class="fa-solid fa-plus"></i>
+</div>
+</div>
+
+<div class="accordion-content">
+
+<div class="accordion-inner">
+
+<div class="metrics-row">
+
+<div class="metric-box">
+<h3 style="color:#6D4AFF;">79%</h3>
+<p>Workflow Adoption</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#14B8A6;">33%</h3>
+<p>Usage Increase</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#F59E0B;">24%</h3>
+<p>Support Ticket Reduction</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#22C55E;">27%</h3>
+<p>Proficiency Improvement</p>
+</div>
+
+</div>
+
+<div class="case-grid">
+
+<div class="case-card">
+<h4>Learning Strategy</h4>
+<ul>
+<li>Embedded workflow guidance using Whatfix.</li>
+<li>Contextual walkthrough architecture.</li>
+<li>SAP Enable Now simulations.</li>
+<li>Role-based digital adoption pathways.</li>
+</ul>
+</div>
+
+<div class="case-card">
+<h4>Executive Impact</h4>
+<ul>
+<li>Reduced workflow friction.</li>
+<li>Improved digital tool adoption.</li>
+<li>Faster workflow proficiency.</li>
+<li>Reduced support dependency.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="chart-wrap">
+<h4>Digital Adoption Metrics</h4>
+<canvas id="chart4"></canvas>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="accordion-item">
+
+<div class="accordion-header">
+<div class="accordion-left">
+<div class="number">05</div>
+
+<div class="accordion-title">
+<h3>Workforce Capability & Skills Architecture Dashboard</h3>
+<p>Skills Intelligence · Learning Progress Tracking</p>
+</div>
+</div>
+
+<div class="icon">
+<i class="fa-solid fa-plus"></i>
+</div>
+</div>
+
+<div class="accordion-content">
+
+<div class="accordion-inner">
+
+<div class="metrics-row">
+
+<div class="metric-box">
+<h3 style="color:#6D4AFF;">77%</h3>
+<p>Skills Readiness</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#14B8A6;">84%</h3>
+<p>Certification Completion</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#F59E0B;">22%</h3>
+<p>Competency Growth</p>
+</div>
+
+<div class="metric-box">
+<h3 style="color:#22C55E;">19%</h3>
+<p>Skill Gap Reduction</p>
+</div>
+
+</div>
+
+<div class="case-grid">
+
+<div class="case-card">
+<h4>Stakeholder Ecosystem</h4>
+<ul>
+<li>L&D Teams</li>
+<li>Operations Managers</li>
+<li>Compliance Stakeholders</li>
+<li>HR & Workforce Teams</li>
+</ul>
+</div>
+
+<div class="case-card">
+<h4>Dashboard Simulation</h4>
+<ul>
+<li>Skill readiness tracking.</li>
+<li>Assessment analytics.</li>
+<li>Department-level learner insights.</li>
+<li>Competency growth trends.</li>
+</ul>
+</div>
+
+</div>
+
+<div class="chart-wrap">
+<h4>Capability Analytics</h4>
+<canvas id="chart5"></canvas>
 </div>
 
 </div>
@@ -1586,101 +1372,513 @@ Engagement Tracking
 
 </section>
 
-<!-- ======================================================
-CONTACT
-====================================================== -->
+<section id="experience">
+
+<div class="container">
+
+<div class="section-title">
+<span>Professional Experience</span>
+<h2>Enterprise Learning Journey</h2>
+<p>
+Instructional design, digital learning ecosystems, LMS workflows, onboarding systems, learner analytics, accessibility compliance, and enterprise learning delivery across multiple industries.
+</p>
+</div>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-card">
+<h3>Consultant Instructional Designer</h3>
+<h5>Now100 Solutions (PwC Project) · Nov 2025 – Present</h5>
+<p>
+Designed SCORM-compliant compliance training modules, interactive digital learning assets, and learner-focused simulations using Storyline 360. Supported LMS-based reporting workflows for enterprise compliance learning initiatives.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-card">
+<h3>Instructional Designer</h3>
+<h5>Harjai Computers (LearningMate Project) · Jul 2025 – Oct 2025</h5>
+<p>
+Developed SCORM-compliant WBT modules, accessibility-compliant learning experiences, quizzes, assessments, and LMS-ready training content using Storyline 360 and Rise 360.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-card">
+<h3>Senior Curriculum Designer</h3>
+<h5>BrightChamps · Mar 2025 – Apr 2025</h5>
+<p>
+Designed learner pathways, digital learning activities, and learner engagement workflows for K-12 online learning programs in collaboration with academic and product teams.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-card">
+<h3>Senior Curriculum Developer</h3>
+<h5>i2Global Virtual Learning · Sep 2024 – Feb 2025</h5>
+<p>
+Redesigned learning content, learner assessments, and digital learning experiences based on learner feedback, review cycles, and engagement insights.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-card">
+<h3>Academic Product Specialist</h3>
+<h5>iScholar Knowledge Services · Oct 2023 – Sep 2024</h5>
+<p>
+Conducted Training Needs Analysis (TNA), competency mapping, stakeholder collaboration, and learner-focused content development for digital learning programs.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-card">
+<h3>SME Instructional Designer</h3>
+<h5>Narayana Learning App (GTET) · May 2022 – Apr 2023</h5>
+<p>
+Developed SCORM-enabled learning modules, learner assessments, and interactive learning activities while improving learner engagement through feedback-driven content optimization.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-card">
+<h3>Academic Curriculum Developer</h3>
+<h5>Infinite Mindz · Apr 2020 – Dec 2021</h5>
+<p>
+Developed curriculum aligned with CBSE, ICSE, and IGCSE standards while improving syllabus completion efficiency through optimized instructional structures.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-card">
+<h3>Technical Assessment Specialist</h3>
+<h5>Trysol Global Services · May 2019 – Dec 2019</h5>
+<p>
+Coordinated technical assessment workflows, evaluation tracking, and reporting processes across multiple technical hiring programs.
+</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-dot"></div>
+<div class="timeline-card">
+<h3>Technical Support Specialist</h3>
+<h5>Mphasis Ltd · Jul 2018 – Jan 2019</h5>
+<p>
+Provided customer support, transaction query handling, troubleshooting, and billing support operations across high-volume customer interactions.
+</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="skills-section" id="skills">
+
+<div class="container">
+
+<div class="section-title">
+<span>Tools & Platforms</span>
+<h2>Learning Technology Ecosystem</h2>
+<p>
+Authoring tools, LMS platforms, analytics environments, collaboration systems, accessibility workflows, and enterprise reporting tools aligned with instructional design and learning analytics operations.
+</p>
+</div>
+
+<div class="skill-group">
+
+<h3>Learning Authoring</h3>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#0F6CBD;">
+<i class="fa-solid fa-film"></i>
+</div>
+<div class="skill-info">
+<h4>Storyline 360</h4>
+<p>Articulate</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#6D4AFF;">
+<i class="fa-solid fa-layer-group"></i>
+</div>
+<div class="skill-info">
+<h4>Rise 360</h4>
+<p>Articulate</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#EC4899;">
+<i class="fa-solid fa-cube"></i>
+</div>
+<div class="skill-info">
+<h4>Adobe Captivate</h4>
+<p>Adobe</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#3B82F6;">
+<i class="fa-solid fa-video"></i>
+</div>
+<div class="skill-info">
+<h4>Camtasia</h4>
+<p>TechSmith</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#F97316;">
+<i class="fa-solid fa-play"></i>
+</div>
+<div class="skill-info">
+<h4>Vyond</h4>
+<p>Animation</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#0284C7;">
+<i class="fa-solid fa-database"></i>
+</div>
+<div class="skill-info">
+<h4>SAP Enable Now</h4>
+<p>SAP</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#16A34A;">
+<i class="fa-solid fa-route"></i>
+</div>
+<div class="skill-info">
+<h4>Whatfix</h4>
+<p>Digital Adoption</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="skill-group">
+
+<h3>LMS Platforms</h3>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#F59E0B;">
+<i class="fa-solid fa-graduation-cap"></i>
+</div>
+<div class="skill-info">
+<h4>Moodle</h4>
+<p>Open-source LMS</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#EF4444;">
+<i class="fa-solid fa-school"></i>
+</div>
+<div class="skill-info">
+<h4>Canvas LMS</h4>
+<p>Instructure</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#10B981;">
+<i class="fa-solid fa-building-columns"></i>
+</div>
+<div class="skill-info">
+<h4>Workday</h4>
+<p>Learning & HCM</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="skill-group">
+
+<h3>Analytics & Reporting</h3>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#EAB308;">
+<i class="fa-brands fa-microsoft"></i>
+</div>
+<div class="skill-info">
+<h4>Power BI</h4>
+<p>Microsoft</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#22C55E;">
+<i class="fa-solid fa-table"></i>
+</div>
+<div class="skill-info">
+<h4>Excel / SQL</h4>
+<p>Reporting Workflows</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#8B5CF6;">
+<i class="fa-solid fa-chart-line"></i>
+</div>
+<div class="skill-info">
+<h4>Mixpanel</h4>
+<p>Analytics</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#14B8A6;">
+<i class="fa-solid fa-code-branch"></i>
+</div>
+<div class="skill-info">
+<h4>xAPI / SCORM</h4>
+<p>Tracking Standards</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#3B82F6;">
+<i class="fa-brands fa-google"></i>
+</div>
+<div class="skill-info">
+<h4>Google Analytics 4</h4>
+<p>GA4</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="skill-group">
+
+<h3>Collaboration & Project Management</h3>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#2563EB;">
+<i class="fa-brands fa-jira"></i>
+</div>
+<div class="skill-info">
+<h4>JIRA</h4>
+<p>Atlassian</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#111;">
+<i class="fa-solid fa-n"></i>
+</div>
+<div class="skill-info">
+<h4>Notion</h4>
+<p>Workspace</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon" style="background:#8B5CF6;">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+</div>
+<div class="skill-info">
+<h4>GenAI Tools</h4>
+<p>AI-assisted Design</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="certifications">
+
+<div class="container">
+
+<div class="section-title">
+<span>Certifications</span>
+<h2>Learning & Analytics Credentials</h2>
+<p>
+Professional certifications aligned with product analytics, digital learning ecosystems, instructional design strategy, and enterprise collaboration methodologies.
+</p>
+</div>
+
+<div class="cert-grid">
+
+<div class="cert-card">
+<h3>Product Design</h3>
+<p>Internshala · 2023</p>
+</div>
+
+<div class="cert-card">
+<h3>Product Analytics</h3>
+<p>Internshala · 2023</p>
+</div>
+
+<div class="cert-card">
+<h3>Product Lifecycle Management</h3>
+<p>Internshala · 2023</p>
+</div>
+
+<div class="cert-card">
+<h3>Google Analytics 4</h3>
+<p>LinkedIn Learning · 2024</p>
+</div>
+
+<div class="cert-card">
+<h3>Agile Foundations</h3>
+<p>LinkedIn Learning · 2024</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 <section class="contact" id="contact">
 
 <div class="container">
 
-<div class="section-tag">
-Available Across Domains
-</div>
-
-<h2 class="section-title">
-Let’s Build Learning
-Experiences That Matter
-</h2>
-
 <div class="contact-grid">
 
 <div>
 
-<div class="contact-card">
+<div class="contact-left">
 
+<div class="contact-card">
 <div class="contact-icon">
 <i class="fa-solid fa-envelope"></i>
 </div>
 
 <div>
-
-<div class="contact-label">
-Email
+<h5>Email</h5>
+<p>pratibha1996mishra@gmail.com</p>
 </div>
-
-<div class="contact-value">
-pratibhamishra1996@gmail.com
-</div>
-
-</div>
-
 </div>
 
 <div class="contact-card">
-
 <div class="contact-icon">
-<i class="fa-brands fa-linkedin"></i>
+<i class="fa-solid fa-phone"></i>
 </div>
 
 <div>
-
-<div class="contact-label">
-LinkedIn
+<h5>Phone</h5>
+<p>+91 9148315126</p>
 </div>
-
-<div class="contact-value">
-linkedin.com/in/pratibhamishra
-</div>
-
-</div>
-
 </div>
 
 <div class="contact-card">
+<div class="contact-icon">
+<i class="fa-brands fa-linkedin-in"></i>
+</div>
 
+<div>
+<h5>LinkedIn</h5>
+<p>linkedin.com/in/pratibhamishra1996</p>
+</div>
+</div>
+
+<div class="contact-card">
 <div class="contact-icon">
 <i class="fa-brands fa-github"></i>
 </div>
 
 <div>
-
-<div class="contact-label">
-Portfolio
+<h5>GitHub Portfolio</h5>
+<p>pratibha1996mishra.github.io</p>
+</div>
 </div>
 
-<div class="contact-value">
-pratibha1996mishra.github.io
+<div class="contact-card">
+<div class="contact-icon">
+<i class="fa-solid fa-location-dot"></i>
+</div>
+
+<div>
+<h5>Location</h5>
+<p>Bengaluru, India</p>
+</div>
 </div>
 
 </div>
 
+<div class="footer-note">
+Available for Full-time & Consulting Across Domains
 </div>
 
 </div>
 
-<div class="consulting-box">
+<div>
 
-<h2>
-Available for
+<h2 class="consulting-heading">
 Consulting Inquiry
 </h2>
 
-<p>
+<form>
 
-Open to enterprise instructional design, LMS consulting, onboarding transformation, digital adoption, compliance learning, analytics reporting, and learning experience strategy engagements across industries.
+<div class="form-group">
+<label>Your Name</label>
+<input type="text" placeholder="Jane Smith">
+</div>
 
-</p>
+<div class="form-group">
+<label>Company / Organisation</label>
+<input type="text" placeholder="Accenture, Deloitte, etc.">
+</div>
+
+<div class="form-group">
+<label>Role Type</label>
+<input type="text" placeholder="Full-time · Contract · Consulting">
+</div>
+
+<div class="form-group">
+<label>Message</label>
+<textarea placeholder="I'd like to discuss a learning transformation initiative..."></textarea>
+</div>
+
+<button class="btn btn-purple" type="submit">
+<i class="fa-solid fa-paper-plane"></i>
+Send Message
+</button>
+
+</form>
 
 </div>
 
@@ -1690,249 +1888,118 @@ Open to enterprise instructional design, LMS consulting, onboarding transformati
 
 </section>
 
-<footer>
-
-© 2026 Pratibha Mishra · Available for Full Time & Consulting Opportunities
-
-</footer>
+<div class="footer">
+© 2026 Pratibha Mishra · Learning Experience Designer Portfolio
+</div>
 
 <script>
 
-/* ======================================================
-GRADIENTS
-====================================================== */
+const accordions=document.querySelectorAll('.accordion-item');
 
-const ctxHero =
-document.getElementById('heroChart').getContext('2d');
+accordions.forEach(item=>{
 
-const gradientPurple =
-ctxHero.createLinearGradient(0,0,0,300);
+const header=item.querySelector('.accordion-header');
 
-gradientPurple.addColorStop(0,'rgba(109,74,255,.45)');
-gradientPurple.addColorStop(1,'rgba(109,74,255,.02)');
+header.addEventListener('click',()=>{
 
-const gradientTeal =
-ctxHero.createLinearGradient(0,0,0,300);
+item.classList.toggle('active');
 
-gradientTeal.addColorStop(0,'rgba(14,165,160,.35)');
-gradientTeal.addColorStop(1,'rgba(14,165,160,.02)');
+const content=item.querySelector('.accordion-content');
 
-/* ======================================================
-HERO CHART
-====================================================== */
+if(item.classList.contains('active')){
+content.style.maxHeight=content.scrollHeight+'px';
+}else{
+content.style.maxHeight=0;
+}
 
-new Chart(ctxHero,{
+});
 
+});
+
+function gradient(ctx,color1,color2){
+
+const grad=ctx.createLinearGradient(0,0,0,300);
+grad.addColorStop(0,color1);
+grad.addColorStop(1,color2);
+
+return grad;
+
+}
+
+const heroCtx=document.getElementById('heroChart').getContext('2d');
+
+new Chart(heroCtx,{
 type:'line',
-
 data:{
-
-labels:[
-'Jan',
-'Feb',
-'Mar',
-'Apr',
-'May',
-'Jun'
-],
-
+labels:['Jan','Feb','Mar','Apr','May','Jun'],
 datasets:[
-
 {
-
-label:'Engagement',
-
-data:[62,70,76,81,87,91],
-
-borderColor:'#6D4AFF',
-
-backgroundColor:gradientPurple,
-
-fill:true,
-
-tension:.4,
-
-pointRadius:4
-
-},
-
-{
-
 label:'Completion',
-
-data:[58,66,73,78,83,88],
-
-borderColor:'#0EA5A0',
-
-backgroundColor:gradientTeal,
-
-fill:true,
-
-tension:.4,
-
-pointRadius:4
-
-}
-
-]
-
-},
-
-options:{
-
-responsive:true,
-
-plugins:{
-legend:{
-display:true
-}
-},
-
-scales:{
-
-y:{
-grid:{
-color:'rgba(0,0,0,.05)'
-}
-},
-
-x:{
-grid:{
-display:false
-}
-}
-
-}
-
-}
-
-});
-
-/* ======================================================
-PROJECT CHART 1
-====================================================== */
-
-new Chart(
-document.getElementById('projectChart1'),
-{
-
-type:'bar',
-
-data:{
-
-labels:[
-'North',
-'South',
-'East',
-'West'
-],
-
-datasets:[{
-
-label:'Compliance',
-
-data:[91,94,89,96],
-
-backgroundColor:[
-'#6D4AFF',
-'#0EA5A0',
-'#FF8A00',
-'#FF4D8D'
-],
-
-borderRadius:16
-
-}]
-
-},
-
-options:{
-
-plugins:{
-legend:{
-display:false
-}
-},
-
-scales:{
-y:{
-grid:{
-color:'rgba(0,0,0,.04)'
-}
-}
-}
-
-}
-
-});
-
-/* ======================================================
-PROJECT CHART 2
-====================================================== */
-
-new Chart(
-document.getElementById('projectChart2'),
-{
-
-type:'line',
-
-data:{
-
-labels:[
-'Week 1',
-'Week 2',
-'Week 3',
-'Week 4',
-'Week 5'
-],
-
-datasets:[{
-
-label:'Readiness',
-
-data:[45,60,71,84,94],
-
+data:[62,68,74,79,84,91],
 borderColor:'#6D4AFF',
-
-backgroundColor:gradientPurple,
-
+backgroundColor:gradient(heroCtx,'rgba(109,74,255,.35)','rgba(109,74,255,.02)'),
 fill:true,
-
-tension:.4,
-
-pointRadius:4
-
-}]
-
+tension:.4
 },
-
+{
+label:'Engagement',
+data:[58,66,71,75,81,87],
+borderColor:'#14B8A6',
+backgroundColor:'transparent',
+tension:.4
+}
+]
+},
 options:{
-
-plugins:{
-legend:{
-display:false
-}
-},
-
+responsive:true,
+plugins:{legend:{display:true}},
 scales:{
-
-y:{
-grid:{
-color:'rgba(0,0,0,.04)'
-}
-},
-
-x:{
-grid:{
-display:false
+x:{grid:{display:false}},
+y:{grid:{color:'rgba(0,0,0,.05)'}}
 }
 }
-
-}
-
-}
-
 });
+
+function makeChart(id,color){
+
+const ctx=document.getElementById(id).getContext('2d');
+
+new Chart(ctx,{
+type:'line',
+data:{
+labels:['Q1','Q2','Q3','Q4'],
+datasets:[
+{
+data:[
+65+Math.random()*20,
+70+Math.random()*20,
+78+Math.random()*10,
+85+Math.random()*10
+],
+borderColor:color,
+backgroundColor:gradient(ctx,color,'rgba(255,255,255,0)'),
+fill:true,
+tension:.45
+}
+]
+},
+options:{
+plugins:{legend:{display:false}},
+responsive:true,
+scales:{
+x:{grid:{display:false}},
+y:{grid:{color:'rgba(0,0,0,.05)'}}
+}
+}
+});
+
+}
+
+makeChart('chart1','#6D4AFF');
+makeChart('chart2','#14B8A6');
+makeChart('chart3','#F59E0B');
+makeChart('chart4','#EC4899');
+makeChart('chart5','#22C55E');
 
 </script>
 
