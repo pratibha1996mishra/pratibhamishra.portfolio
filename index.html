@@ -1,1311 +1,870 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Pratibha Mishra — Learning Experience Designer</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Pratibha Mishra | Learning Experience Designer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
 <style>
-/* ──────────────────────────────────────────────
-   DESIGN TOKENS  — Pastel Framer / Meelo-style
-────────────────────────────────────────────── */
+
 :root{
-  --bg:          #F5F3EE;       /* warm off-white parchment */
-  --bg2:         #EEF0F8;       /* pale lavender section */
-  --bg3:         #F0F7F4;       /* pale sage section */
-  --bg4:         #FBF4ED;       /* pale apricot section */
-  --surface:     #FFFFFF;
-  --overlay:     rgba(255,255,255,0.72);
-  --border:      rgba(0,0,0,0.07);
-  --border2:     rgba(0,0,0,0.05);
-
-  /* Typography */
-  --ink:         #18181B;
-  --ink2:        #3F3F46;
-  --muted:       #71717A;
-  --faint:       #A1A1AA;
-
-  /* Brand accents — used sparingly */
-  --plum:        #6D4AFF;
-  --plum-soft:   rgba(109,74,255,0.10);
-  --teal:        #0EA5A0;
-  --teal-soft:   rgba(14,165,160,0.10);
-  --amber:       #D97706;
-  --amber-soft:  rgba(217,119,6,0.10);
-  --rose:        #E11D48;
-  --rose-soft:   rgba(225,29,72,0.10);
-  --sage:        #16A34A;
-  --sage-soft:   rgba(22,163,74,0.10);
-
-  /* Contact section = 2 colors only */
-  --contact-bg:  #18181B;
-  --contact-acc: #6D4AFF;
-
-  /* Chart palette — vibrant but not loud */
-  --c1:#6D4AFF; --c2:#0EA5A0; --c3:#F59E0B; --c4:#10B981; --c5:#F43F5E;
-  --c6:#3B82F6; --c7:#8B5CF6; --c8:#06B6D4;
-
-  --radius:       16px;
-  --radius-sm:    10px;
-  --shadow-sm:    0 2px 8px rgba(0,0,0,.06);
-  --shadow:       0 6px 24px rgba(0,0,0,.08);
-  --shadow-lg:    0 16px 48px rgba(0,0,0,.10);
-  --font-serif:   'DM Serif Display', serif;
-  --font-sans:    'Instrument Sans', sans-serif;
-  --font-mono:    'JetBrains Mono', monospace;
+  --bg:#f7f7f5;
+  --card:#ffffff;
+  --text:#161616;
+  --muted:#666;
+  --border:#e6e6e6;
+  --primary:#6D4AFF;
+  --primary-soft:#ede9ff;
+  --shadow:0 10px 35px rgba(0,0,0,0.08);
+  --radius:18px;
 }
 
-/* ── RESET ── */
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;font-size:16px;}
-body{background:var(--bg);color:var(--ink);font-family:var(--font-sans);overflow-x:hidden;line-height:1.6;}
-img{display:block;max-width:100%;}
-a{text-decoration:none;color:inherit;}
-button{cursor:pointer;border:none;background:none;font-family:inherit;}
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--plum);border-radius:2px;}
-
-/* ── GRAIN TEXTURE ── */
-body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:999;
-  opacity:.022;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* ═══════════════════════════════════════════
-   NAVIGATION
-═══════════════════════════════════════════ */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:800;
-  padding:1.1rem 0;transition:all .35s ease;
-}
-#nav.scrolled{
-  background:rgba(245,243,238,.90);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);padding:.7rem 0;
-}
-.nav-wrap{max-width:1140px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo{font-family:var(--font-serif);font-size:1.25rem;color:var(--ink);letter-spacing:-.01em;}
-.nav-logo span{color:var(--plum);}
-.nav-links{display:flex;align-items:center;gap:2.2rem;}
-.nav-links a{font-size:.8rem;font-weight:500;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;transition:color .2s;}
-.nav-links a:hover{color:var(--ink);}
-.nav-pill{
-  background:var(--ink);color:#fff!important;
-  padding:.42rem 1.15rem;border-radius:50px;font-size:.75rem!important;
-  font-weight:600!important;letter-spacing:.04em!important;transition:opacity .2s!important;
-  display:inline-flex;align-items:center;gap:.4rem;
-}
-.nav-pill:hover{opacity:.82!important;}
-.nav-ham{display:none;flex-direction:column;gap:5px;padding:.3rem;}
-.nav-ham span{display:block;width:22px;height:1.5px;background:var(--ink);border-radius:2px;transition:all .3s;}
-@media(max-width:860px){
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;
-    background:rgba(245,243,238,.97);backdrop-filter:blur(20px);padding:1rem 2rem 1.5rem;
-    border-bottom:1px solid var(--border);}
-  .nav-links.open{display:flex;}
-  .nav-links a{padding:.6rem 0;font-size:.9rem;border-bottom:1px solid var(--border2);width:100%;}
-  .nav-ham{display:flex;}
+html{
+  scroll-behavior:smooth;
 }
 
-/* ═══════════════════════════════════════════
-   SECTION SCAFFOLD
-═══════════════════════════════════════════ */
-section{padding:7rem 2rem;}
-.wrap{max-width:1140px;margin:0 auto;}
-.eyebrow{
-  display:inline-block;font-family:var(--font-mono);font-size:.65rem;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
-  border:1px solid var(--border);border-radius:50px;padding:.3rem .9rem;
-  margin-bottom:1.2rem;
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
 }
-.section-title{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:.8rem;}
-.section-sub{color:var(--muted);font-size:.95rem;max-width:520px;line-height:1.75;margin-bottom:3rem;}
 
-/* ── FADE ANIMATIONS ── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1);}
-.reveal.up{opacity:1;transform:none;}
-.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}.d5{transition-delay:.40s;}
+a{
+  text-decoration:none;
+  color:inherit;
+}
 
-/* ═══════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════ */
-#hero{
-  min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 5rem;
-  position:relative;overflow:hidden;
-  background:
-    radial-gradient(ellipse 70% 55% at 80% 20%, rgba(109,74,255,.07) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 50% at 10% 80%, rgba(14,165,160,.06) 0%,transparent 55%),
-    var(--bg);
+img{
+  max-width:100%;
+  display:block;
 }
-.hero-grid{max-width:1140px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:center;}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:.5rem;
-  background:var(--plum-soft);border:1px solid rgba(109,74,255,.18);
-  border-radius:50px;padding:.35rem 1rem .35rem .55rem;
-  font-size:.72rem;font-weight:600;color:var(--plum);letter-spacing:.06em;
-  text-transform:uppercase;margin-bottom:1.6rem;
+
+/* NAVBAR */
+
+nav{
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
 }
-.badge-dot{width:7px;height:7px;background:var(--plum);border-radius:50%;animation:blink 2.4s ease-in-out infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
-.hero-name{font-family:var(--font-serif);font-size:clamp(3rem,5.5vw,5rem);line-height:1.0;letter-spacing:-.025em;margin-bottom:.6rem;}
-.hero-name em{font-style:italic;color:var(--plum);}
-.hero-role{font-size:1rem;color:var(--muted);margin-bottom:.9rem;font-weight:400;}
-.hero-desc{font-size:.92rem;color:var(--ink2);line-height:1.8;max-width:460px;margin-bottom:2.4rem;}
-.hero-ctas{display:flex;gap:.75rem;flex-wrap:wrap;}
+
+.nav-container{
+  max-width:1200px;
+  margin:auto;
+  padding:1rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:1.3rem;
+  font-weight:700;
+}
+
+.logo span{
+  color:var(--primary);
+}
+
+.nav-links{
+  display:flex;
+  gap:2rem;
+  align-items:center;
+}
+
+.nav-links a{
+  font-size:0.95rem;
+  color:#444;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:var(--primary);
+}
+
+.btn-nav{
+  background:var(--primary);
+  color:white !important;
+  padding:0.7rem 1.2rem;
+  border-radius:999px;
+  font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:8rem 2rem 5rem;
+}
+
+.hero-container{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+}
+
+.hero-left h1{
+  font-size:4.8rem;
+  line-height:1;
+  font-family:'Playfair Display',serif;
+  margin-bottom:1rem;
+}
+
+.hero-left h1 span{
+  color:var(--primary);
+}
+
+.hero-role{
+  font-size:1rem;
+  color:var(--muted);
+  margin-bottom:1.5rem;
+}
+
+.hero-desc{
+  color:#444;
+  font-size:1rem;
+  margin-bottom:2rem;
+  max-width:550px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+
 .btn{
-  display:inline-flex;align-items:center;gap:.5rem;
-  padding:.65rem 1.5rem;border-radius:50px;font-size:.82rem;font-weight:600;
-  letter-spacing:.02em;transition:all .25s;border:1.5px solid transparent;
+  padding:0.9rem 1.4rem;
+  border-radius:999px;
+  font-weight:600;
+  transition:0.3s;
+  display:inline-flex;
+  align-items:center;
+  gap:0.6rem;
 }
-.btn-dark{background:var(--ink);color:#fff;}
-.btn-dark:hover{background:#27272A;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18);}
-.btn-outline{background:transparent;color:var(--ink);border-color:var(--border);}
-.btn-outline:hover{background:var(--surface);border-color:rgba(0,0,0,.12);transform:translateY(-2px);box-shadow:var(--shadow-sm);}
-.btn-plum{background:var(--plum);color:#fff;}
-.btn-plum:hover{background:#5a38e8;transform:translateY(-2px);box-shadow:0 8px 24px rgba(109,74,255,.28);}
 
-/* HERO RIGHT — floating dashboard */
-.hero-right{position:relative;height:420px;}
-.h-card{
-  position:absolute;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:1.1rem 1.3rem;
-  animation:floatY 7s ease-in-out infinite;
+.btn-primary{
+  background:var(--primary);
+  color:white;
 }
-@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
-.h-card.A{top:0;right:0;width:192px;animation-delay:0s;}
-.h-card.B{top:128px;left:0;width:186px;animation-delay:1.8s;}
-.h-card.C{bottom:40px;right:24px;width:178px;animation-delay:.9s;}
-.h-card.D{top:260px;right:110px;width:170px;animation-delay:2.7s;}
-.hc-label{font-family:var(--font-mono);font-size:.58rem;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.25rem;}
-.hc-val{font-family:var(--font-serif);font-size:1.9rem;line-height:1;margin-bottom:.2rem;}
-.hc-sub{font-size:.67rem;color:var(--muted);}
-.hero-chart-wrap{
-  position:relative;top:50%;transform:translateY(-50%);
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);box-shadow:var(--shadow-lg);
-  padding:1.4rem;height:240px;display:flex;flex-direction:column;
-  margin:0 2.5rem;
-}
-.hero-chart-wrap h5{font-family:var(--font-mono);font-size:.6rem;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem;}
-.hero-chart-wrap canvas{flex:1;}
 
-/* ── KPI BAR ── */
-.kpi-bar{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.2rem 2rem;}
-.kpi-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;text-align:center;}
-.kpi-item .k-num{font-family:var(--font-serif);font-size:2.2rem;color:var(--plum);}
-.kpi-item .k-lbl{font-size:.72rem;color:var(--muted);margin-top:.3rem;line-height:1.4;}
-@media(max-width:700px){.kpi-inner{grid-template-columns:repeat(2,1fr);}}
+.btn-primary:hover{
+  transform:translateY(-3px);
+}
 
-/* ═══════════════════════════════════════════
-   PROJECTS — Meelo card layout
-═══════════════════════════════════════════ */
-#projects{background:var(--bg2);}
-.proj-list{display:flex;flex-direction:column;gap:1.5rem;}
-.proj-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm);
-  transition:box-shadow .3s,border-color .3s;
+.btn-outline{
+  border:1px solid var(--border);
+  background:white;
 }
-.proj-card:hover{box-shadow:var(--shadow);border-color:rgba(0,0,0,.1);}
-.proj-head{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.8rem 2rem;cursor:pointer;gap:1.5rem;
-}
-.ph-left{display:flex;align-items:flex-start;gap:1.2rem;flex:1;}
-.ph-num{
-  font-family:var(--font-mono);font-size:.62rem;color:var(--muted);
-  background:var(--bg);border:1px solid var(--border);border-radius:6px;
-  padding:.22rem .6rem;letter-spacing:.04em;white-space:nowrap;margin-top:.15rem;
-  flex-shrink:0;
-}
-.ph-text .pt{font-family:var(--font-serif);font-size:1.2rem;line-height:1.2;margin-bottom:.25rem;}
-.ph-text .ps{font-size:.75rem;color:var(--muted);}
-.ph-tag{font-size:.65rem;font-weight:600;padding:.22rem .7rem;border-radius:50px;white-space:nowrap;flex-shrink:0;}
-.ph-arrow{
-  width:34px;height:34px;border-radius:50%;
-  background:var(--bg);border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--muted);font-size:.75rem;flex-shrink:0;transition:all .3s;
-}
-.proj-card.open .ph-arrow{background:var(--ink);color:#fff;transform:rotate(45deg);}
-.proj-body{display:none;padding:0 2rem 2rem;}
-.proj-card.open .proj-body{display:block;}
 
-/* body inner pieces */
-.proj-kpi-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.6rem;padding-top:0;}
-.pkpi{
-  background:var(--bg);border:1px solid var(--border);border-radius:10px;
-  padding:.65rem 1.1rem;text-align:center;min-width:100px;
+.btn-outline:hover{
+  background:#fafafa;
 }
-.pkv{font-family:var(--font-serif);font-size:1.45rem;line-height:1;}
-.pkl{font-family:var(--font-mono);font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:.2rem;}
 
-.proj-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
-.proj-box{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.1rem;}
-.proj-box h6{font-family:var(--font-mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.7rem;}
-.proj-box ul{list-style:none;display:flex;flex-direction:column;gap:.32rem;}
-.proj-box ul li{font-size:.82rem;color:var(--ink2);display:flex;gap:.4rem;line-height:1.45;}
-.proj-box ul li::before{content:'·';color:var(--plum);flex-shrink:0;font-weight:700;}
-
-.flow-row{display:flex;align-items:center;flex-wrap:wrap;gap:.35rem;margin:.5rem 0;}
-.flow-step{background:var(--plum-soft);border:1px solid rgba(109,74,255,.2);border-radius:6px;padding:.28rem .7rem;font-size:.7rem;font-weight:600;color:var(--plum);}
-.flow-arrow{color:var(--faint);font-size:.8rem;}
-
-.chart-duo{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
-.chart-tile{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1rem;}
-.chart-tile h6{font-family:var(--font-mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.7rem;}
-.chart-tile canvas{width:100%!important;height:170px!important;}
-
-.proj-tools-row{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.8rem;}
-.ptag{
-  display:inline-flex;align-items:center;gap:.35rem;
-  font-size:.72rem;font-weight:500;padding:.28rem .75rem;
-  border-radius:50px;border:1px solid;transition:opacity .2s;
+.hero-card{
+  background:white;
+  border-radius:30px;
+  padding:2rem;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
 }
-.proj-quote{
-  border-left:2px solid var(--plum);background:var(--plum-soft);
-  border-radius:0 8px 8px 0;padding:.9rem 1.2rem;
-  font-style:italic;font-size:.84rem;color:var(--ink2);line-height:1.65;margin-top:1rem;
-}
-@media(max-width:720px){.proj-2col,.chart-duo{grid-template-columns:1fr;}}
 
-/* ═══════════════════════════════════════════
-   DASHBOARDS — Power BI section
-═══════════════════════════════════════════ */
-#dashboards{background:var(--bg3);}
-.pbi-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
-@media(max-width:700px){.pbi-kpis{grid-template-columns:repeat(2,1fr);}}
-.pbi-k{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:1.3rem;position:relative;overflow:hidden;box-shadow:var(--shadow-sm);
+.hero-card h3{
+  margin-bottom:1.5rem;
+  font-size:1.2rem;
 }
-.pbi-k::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2.5px;}
-.pk1::after{background:var(--c1);}
-.pk2::after{background:var(--c2);}
-.pk3::after{background:var(--c3);}
-.pk4::after{background:var(--c4);}
-.pk5::after{background:var(--c5);}
-.pk6::after{background:var(--c6);}
-.pbi-k .val{font-family:var(--font-serif);font-size:2rem;margin-bottom:.15rem;}
-.pbi-k .lbl{font-family:var(--font-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
-.pbi-k .chg{font-size:.7rem;font-weight:600;margin-top:.3rem;}
-.up{color:var(--sage);}
-.pbi-main-charts{display:grid;grid-template-columns:1.5fr 1fr;gap:1rem;margin-bottom:1rem;}
-.pbi-sub-charts{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
-@media(max-width:860px){.pbi-main-charts,.pbi-sub-charts{grid-template-columns:1fr;}}
-.db-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem;box-shadow:var(--shadow-sm);}
-.db-tile h4{font-family:var(--font-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:1rem;}
-.db-tile canvas{width:100%!important;height:200px!important;}
 
-/* ═══════════════════════════════════════════
-   TOOLS — 3D icon cards
-═══════════════════════════════════════════ */
-#skills{background:var(--bg4);}
-.tool-group-lbl{font-family:var(--font-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:.9rem;margin-top:2rem;}
-.tool-grid{display:flex;flex-wrap:wrap;gap:.75rem;}
-.tool-c{
-  display:flex;align-items:center;gap:.75rem;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:12px;padding:.8rem 1.1rem;
-  box-shadow:var(--shadow-sm);transition:all .25s;cursor:default;
-  min-width:150px;
+.metric{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:1rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid #eee;
 }
-.tool-c:hover{transform:translateY(-3px) scale(1.01);box-shadow:var(--shadow);}
-.tool-icon-wrap{
-  width:38px;height:38px;border-radius:10px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.15rem;
-  /* 3D-ish card feel */
-  box-shadow:0 4px 10px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.6);
-}
-.tool-n{font-size:.8rem;font-weight:600;color:var(--ink);}
-.tool-sub{font-size:.65rem;color:var(--muted);}
 
-/* ═══════════════════════════════════════════
-   TIMELINE
-═══════════════════════════════════════════ */
-#experience{background:var(--bg2);}
-.tl{position:relative;padding-left:2.5rem;display:flex;flex-direction:column;gap:0;}
-.tl::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1.5px;background:var(--border);}
-.tl-node{position:relative;padding-bottom:2.2rem;}
-.tl-dot{
-  position:absolute;left:-2.42rem;top:.35rem;
-  width:12px;height:12px;border-radius:50%;border:2.5px solid var(--surface);
-  box-shadow:0 0 0 2px var(--plum);background:var(--plum);
+.metric strong{
+  color:var(--primary);
 }
-.tl-dot.t{box-shadow:0 0 0 2px var(--teal);background:var(--teal);}
-.tl-dot.a{box-shadow:0 0 0 2px var(--amber);background:var(--amber);}
-.tl-dot.s{box-shadow:0 0 0 2px var(--sage);background:var(--sage);}
-.tl-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.3rem 1.6rem;box-shadow:var(--shadow-sm);}
-.tl-date{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.08em;color:var(--plum);margin-bottom:.3rem;}
-.tl-role{font-weight:600;font-size:.95rem;margin-bottom:.15rem;}
-.tl-company{font-size:.78rem;color:var(--muted);margin-bottom:.5rem;}
-.tl-desc{font-size:.8rem;color:var(--ink2);line-height:1.65;}
-.tl-node.reveal{opacity:0;transform:translateX(-16px);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);}
-.tl-node.reveal.up{opacity:1;transform:none;}
 
-/* ═══════════════════════════════════════════
-   ANALYTICS AGGREGATE
-═══════════════════════════════════════════ */
-#analytics{background:var(--bg);}
-.agg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
-@media(max-width:700px){.agg-grid{grid-template-columns:repeat(2,1fr);}}
-.agg-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.3rem;text-align:center;box-shadow:var(--shadow-sm);}
-.agg-val{font-family:var(--font-serif);font-size:1.9rem;margin-bottom:.25rem;}
-.agg-lbl{font-family:var(--font-mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);}
-.agg-charts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-@media(max-width:700px){.agg-charts{grid-template-columns:1fr;}}
+/* SECTIONS */
 
-/* ═══════════════════════════════════════════
-   CERTIFICATIONS
-═══════════════════════════════════════════ */
-#certs{background:var(--bg4);}
-.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
-@media(max-width:720px){.cert-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:480px){.cert-grid{grid-template-columns:1fr;}}
-.cert-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.3rem;display:flex;gap:.9rem;align-items:flex-start;box-shadow:var(--shadow-sm);transition:all .25s;}
-.cert-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);}
-.cert-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;}
-.cert-name{font-size:.84rem;font-weight:600;margin-bottom:.2rem;}
-.cert-org{font-size:.72rem;color:var(--plum);font-weight:500;}
-.cert-yr{font-size:.68rem;color:var(--muted);}
+section{
+  padding:6rem 2rem;
+}
 
-/* ═══════════════════════════════════════════
-   CONTACT — 2 colors only: #18181B + #6D4AFF
-═══════════════════════════════════════════ */
-#contact{background:var(--contact-bg);padding:7rem 2rem 4rem;}
-#contact .eyebrow{color:rgba(109,74,255,.7);border-color:rgba(109,74,255,.2);}
-#contact .section-title{color:#fff;}
-#contact .section-sub{color:rgba(255,255,255,.45);max-width:480px;}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
-@media(max-width:800px){.contact-grid{grid-template-columns:1fr;gap:2.5rem;}}
-.contact-links{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem;}
-.clink{
-  display:flex;align-items:center;gap:.9rem;
-  padding:1rem 1.2rem;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:12px;text-decoration:none;
-  transition:all .25s;
+.container{
+  max-width:1200px;
+  margin:auto;
 }
-.clink:hover{background:rgba(109,74,255,.15);border-color:rgba(109,74,255,.35);transform:translateX(4px);}
-.clink-icon{
-  width:40px;height:40px;border-radius:10px;
-  background:rgba(109,74,255,.2);border:1px solid rgba(109,74,255,.3);
-  display:flex;align-items:center;justify-content:center;font-size:1rem;
-  color:var(--contact-acc);flex-shrink:0;
+
+.section-tag{
+  display:inline-block;
+  background:var(--primary-soft);
+  color:var(--primary);
+  padding:0.4rem 1rem;
+  border-radius:999px;
+  font-size:0.75rem;
+  font-weight:700;
+  margin-bottom:1rem;
 }
-.clink-lbl{font-family:var(--font-mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);}
-.clink-val{font-size:.86rem;color:#fff;font-weight:500;margin-top:.1rem;}
-.contact-cta-col{display:flex;flex-direction:column;gap:.75rem;margin-top:.5rem;}
-.btn-contact-pri{background:var(--contact-acc);color:#fff;justify-content:center;}
-.btn-contact-pri:hover{background:#5a38e8;transform:translateY(-2px);}
-.btn-contact-out{background:transparent;color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.14);justify-content:center;}
-.btn-contact-out:hover{background:rgba(255,255,255,.06);color:#fff;}
-.contact-form{display:flex;flex-direction:column;gap:.85rem;}
-.cf label{display:block;font-family:var(--font-mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:.35rem;}
-.cf input,.cf textarea{
-  width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;padding:.75rem 1rem;
-  color:#fff;font-family:var(--font-sans);font-size:.85rem;outline:none;transition:border .2s;resize:none;
+
+.section-title{
+  font-size:3rem;
+  line-height:1.1;
+  margin-bottom:1rem;
+  font-family:'Playfair Display',serif;
 }
-.cf input:focus,.cf textarea:focus{border-color:rgba(109,74,255,.5);}
-.cf input::placeholder,.cf textarea::placeholder{color:rgba(255,255,255,.2);}
+
+.section-sub{
+  color:var(--muted);
+  max-width:700px;
+  margin-bottom:3rem;
+}
+
+/* PROJECTS */
+
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:1.5rem;
+}
+
+.project-card{
+  background:white;
+  border-radius:var(--radius);
+  padding:2rem;
+  border:1px solid var(--border);
+  transition:0.3s;
+  box-shadow:var(--shadow);
+}
+
+.project-card:hover{
+  transform:translateY(-6px);
+}
+
+.project-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:1rem;
+}
+
+.project-number{
+  color:var(--primary);
+  font-weight:700;
+}
+
+.project-card h3{
+  margin-bottom:1rem;
+}
+
+.project-card p{
+  color:#555;
+  font-size:0.95rem;
+  margin-bottom:1.5rem;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.6rem;
+}
+
+.tag{
+  background:#f5f5f5;
+  padding:0.45rem 0.8rem;
+  border-radius:999px;
+  font-size:0.75rem;
+  font-weight:600;
+}
+
+/* EXPERIENCE */
+
+.timeline{
+  position:relative;
+  margin-top:2rem;
+  padding-left:2rem;
+}
+
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:#ddd;
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:2rem;
+  background:white;
+  padding:1.8rem;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.timeline-item::before{
+  content:"";
+  position:absolute;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:var(--primary);
+  left:-2.45rem;
+  top:2rem;
+}
+
+.timeline-item h3{
+  margin-bottom:0.3rem;
+}
+
+.timeline-item span{
+  color:var(--primary);
+  font-size:0.85rem;
+  font-weight:600;
+}
+
+/* SKILLS */
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1rem;
+}
+
+.skill-card{
+  background:white;
+  border-radius:16px;
+  padding:1.5rem;
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  box-shadow:var(--shadow);
+}
+
+.skill-icon{
+  width:50px;
+  height:50px;
+  border-radius:14px;
+  background:var(--primary-soft);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--primary);
+  font-size:1.3rem;
+}
+
+/* CONTACT */
+
+.contact{
+  background:#121212;
+  color:white;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+}
+
+.contact-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;
+  padding:1.5rem;
+  margin-bottom:1rem;
+}
+
+.contact-card i{
+  color:#8f7bff;
+  margin-right:0.8rem;
+}
+
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+
+.contact-form input,
+.contact-form textarea{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:1rem;
+  border-radius:14px;
+  color:white;
+  font-family:inherit;
+}
+
+.contact-form button{
+  border:none;
+  cursor:pointer;
+}
+
+/* FOOTER */
+
 footer{
-  background:var(--contact-bg);
-  border-top:1px solid rgba(255,255,255,.06);
-  padding:1.5rem 2rem;text-align:center;
+  background:#121212;
+  border-top:1px solid rgba(255,255,255,0.08);
+  text-align:center;
+  padding:2rem;
+  color:#777;
 }
-.footer-inner{max-width:1140px;margin:0 auto;}
-.footer-inner p{font-size:.78rem;color:rgba(255,255,255,.28);}
-.footer-inner a{color:rgba(109,74,255,.7);transition:color .2s;}
-.footer-inner a:hover{color:var(--contact-acc);}
-.footer-bottom{margin-top:.4rem;font-size:.72rem;color:rgba(255,255,255,.18);letter-spacing:.04em;}
 
-/* ── BACK TO TOP ── */
-#btt{
-  position:fixed;bottom:1.8rem;right:1.8rem;z-index:700;
-  width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:.85rem;
-  box-shadow:var(--shadow);transition:all .25s;opacity:0;pointer-events:none;
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+  .hero-container,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-left h1{
+    font-size:3.5rem;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
 }
-#btt.vis{opacity:1;pointer-events:auto;}
-#btt:hover{background:var(--plum);transform:translateY(-3px);}
+
 </style>
 </head>
+
 <body>
 
-<!-- ═══ NAV ═══════════════════════════════ -->
-<nav id="nav">
-  <div class="nav-wrap">
-    <a href="#hero" class="nav-logo">PM<span>.</span></a>
-    <div class="nav-links" id="navLinks">
-      <a href="#hero">Home</a>
+<!-- NAVBAR -->
+
+<nav>
+  <div class="nav-container">
+
+    <div class="logo">
+      Pratibha<span>.</span>
+    </div>
+
+    <div class="nav-links">
       <a href="#projects">Projects</a>
-      <a href="#dashboards">Dashboards</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
-      <a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/" target="_blank" class="nav-pill">
-        <i class="fa-brands fa-github"></i> Portfolio
+
+      <a class="btn-nav"
+      href="https://github.com/pratibha1996mishra/pratibhamishra.portfolio"
+      target="_blank">
+      GitHub
       </a>
     </div>
-    <div class="nav-ham" onclick="document.getElementById('navLinks').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </div>
+
   </div>
 </nav>
 
-<!-- ═══ HERO ═══════════════════════════════ -->
-<section id="hero">
-  <div class="hero-grid">
-    <div class="hero-left">
-      <div class="hero-badge"><span class="badge-dot"></span>Open to Roles &amp; Consulting</div>
-      <h1 class="hero-name">Pratibha<br/><em>Mishra</em></h1>
-      <p class="hero-role">Enterprise Learning Experience Designer &nbsp;·&nbsp; LMS Analytics Specialist &nbsp;·&nbsp; Instructional Designer</p>
-      <p class="hero-desc">Designing scalable digital learning ecosystems, compliance simulations, SCORM/xAPI environments, and workforce enablement systems that drive measurable operational outcomes across regulated industries.</p>
-      <div class="hero-ctas">
-        <a href="#projects" class="btn btn-dark"><i class="fa-solid fa-folder-open"></i> Case Studies</a>
-        <a href="#dashboards" class="btn btn-plum"><i class="fa-solid fa-chart-mixed"></i> Dashboards</a>
-        <a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/" target="_blank" class="btn btn-outline"><i class="fa-brands fa-github"></i> GitHub</a>
-        <a href="#contact" class="btn btn-outline"><i class="fa-solid fa-paper-plane"></i> Contact</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-chart-wrap">
-        <h5>Learner Engagement &amp; Completion — 2025</h5>
-        <canvas id="heroChart"></canvas>
-      </div>
-      <div class="h-card A">
-        <div class="hc-label">Compliance Rate</div>
-        <div class="hc-val" style="color:var(--plum)"><span class="cnt" data-t="94">0</span>%</div>
-        <div class="hc-sub">↑ 21% vs baseline</div>
-      </div>
-      <div class="h-card B">
-        <div class="hc-label">Learners Supported</div>
-        <div class="hc-val" style="color:var(--teal)"><span class="cnt" data-t="1500">0</span>+</div>
-        <div class="hc-sub">Enterprise platforms</div>
-      </div>
-      <div class="h-card C">
-        <div class="hc-label">SCORM Modules</div>
-        <div class="hc-val" style="color:var(--amber)"><span class="cnt" data-t="15">0</span>+</div>
-        <div class="hc-sub">Production-deployed</div>
-      </div>
-      <div class="h-card D">
-        <div class="hc-label">Engagement Uplift</div>
-        <div class="hc-val" style="color:var(--sage)">+<span class="cnt" data-t="20">0</span>%</div>
-        <div class="hc-sub">Feedback-driven</div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- HERO -->
 
-<!-- ═══ KPI BAR ════════════════════════════ -->
-<div class="kpi-bar">
-  <div class="kpi-inner">
-    <div class="kpi-item reveal d1"><div class="k-num"><span class="cnt" data-t="6">0</span>+ yrs</div><div class="k-lbl">Enterprise L&amp;D<br/>Experience</div></div>
-    <div class="kpi-item reveal d2"><div class="k-num"><span class="cnt" data-t="1500">0</span>+</div><div class="k-lbl">Learners Supported<br/>Across Platforms</div></div>
-    <div class="kpi-item reveal d3"><div class="k-num"><span class="cnt" data-t="94">0</span>%</div><div class="k-lbl">Peak Compliance<br/>Completion</div></div>
-    <div class="kpi-item reveal d4"><div class="k-num"><span class="cnt" data-t="15">0</span>+</div><div class="k-lbl">SCORM Modules<br/>Deployed</div></div>
-    <div class="kpi-item reveal d5"><div class="k-num"><span class="cnt" data-t="20">0</span>%</div><div class="k-lbl">Learner Engagement<br/>Improvement</div></div>
-  </div>
+<section class="hero">
+
+<div class="hero-container">
+
+<div class="hero-left">
+
+<div class="section-tag">
+Learning Experience Designer
 </div>
 
-<!-- ═══ PROJECTS ════════════════════════════ -->
+<h1>
+Pratibha<br>
+<span>Mishra</span>
+</h1>
+
+<div class="hero-role">
+Instructional Designer · LMS Specialist · Learning Experience Designer
+</div>
+
+<div class="hero-desc">
+Designing scalable enterprise learning ecosystems, compliance simulations,
+interactive digital learning experiences, onboarding journeys, and
+workforce enablement programs across modern organizations.
+</div>
+
+<div class="hero-buttons">
+
+<a href="#projects" class="btn btn-primary">
+<i class="fa-solid fa-folder-open"></i>
+View Projects
+</a>
+
+<a href="https://www.linkedin.com/in/pratibhamishra1996/"
+target="_blank"
+class="btn btn-outline">
+<i class="fa-brands fa-linkedin"></i>
+LinkedIn
+</a>
+
+<a href="https://github.com/pratibha1996mishra/pratibhamishra.portfolio"
+target="_blank"
+class="btn btn-outline">
+<i class="fa-brands fa-github"></i>
+GitHub
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<div class="hero-card">
+
+<h3>Portfolio Highlights</h3>
+
+<div class="metric">
+<span>Experience</span>
+<strong>6+ Years</strong>
+</div>
+
+<div class="metric">
+<span>SCORM Modules</span>
+<strong>15+</strong>
+</div>
+
+<div class="metric">
+<span>Learners Supported</span>
+<strong>1500+</strong>
+</div>
+
+<div class="metric">
+<span>Engagement Growth</span>
+<strong>+20%</strong>
+</div>
+
+<div class="metric">
+<span>Compliance Success</span>
+<strong>94%</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+
 <section id="projects">
-  <div class="wrap">
-    <div class="eyebrow reveal">Flagship Case Studies</div>
-    <h2 class="section-title reveal d1">Enterprise Learning<br/>Projects</h2>
-    <p class="section-sub reveal d2">Five end-to-end learning transformation initiatives spanning compliance, analytics, onboarding, digital adoption, and workforce capability.</p>
 
-    <div class="proj-list">
+<div class="container">
 
-<!-- P1 ─────────────────────────────────── -->
-<div class="proj-card reveal" id="pc1">
-  <div class="proj-head" onclick="toggleProj('pc1')">
-    <div class="ph-left">
-      <span class="ph-num">01</span>
-      <div class="ph-text">
-        <div class="pt">Compliance Simulation &amp; Workflow Readiness Program</div>
-        <div class="ps">Pharma Enterprise · SCORM/xAPI · Power BI · Storyline 360</div>
-      </div>
-    </div>
-    <span class="ph-tag" style="color:var(--plum);background:var(--plum-soft);border:1px solid rgba(109,74,255,.2)">Flagship</span>
-    <div class="ph-arrow"><i class="fa-solid fa-plus"></i></div>
-  </div>
-  <div class="proj-body">
-    <div class="proj-kpi-row">
-      <div class="pkpi"><div class="pkv" style="color:var(--plum)">94%</div><div class="pkl">Compliance</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--teal)">32%</div><div class="pkl">Faster Readiness</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--amber)">21%</div><div class="pkl">Error Reduction</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--sage)">87%</div><div class="pkl">Avg Score</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--rose)">91%</div><div class="pkl">Sim Completion</div></div>
-    </div>
-    <div class="proj-2col">
-      <div class="proj-box">
-        <h6>Business Challenge</h6>
-        <ul>
-          <li>Inconsistent SOP adherence across regional teams</li>
-          <li>Audit readiness concerns from compliance leadership</li>
-          <li>Low retention from passive static eLearning modules</li>
-          <li>Zero manager visibility into learner progress</li>
-          <li>Delayed onboarding into compliance workflows</li>
-        </ul>
-      </div>
-      <div class="proj-box">
-        <h6>Learning Strategy</h6>
-        <ul>
-          <li>Branching simulations with decision-path logic</li>
-          <li>Role-based learning journeys per operational team</li>
-          <li>SCORM completion + xAPI event logging via LRS</li>
-          <li>Power BI compliance analytics dashboard</li>
-          <li>WCAG 2.1-compliant accessible design throughout</li>
-        </ul>
-      </div>
-    </div>
-    <div class="proj-box" style="margin-bottom:1rem;">
-      <h6>Learning Experience Architecture</h6>
-      <div class="flow-row">
-        <span class="flow-step">Pre-Assessment</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Workflow Intro</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Guided Simulation</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Decision Points</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Risk Identification</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Final Assessment</span><span class="flow-arrow">›</span>
-        <span class="flow-step" style="background:var(--teal-soft);border-color:rgba(14,165,160,.25);color:var(--teal)">Manager Report</span>
-      </div>
-    </div>
-    <div class="chart-duo">
-      <div class="chart-tile"><h6>Compliance Completion by Region</h6><canvas id="p1c1"></canvas></div>
-      <div class="chart-tile"><h6>Monthly Adoption Trend</h6><canvas id="p1c2"></canvas></div>
-    </div>
-    <div class="proj-box">
-      <h6>Tools &amp; Platforms</h6>
-      <div class="proj-tools-row">
-        <span class="ptag" style="color:#0f6cbd;border-color:rgba(15,108,189,.2);background:rgba(15,108,189,.07)"><i class="fa-solid fa-film"></i> Storyline 360</span>
-        <span class="ptag" style="color:var(--plum);border-color:rgba(109,74,255,.2);background:var(--plum-soft)"><i class="fa-solid fa-layer-group"></i> Rise 360</span>
-        <span class="ptag" style="color:#f2a900;border-color:rgba(242,169,0,.2);background:rgba(242,169,0,.07)"><i class="fa-brands fa-microsoft"></i> Power BI</span>
-        <span class="ptag" style="color:var(--teal);border-color:rgba(14,165,160,.2);background:var(--teal-soft)"><i class="fa-solid fa-graduation-cap"></i> Moodle LMS</span>
-        <span class="ptag" style="color:var(--sage);border-color:rgba(22,163,74,.2);background:var(--sage-soft)"><i class="fa-solid fa-code-branch"></i> xAPI / SCORM</span>
-        <span class="ptag" style="color:var(--rose);border-color:rgba(225,29,72,.2);background:var(--rose-soft)"><i class="fa-solid fa-video"></i> Vyond</span>
-      </div>
-    </div>
-    <div class="proj-quote">"The initiative transformed compliance learning from passive content consumption into measurable operational readiness — improving audit confidence and learner accountability at enterprise scale."</div>
-  </div>
+<div class="section-tag">
+Portfolio Projects
 </div>
 
-<!-- P2 ─────────────────────────────────── -->
-<div class="proj-card reveal d1" id="pc2">
-  <div class="proj-head" onclick="toggleProj('pc2')">
-    <div class="ph-left">
-      <span class="ph-num">02</span>
-      <div class="ph-text">
-        <div class="pt">LMS Learning Analytics Dashboard</div>
-        <div class="ps">Enterprise Learning Intelligence · Power BI · xAPI · LMS Reporting</div>
-      </div>
-    </div>
-    <span class="ph-tag" style="color:var(--teal);background:var(--teal-soft);border:1px solid rgba(14,165,160,.2)">Analytics</span>
-    <div class="ph-arrow"><i class="fa-solid fa-plus"></i></div>
-  </div>
-  <div class="proj-body">
-    <div class="proj-kpi-row">
-      <div class="pkpi"><div class="pkv" style="color:var(--teal)">4,280</div><div class="pkl">Active Learners</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--plum)">88%</div><div class="pkl">Monthly Completion</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--amber)">38%</div><div class="pkl">Reporting Gain</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--sage)">84%</div><div class="pkl">Assessment Pass</div></div>
-    </div>
-    <div class="proj-2col">
-      <div class="proj-box">
-        <h6>Business Challenge</h6>
-        <ul>
-          <li>Fragmented LMS reporting across departments</li>
-          <li>Managers lacked team learning progress visibility</li>
-          <li>No centralized measurement of training effectiveness</li>
-          <li>Executive dashboard access was nonexistent</li>
-        </ul>
-      </div>
-      <div class="proj-box">
-        <h6>Analytics Pipeline</h6>
-        <div class="flow-row" style="flex-direction:column;align-items:flex-start;gap:.4rem;">
-          <div class="flow-row"><span class="flow-step">LMS Extract</span><span class="flow-arrow">›</span><span class="flow-step">SCORM Logs</span><span class="flow-arrow">›</span><span class="flow-step">xAPI Events</span></div>
-          <div class="flow-row"><span class="flow-step">Excel Staging</span><span class="flow-arrow">›</span><span class="flow-step" style="background:var(--sage-soft);border-color:rgba(22,163,74,.25);color:var(--sage)">Power BI Hub</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="chart-duo">
-      <div class="chart-tile"><h6>Completion Trend — Monthly</h6><canvas id="p2c1"></canvas></div>
-      <div class="chart-tile"><h6>Department Performance Matrix</h6><canvas id="p2c2"></canvas></div>
-    </div>
-    <div class="proj-quote">"The Learning Intelligence Hub gave leadership unprecedented visibility into workforce learning effectiveness — turning raw LMS data into strategic workforce decisions."</div>
-  </div>
+<h2 class="section-title">
+Enterprise Learning Projects
+</h2>
+
+<p class="section-sub">
+Instructional design, compliance learning, onboarding programs,
+workflow enablement, and digital adoption initiatives.
+</p>
+
+<div class="projects-grid">
+
+<div class="project-card">
+
+<div class="project-top">
+<div class="project-number">01</div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
 </div>
 
-<!-- P3 ─────────────────────────────────── -->
-<div class="proj-card reveal d2" id="pc3">
-  <div class="proj-head" onclick="toggleProj('pc3')">
-    <div class="ph-left">
-      <span class="ph-num">03</span>
-      <div class="ph-text">
-        <div class="pt">Digital Employee Onboarding &amp; Readiness Journey</div>
-        <div class="ps">Enterprise Onboarding · Role-Based Journeys · AI-Assisted Support</div>
-      </div>
-    </div>
-    <span class="ph-tag" style="color:var(--amber);background:var(--amber-soft);border:1px solid rgba(217,119,6,.2)">Onboarding</span>
-    <div class="ph-arrow"><i class="fa-solid fa-plus"></i></div>
-  </div>
-  <div class="proj-body">
-    <div class="proj-kpi-row">
-      <div class="pkpi"><div class="pkv" style="color:var(--plum)">86%</div><div class="pkl">Readiness Index</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--teal)">91%</div><div class="pkl">New Hire Completion</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--amber)">24 Days</div><div class="pkl">Time-to-Productivity</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--sage)">82%</div><div class="pkl">Mgr Satisfaction</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--rose)">14%</div><div class="pkl">Attrition Reduction</div></div>
-    </div>
-    <div class="proj-box" style="margin-bottom:1rem;">
-      <h6>Onboarding Journey Architecture</h6>
-      <div class="flow-row">
-        <span class="flow-step">Preboarding</span><span class="flow-arrow">›</span>
-        <span class="flow-step">HR Readiness</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Role Orientation</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Systems Training</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Workflow Sim</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Mgr Check-in</span><span class="flow-arrow">›</span>
-        <span class="flow-step">Certification</span><span class="flow-arrow">›</span>
-        <span class="flow-step" style="background:var(--sage-soft);border-color:rgba(22,163,74,.25);color:var(--sage)">Performance</span>
-      </div>
-    </div>
-    <div class="chart-duo">
-      <div class="chart-tile"><h6>Onboarding Completion Timeline</h6><canvas id="p3c1"></canvas></div>
-      <div class="chart-tile"><h6>Department Readiness Matrix</h6><canvas id="p3c2"></canvas></div>
-    </div>
-    <div class="proj-quote">"Role-based digital onboarding journeys reduced time-to-productivity by 40% while improving new hire satisfaction and early retention metrics across the organisation."</div>
-  </div>
+<h3>Compliance Simulation Program</h3>
+
+<p>
+Interactive compliance simulations built using Storyline 360,
+branching scenarios, SCORM workflows, and enterprise LMS integrations.
+</p>
+
+<div class="tags">
+<div class="tag">Storyline 360</div>
+<div class="tag">SCORM</div>
+<div class="tag">Compliance</div>
 </div>
 
-<!-- P4 ─────────────────────────────────── -->
-<div class="proj-card reveal d3" id="pc4">
-  <div class="proj-head" onclick="toggleProj('pc4')">
-    <div class="ph-left">
-      <span class="ph-num">04</span>
-      <div class="ph-text">
-        <div class="pt">Workflow Learning &amp; Digital Adoption Ecosystem</div>
-        <div class="ps">SaaS Enablement · Whatfix · SAP Enable Now · Contextual Guidance</div>
-      </div>
-    </div>
-    <span class="ph-tag" style="color:var(--sage);background:var(--sage-soft);border:1px solid rgba(22,163,74,.2)">Digital Adoption</span>
-    <div class="ph-arrow"><i class="fa-solid fa-plus"></i></div>
-  </div>
-  <div class="proj-body">
-    <div class="proj-kpi-row">
-      <div class="pkpi"><div class="pkv" style="color:var(--sage)">79%</div><div class="pkl">Adoption Score</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--teal)">33%</div><div class="pkl">App Usage Growth</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--amber)">24%</div><div class="pkl">Ticket Reduction</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--plum)">27%</div><div class="pkl">Proficiency Cut</div></div>
-    </div>
-    <div class="proj-2col">
-      <div class="proj-box">
-        <h6>Solution Components</h6>
-        <ul>
-          <li>Whatfix walkthroughs for in-app contextual guidance</li>
-          <li>SAP Enable Now application simulation modules</li>
-          <li>Role-based walkthroughs mapped to user personas</li>
-          <li>Microlearning nudges at workflow friction points</li>
-          <li>Click-path tracking &amp; adoption analytics via xAPI</li>
-        </ul>
-      </div>
-      <div class="proj-box">
-        <h6>Operational Outcomes</h6>
-        <ul>
-          <li>79% workflow adoption score achieved at 12 weeks</li>
-          <li>33% increase in application feature utilisation</li>
-          <li>24% reduction in IT support ticket volume</li>
-          <li>27% reduction in time-to-proficiency for new users</li>
-        </ul>
-      </div>
-    </div>
-    <div class="chart-duo">
-      <div class="chart-tile"><h6>Application Adoption Curve</h6><canvas id="p4c1"></canvas></div>
-      <div class="chart-tile"><h6>User Friction by Module</h6><canvas id="p4c2"></canvas></div>
-    </div>
-    <div class="proj-quote">"Embedding learning inside the workflow eliminated the gap between training completion and actual task proficiency — the most meaningful metric in digital adoption work."</div>
-  </div>
 </div>
 
-<!-- P5 ─────────────────────────────────── -->
-<div class="proj-card reveal d4" id="pc5">
-  <div class="proj-head" onclick="toggleProj('pc5')">
-    <div class="ph-left">
-      <span class="ph-num">05</span>
-      <div class="ph-text">
-        <div class="pt">Workforce Capability &amp; Skills Architecture Dashboard</div>
-        <div class="ps">Skills Intelligence · Competency Tracking · Certification Analytics</div>
-      </div>
-    </div>
-    <span class="ph-tag" style="color:var(--rose);background:var(--rose-soft);border:1px solid rgba(225,29,72,.2)">Skills</span>
-    <div class="ph-arrow"><i class="fa-solid fa-plus"></i></div>
-  </div>
-  <div class="proj-body">
-    <div class="proj-kpi-row">
-      <div class="pkpi"><div class="pkv" style="color:var(--plum)">77%</div><div class="pkl">Skill Readiness</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--teal)">84%</div><div class="pkl">Cert Completion</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--amber)">19%</div><div class="pkl">Skill Gap Reduction</div></div>
-      <div class="pkpi"><div class="pkv" style="color:var(--sage)">22%</div><div class="pkl">Competency Growth</div></div>
-    </div>
-    <div class="chart-duo">
-      <div class="chart-tile"><h6>Skill Matrix by Domain</h6><canvas id="p5c1"></canvas></div>
-      <div class="chart-tile"><h6>Competency Growth Index</h6><canvas id="p5c2"></canvas></div>
-    </div>
-    <div class="proj-quote">"Turning the LMS into a skills intelligence engine gave L&amp;D leadership real-time workforce capability visibility for proactive learning investment decisions."</div>
-  </div>
+<div class="project-card">
+
+<div class="project-top">
+<div class="project-number">02</div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
 </div>
 
-    </div><!-- /proj-list -->
-  </div>
+<h3>Digital Onboarding Journey</h3>
+
+<p>
+Role-based onboarding ecosystem designed to accelerate readiness,
+improve engagement, and reduce time-to-productivity.
+</p>
+
+<div class="tags">
+<div class="tag">Rise 360</div>
+<div class="tag">Onboarding</div>
+<div class="tag">Microlearning</div>
+</div>
+
+</div>
+
+<div class="project-card">
+
+<div class="project-top">
+<div class="project-number">03</div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</div>
+
+<h3>Workflow Learning Ecosystem</h3>
+
+<p>
+In-app learning guidance and workflow enablement using Whatfix,
+SAP Enable Now, and contextual performance support.
+</p>
+
+<div class="tags">
+<div class="tag">Whatfix</div>
+<div class="tag">SAP Enable Now</div>
+<div class="tag">Digital Adoption</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<!-- ═══ POWER BI DASHBOARDS ══════════════ -->
-<section id="dashboards">
-  <div class="wrap">
-    <div class="eyebrow reveal">Enterprise Analytics</div>
-    <h2 class="section-title reveal d1">Power BI Learning<br/>Intelligence Hub</h2>
-    <p class="section-sub reveal d2">Cross-portfolio metrics demonstrating measurable enterprise-level learning impact — presented as live recruiter-facing dashboards.</p>
+<!-- EXPERIENCE -->
 
-    <div class="pbi-kpis reveal d1">
-      <div class="pbi-k pk1"><div class="val" style="color:var(--c1)"><span class="cnt" data-t="87">0</span>%</div><div class="lbl">Overall Completion Rate</div><div class="chg up">↑ +21% vs baseline</div></div>
-      <div class="pbi-k pk2"><div class="val" style="color:var(--c2)">+<span class="cnt" data-t="34">0</span>%</div><div class="lbl">Engagement Increase</div><div class="chg up">↑ All modules</div></div>
-      <div class="pbi-k pk3"><div class="val" style="color:var(--c3)">+<span class="cnt" data-t="41">0</span>%</div><div class="lbl">Reporting Efficiency</div><div class="chg up">↑ Dashboard usage</div></div>
-      <div class="pbi-k pk4"><div class="val" style="color:var(--c4)">+<span class="cnt" data-t="53">0</span>%</div><div class="lbl">Workforce Readiness</div><div class="chg up">↑ Post-programme</div></div>
-      <div class="pbi-k pk5"><div class="val" style="color:var(--c5)">+<span class="cnt" data-t="29">0</span>%</div><div class="lbl">LMS Adoption</div><div class="chg up">↑ Digital adoption</div></div>
-      <div class="pbi-k pk6"><div class="val" style="color:var(--c6)"><span class="cnt" data-t="1500">0</span>+</div><div class="lbl">Total Learners Supported</div><div class="chg up">↑ EdTech + Enterprise</div></div>
-    </div>
-
-    <div class="pbi-main-charts reveal d2">
-      <div class="db-tile"><h4>Learner Engagement &amp; Completion — Annual Trend</h4><canvas id="pbiMain" style="height:240px!important;"></canvas></div>
-      <div class="db-tile"><h4>Training Domain Breakdown</h4><canvas id="pbiDonut"></canvas></div>
-    </div>
-    <div class="pbi-sub-charts reveal d3">
-      <div class="db-tile"><h4>Assessment Performance</h4><canvas id="pbiAssess"></canvas></div>
-      <div class="db-tile"><h4>LMS Adoption by Department</h4><canvas id="pbiDept"></canvas></div>
-      <div class="db-tile"><h4>Learner Funnel Analysis</h4><canvas id="pbiFunnel"></canvas></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ TOOLS & SKILLS ══════════════════ -->
-<section id="skills">
-  <div class="wrap">
-    <div class="eyebrow reveal">Technology Ecosystem</div>
-    <h2 class="section-title reveal d1">Skills &amp; Tools</h2>
-    <p class="section-sub reveal d2">Enterprise-grade authoring, LMS, analytics, and collaboration platforms deployed across real-world learning transformation initiatives.</p>
-
-    <div class="reveal d1">
-      <div class="tool-group-lbl">Learning Authoring</div>
-      <div class="tool-grid">
-        <!-- Storyline 360 — teal/blue Articulate brand -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#e8f4fb,#c4e3f5);box-shadow:0 4px 12px rgba(15,108,189,.18),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-film" style="color:#0f6cbd;filter:drop-shadow(0 1px 3px rgba(15,108,189,.3))"></i>
-          </div>
-          <div><div class="tool-n">Storyline 360</div><div class="tool-sub">Articulate</div></div>
-        </div>
-        <!-- Rise 360 — purple Articulate brand -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#ede8f9,#d5c9f5);box-shadow:0 4px 12px rgba(109,74,255,.18),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-layer-group" style="color:#6D4AFF;filter:drop-shadow(0 1px 3px rgba(109,74,255,.3))"></i>
-          </div>
-          <div><div class="tool-n">Rise 360</div><div class="tool-sub">Articulate</div></div>
-        </div>
-        <!-- Adobe Captivate — Adobe red -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#fde8e8,#fbbfbf);box-shadow:0 4px 12px rgba(255,0,0,.14),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-brands fa-adobe" style="color:#FF0000;filter:drop-shadow(0 1px 3px rgba(255,0,0,.25))"></i>
-          </div>
-          <div><div class="tool-n">Adobe Captivate</div><div class="tool-sub">Adobe</div></div>
-        </div>
-        <!-- Camtasia — dark blue TechSmith -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#e0eaf8,#bdd1f0);box-shadow:0 4px 12px rgba(0,91,187,.16),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-video" style="color:#005BBB;filter:drop-shadow(0 1px 3px rgba(0,91,187,.25))"></i>
-          </div>
-          <div><div class="tool-n">Camtasia</div><div class="tool-sub">TechSmith</div></div>
-        </div>
-        <!-- Vyond — coral/orange -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#fde8e4,#fcc4b5);box-shadow:0 4px 12px rgba(249,93,45,.15),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-play-circle" style="color:#F95D2D;filter:drop-shadow(0 1px 3px rgba(249,93,45,.25))"></i>
-          </div>
-          <div><div class="tool-n">Vyond</div><div class="tool-sub">Animation</div></div>
-        </div>
-        <!-- SAP Enable Now — SAP blue -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#e0eeff,#b8d4f8);box-shadow:0 4px 12px rgba(0,120,212,.15),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-database" style="color:#0078D4;filter:drop-shadow(0 1px 3px rgba(0,120,212,.25))"></i>
-          </div>
-          <div><div class="tool-n">SAP Enable Now</div><div class="tool-sub">SAP</div></div>
-        </div>
-        <!-- Whatfix — green -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#e4f5ec,#b8e6cc);box-shadow:0 4px 12px rgba(22,163,74,.14),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-route" style="color:#16A34A;filter:drop-shadow(0 1px 3px rgba(22,163,74,.22))"></i>
-          </div>
-          <div><div class="tool-n">Whatfix</div><div class="tool-sub">DAP</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal d2">
-      <div class="tool-group-lbl">LMS Platforms</div>
-      <div class="tool-grid">
-        <!-- Moodle — orange -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#fef3e2,#fdd9a0);box-shadow:0 4px 12px rgba(255,127,0,.15),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-graduation-cap" style="color:#FF7F00;filter:drop-shadow(0 1px 3px rgba(255,127,0,.22))"></i>
-          </div>
-          <div><div class="tool-n">Moodle</div><div class="tool-sub">Open-source LMS</div></div>
-        </div>
-        <!-- Canvas LMS — red -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#fee8e8,#fbbcbc);box-shadow:0 4px 12px rgba(229,60,57,.14),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-school" style="color:#E53C39;filter:drop-shadow(0 1px 3px rgba(229,60,57,.22))"></i>
-          </div>
-          <div><div class="tool-n">Canvas LMS</div><div class="tool-sub">Instructure</div></div>
-        </div>
-        <!-- Workday — dark green/teal -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#e3f5f0,#b5e5d8);box-shadow:0 4px 12px rgba(0,130,82,.14),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-building-columns" style="color:#008252;filter:drop-shadow(0 1px 3px rgba(0,130,82,.22))"></i>
-          </div>
-          <div><div class="tool-n">Workday</div><div class="tool-sub">HCM + Learning</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal d3">
-      <div class="tool-group-lbl">Analytics &amp; Reporting</div>
-      <div class="tool-grid">
-        <!-- Power BI — Microsoft yellow -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#fef8e0,#fde89a);box-shadow:0 4px 12px rgba(242,169,0,.18),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-brands fa-microsoft" style="color:#f2a900;filter:drop-shadow(0 1px 3px rgba(242,169,0,.3))"></i>
-          </div>
-          <div><div class="tool-n">Power BI</div><div class="tool-sub">Microsoft</div></div>
-        </div>
-        <!-- Excel — green -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#e6f4ec,#b8e0c4);box-shadow:0 4px 12px rgba(33,115,70,.14),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-table" style="color:#217346;filter:drop-shadow(0 1px 3px rgba(33,115,70,.22))"></i>
-          </div>
-          <div><div class="tool-n">Excel / SQL</div><div class="tool-sub">Microsoft</div></div>
-        </div>
-        <!-- Mixpanel — purple -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#ede8f9,#d5c9f5);box-shadow:0 4px 12px rgba(109,74,255,.14),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-chart-area" style="color:#7856FF;filter:drop-shadow(0 1px 3px rgba(120,86,255,.22))"></i>
-          </div>
-          <div><div class="tool-n">Mixpanel</div><div class="tool-sub">Product Analytics</div></div>
-        </div>
-        <!-- xAPI/SCORM — teal -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#e0f4f4,#b0e4e4);box-shadow:0 4px 12px rgba(14,165,160,.14),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-code-branch" style="color:#0EA5A0;filter:drop-shadow(0 1px 3px rgba(14,165,160,.22))"></i>
-          </div>
-          <div><div class="tool-n">xAPI / SCORM</div><div class="tool-sub">E-Learning Standards</div></div>
-        </div>
-        <!-- GA4 — Google blue -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#e8f0fe,#c6d8fb);box-shadow:0 4px 12px rgba(66,133,244,.16),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-brands fa-google" style="color:#4285F4;filter:drop-shadow(0 1px 3px rgba(66,133,244,.25))"></i>
-          </div>
-          <div><div class="tool-n">Google Analytics 4</div><div class="tool-sub">Web Analytics</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal d4">
-      <div class="tool-group-lbl">Collaboration &amp; Project Management</div>
-      <div class="tool-grid">
-        <!-- JIRA — Atlassian blue -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#e0ebfd,#b8d0fb);box-shadow:0 4px 12px rgba(0,82,204,.14),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-brands fa-jira" style="color:#0052CC;filter:drop-shadow(0 1px 3px rgba(0,82,204,.22))"></i>
-          </div>
-          <div><div class="tool-n">JIRA</div><div class="tool-sub">Atlassian</div></div>
-        </div>
-        <!-- Notion — black -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#f0f0f0,#ddd);box-shadow:0 4px 12px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-n" style="color:#191919;filter:drop-shadow(0 1px 3px rgba(0,0,0,.15))"></i>
-          </div>
-          <div><div class="tool-n">Notion</div><div class="tool-sub">Workspace</div></div>
-        </div>
-        <!-- GenAI — violet -->
-        <div class="tool-c">
-          <div class="tool-icon-wrap" style="background:linear-gradient(135deg,#ede8f9,#d5c9f5);box-shadow:0 4px 12px rgba(109,74,255,.14),inset 0 1px 0 rgba(255,255,255,.7)">
-            <i class="fa-solid fa-wand-magic-sparkles" style="color:#6D4AFF;filter:drop-shadow(0 1px 3px rgba(109,74,255,.22))"></i>
-          </div>
-          <div><div class="tool-n">GenAI Tools</div><div class="tool-sub">AI-Assisted Design</div></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══ EXPERIENCE ══════════════════════ -->
 <section id="experience">
-  <div class="wrap">
-    <div class="eyebrow reveal">Career Journey</div>
-    <h2 class="section-title reveal d1">Professional<br/>Experience</h2>
-    <p class="section-sub reveal d2">Progressive enterprise learning experience across pharma, EdTech, K-12, and SaaS domains — spanning 6+ years.</p>
 
-    <div class="tl">
-      <div class="tl-node reveal">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-date">NOV 2025 — PRESENT</div>
-          <div class="tl-role">Consultant Instructional Designer</div>
-          <div class="tl-company">Now100 Solutions (PwC Project) · Bengaluru, India</div>
-          <div class="tl-desc">Designed 15+ SCORM-compliant pharma compliance training modules using Storyline 360. Supported LMS-based compliance tracking for 1,000+ learners. Collaborated with SMEs, QA teams, and stakeholders through structured feedback cycles to reduce review iterations.</div>
-        </div>
-      </div>
-      <div class="tl-node reveal d1">
-        <div class="tl-dot t"></div>
-        <div class="tl-card">
-          <div class="tl-date">JUL 2025 — OCT 2025</div>
-          <div class="tl-role">Instructional Designer</div>
-          <div class="tl-company">Harjai Computers (LearningMate Project) · Remote, India</div>
-          <div class="tl-desc">Built SCORM-compliant WBT modules using Storyline 360 and Rise 360, reducing turnaround time by 15%. Ensured WCAG 2.1/2.2 accessibility compliance for 500+ learners across Moodle and Canvas LMS environments.</div>
-        </div>
-      </div>
-      <div class="tl-node reveal d2">
-        <div class="tl-dot a"></div>
-        <div class="tl-card">
-          <div class="tl-date">MAR 2025 — APR 2025</div>
-          <div class="tl-role">Senior Curriculum Designer</div>
-          <div class="tl-company">BrightChamps · Bengaluru, India</div>
-          <div class="tl-desc">Designed K-12 learner pathways, digital learning activities, and assessment flows. Collaborated with academic and product teams to improve course structure, learner engagement, and content sequencing.</div>
-        </div>
-      </div>
-      <div class="tl-node reveal d3">
-        <div class="tl-dot s"></div>
-        <div class="tl-card">
-          <div class="tl-date">SEP 2024 — FEB 2025</div>
-          <div class="tl-role">Senior Curriculum Developer</div>
-          <div class="tl-company">i2Global Virtual Learning · Bengaluru, India</div>
-          <div class="tl-desc">Redesigned digital learning content and assessments based on learner feedback and engagement trend analysis. Led content standardisation cycles across multiple online learning programmes.</div>
-        </div>
-      </div>
-      <div class="tl-node reveal d4">
-        <div class="tl-dot"></div>
-        <div class="tl-card">
-          <div class="tl-date">OCT 2023 — SEP 2024</div>
-          <div class="tl-role">Academic Product Specialist</div>
-          <div class="tl-company">iScholar Knowledge Services · Bengaluru, India</div>
-          <div class="tl-desc">Conducted Training Needs Analysis and competency mapping for 300+ learners. Collaborated with SMEs to develop learner-focused training content aligned with business and regulatory requirements.</div>
-        </div>
-      </div>
-      <div class="tl-node reveal d5">
-        <div class="tl-dot t"></div>
-        <div class="tl-card">
-          <div class="tl-date">MAY 2022 — APR 2023</div>
-          <div class="tl-role">SME Instructional Designer</div>
-          <div class="tl-company">Narayana's Learning App (GTET) · Bengaluru, India</div>
-          <div class="tl-desc">Developed SCORM-enabled interactive modules for 1,000+ learners. Analysed learner feedback and engagement patterns contributing to a 20% engagement increase across digital learning activities.</div>
-        </div>
-      </div>
-      <div class="tl-node reveal">
-        <div class="tl-dot a"></div>
-        <div class="tl-card">
-          <div class="tl-date">APR 2020 — DEC 2021</div>
-          <div class="tl-role">Academic Curriculum Developer</div>
-          <div class="tl-company">Infinite Mindz · Bengaluru, India</div>
-          <div class="tl-desc">Developed curriculum aligned with CBSE, ICSE, and IGCSE standards. Reduced syllabus completion time by 20% by optimising content structure based on learning efficiency metrics.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+
+<div class="section-tag">
+Career Journey
+</div>
+
+<h2 class="section-title">
+Professional Experience
+</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<span>2024 — Present</span>
+<h3>Senior Instructional Designer</h3>
+<p>
+Leading enterprise learning design initiatives, compliance simulations,
+and workforce enablement programs.
+</p>
+</div>
+
+<div class="timeline-item">
+<span>2022 — 2024</span>
+<h3>Learning Experience Designer</h3>
+<p>
+Designed onboarding journeys, digital learning ecosystems,
+and LMS learning workflows.
+</p>
+</div>
+
+<div class="timeline-item">
+<span>2020 — 2022</span>
+<h3>Instructional Design Specialist</h3>
+<p>
+Developed SCORM-compliant eLearning modules and learner engagement programs.
+</p>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<!-- ═══ ANALYTICS ═══════════════════════ -->
-<section id="analytics">
-  <div class="wrap">
-    <div class="eyebrow reveal">Impact Portfolio</div>
-    <h2 class="section-title reveal d1">Aggregate Learning<br/>Intelligence</h2>
-    <p class="section-sub reveal d2">Cross-portfolio metrics demonstrating measurable enterprise-level impact across all five learning transformation initiatives.</p>
+<!-- SKILLS -->
 
-    <div class="agg-grid reveal d1">
-      <div class="agg-card"><div class="agg-val" style="color:var(--c1)"><span class="cnt" data-t="94">0</span>%</div><div class="agg-lbl">Peak Compliance Completion</div></div>
-      <div class="agg-card"><div class="agg-val" style="color:var(--c2)"><span class="cnt" data-t="32">0</span>%</div><div class="agg-lbl">Faster Workflow Readiness</div></div>
-      <div class="agg-card"><div class="agg-val" style="color:var(--c3)"><span class="cnt" data-t="38">0</span>%</div><div class="agg-lbl">Reporting Visibility Gain</div></div>
-      <div class="agg-card"><div class="agg-val" style="color:var(--c4)"><span class="cnt" data-t="24">0</span>%</div><div class="agg-lbl">Support Ticket Reduction</div></div>
-      <div class="agg-card"><div class="agg-val" style="color:var(--c5)"><span class="cnt" data-t="21">0</span>%</div><div class="agg-lbl">Error Reduction</div></div>
-      <div class="agg-card"><div class="agg-val" style="color:var(--c6)"><span class="cnt" data-t="19">0</span>%</div><div class="agg-lbl">Skill Gap Reduction</div></div>
-      <div class="agg-card"><div class="agg-val" style="color:var(--c7)"><span class="cnt" data-t="20">0</span>%</div><div class="agg-lbl">Learner Engagement Uplift</div></div>
-      <div class="agg-card"><div class="agg-val" style="color:var(--c8)"><span class="cnt" data-t="1500">0</span>+</div><div class="agg-lbl">Total Learners Supported</div></div>
-    </div>
+<section id="skills">
 
-    <div class="agg-charts reveal d2">
-      <div class="db-tile"><h4>Engagement Impact by Project</h4><canvas id="crossBar" style="height:220px!important;"></canvas></div>
-      <div class="db-tile"><h4>Tool Utilisation Share</h4><canvas id="toolPie" style="height:220px!important;"></canvas></div>
-    </div>
-  </div>
+<div class="container">
+
+<div class="section-tag">
+Technology Stack
+</div>
+
+<h2 class="section-title">
+Skills & Tools
+</h2>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+<div class="skill-icon">
+<i class="fa-solid fa-film"></i>
+</div>
+<div>
+<h4>Storyline 360</h4>
+<p>Interactive simulations</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">
+<i class="fa-solid fa-layer-group"></i>
+</div>
+<div>
+<h4>Rise 360</h4>
+<p>Responsive learning</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">
+<i class="fa-solid fa-video"></i>
+</div>
+<div>
+<h4>Camtasia</h4>
+<p>Video production</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">
+<i class="fa-solid fa-route"></i>
+</div>
+<div>
+<h4>Whatfix</h4>
+<p>Digital adoption</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">
+<i class="fa-solid fa-chart-line"></i>
+</div>
+<div>
+<h4>Power BI</h4>
+<p>Learning dashboards</p>
+</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-icon">
+<i class="fa-solid fa-graduation-cap"></i>
+</div>
+<div>
+<h4>Moodle LMS</h4>
+<p>LMS administration</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<!-- ═══ CERTIFICATIONS ══════════════════ -->
-<section id="certs" style="background:var(--bg4);">
-  <div class="wrap">
-    <div class="eyebrow reveal">Credentials</div>
-    <h2 class="section-title reveal d1">Education &amp; Certifications</h2>
-    <div class="cert-grid reveal d2">
-      <div class="cert-card">
-        <div class="cert-icon" style="background:linear-gradient(135deg,#ede8f9,#c4b4f5);box-shadow:0 3px 8px rgba(109,74,255,.15)"><i class="fa-solid fa-building-columns" style="color:#6D4AFF"></i></div>
-        <div><div class="cert-name">PGPM — General Management</div><div class="cert-org">IMT Ghaziabad</div><div class="cert-yr">L&amp;D · Strategy · Digital Learning · 2022–2023</div></div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon" style="background:linear-gradient(135deg,#e3f2fd,#b8d9f7);box-shadow:0 3px 8px rgba(15,108,189,.15)"><i class="fa-solid fa-hard-hat" style="color:#0f6cbd"></i></div>
-        <div><div class="cert-name">B.E. — Civil Engineering</div><div class="cert-org">New Horizon College of Engineering (VTU)</div><div class="cert-yr">2013–2017</div></div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon" style="background:linear-gradient(135deg,#fef3e2,#fdd9a0);box-shadow:0 3px 8px rgba(242,169,0,.15)"><i class="fa-brands fa-google" style="color:#4285F4"></i></div>
-        <div><div class="cert-name">Google Analytics 4 (GA4)</div><div class="cert-org">LinkedIn Learning</div><div class="cert-yr">2024</div></div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon" style="background:linear-gradient(135deg,#e8f5e9,#b8deba);box-shadow:0 3px 8px rgba(22,163,74,.14)"><i class="fa-solid fa-arrows-spin" style="color:#16A34A"></i></div>
-        <div><div class="cert-name">Agile Foundations</div><div class="cert-org">LinkedIn Learning</div><div class="cert-yr">2024</div></div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon" style="background:linear-gradient(135deg,#ede8f9,#d5c9f5);box-shadow:0 3px 8px rgba(109,74,255,.14)"><i class="fa-solid fa-cubes" style="color:#6D4AFF"></i></div>
-        <div><div class="cert-name">Product Design &amp; Analytics</div><div class="cert-org">Internshala</div><div class="cert-yr">2023</div></div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon" style="background:linear-gradient(135deg,#e0f4f4,#b0e4e4);box-shadow:0 3px 8px rgba(14,165,160,.14)"><i class="fa-solid fa-diagram-project" style="color:#0EA5A0"></i></div>
-        <div><div class="cert-name">Product Lifecycle Management</div><div class="cert-org">Internshala</div><div class="cert-yr">2023</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- CONTACT -->
 
-<!-- ═══ CONTACT ══════════════════════════ -->
-<section id="contact">
-  <div class="wrap">
-    <div class="eyebrow">Get In Touch</div>
-    <h2 class="section-title">Let's Build Something<br/><em style="font-style:italic;color:#8B7CF8">Transformative</em></h2>
-    <p class="section-sub">Open to Enterprise LXD, LMS Analytics, Digital Adoption &amp; Learning Transformation roles.</p>
-    <div class="contact-grid">
-      <div>
-        <div class="contact-links">
-          <a class="clink" href="mailto:pratibha1996mishra@gmail.com">
-            <div class="clink-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div><div class="clink-lbl">Email</div><div class="clink-val">pratibha1996mishra@gmail.com</div></div>
-          </a>
-          <a class="clink" href="tel:+919148315126">
-            <div class="clink-icon"><i class="fa-solid fa-phone"></i></div>
-            <div><div class="clink-lbl">Phone</div><div class="clink-val">+91 9148315126</div></div>
-          </a>
-          <a class="clink" href="https://linkedin.com/in/pratibhamishra" target="_blank">
-            <div class="clink-icon"><i class="fa-brands fa-linkedin-in"></i></div>
-            <div><div class="clink-lbl">LinkedIn</div><div class="clink-val">linkedin.com/in/pratibhamishra1996</div></div>
-          </a>
-          <a class="clink" href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/" target="_blank">
-            <div class="clink-icon"><i class="fa-brands fa-github"></i></div>
-            <div><div class="clink-lbl">GitHub Portfolio</div><div class="clink-val">pratibha1996mishra.github.io</div></div>
-          </a>
-          <div class="clink">
-            <div class="clink-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div><div class="clink-lbl">Location</div><div class="clink-val">Bengaluru, India</div></div>
-          </div>
-        </div>
-        <div class="contact-cta-col">
-          <a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/" target="_blank" class="btn btn-plum btn-contact-pri"><i class="fa-brands fa-github"></i> View GitHub Portfolio</a>
-          <a href="mailto:pratibha1996mishra@gmail.com" class="btn btn-contact-out"><i class="fa-solid fa-briefcase"></i> Consulting Inquiry</a>
-        </div>
-      </div>
-      <div class="contact-form">
-        <div class="cf"><label>Your Name</label><input type="text" placeholder="Jane Smith"/></div>
-        <div class="cf"><label>Company / Organisation</label><input type="text" placeholder="Accenture, Deloitte, etc."/></div>
-        <div class="cf"><label>Role Type</label><input type="text" placeholder="Full-time · Contract · Consulting"/></div>
-        <div class="cf"><label>Message</label><textarea rows="5" placeholder="I'd like to discuss a learning transformation initiative..."></textarea></div>
-        <button class="btn btn-plum" style="align-self:flex-start"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
-      </div>
-    </div>
-  </div>
+<section class="contact" id="contact">
+
+<div class="container">
+
+<div class="section-tag">
+Let's Connect
+</div>
+
+<h2 class="section-title">
+Contact
+</h2>
+
+<div class="contact-grid">
+
+<div>
+
+<div class="contact-card">
+<i class="fa-brands fa-linkedin"></i>
+<a href="https://www.linkedin.com/in/pratibhamishra1996/" target="_blank">
+linkedin.com/in/pratibhamishra1996
+</a>
+</div>
+
+<div class="contact-card">
+<i class="fa-brands fa-github"></i>
+<a href="https://github.com/pratibha1996mishra/pratibhamishra.portfolio" target="_blank">
+GitHub Portfolio
+</a>
+</div>
+
+</div>
+
+<div>
+
+<form class="contact-form">
+
+<input type="text" placeholder="Your Name">
+
+<input type="email" placeholder="Your Email">
+
+<textarea rows="5" placeholder="Message"></textarea>
+
+<button class="btn btn-primary">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <p>© 2025 Pratibha Mishra · Learning Experience Designer · Bengaluru, India &nbsp;·&nbsp; <a href="mailto:pratibha1996mishra@gmail.com">pratibha1996mishra@gmail.com</a> &nbsp;·&nbsp; <a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/" target="_blank">GitHub Portfolio</a></p>
-    <div class="footer-bottom">Available across domains &nbsp;·&nbsp; Available for Full-Time &amp; Consulting Opportunities</div>
-  </div>
+
+<p>
+© 2026 Pratibha Mishra · Learning Experience Designer Portfolio
+</p>
+
 </footer>
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-arrow-up"></i></button>
-
-<!-- ─────────────────────────────────────
-     JAVASCRIPT
-────────────────────────────────────── -->
-<script>
-/* ── NAV scroll ── */
-const nav=document.getElementById('nav');
-const btt=document.getElementById('btt');
-window.addEventListener('scroll',()=>{
-  nav.classList.toggle('scrolled',scrollY>50);
-  btt.classList.toggle('vis',scrollY>500);
-},{passive:true});
-
-/* ── Reveal on scroll ── */
-const revealObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up');});
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
-
-/* ── Counter animation ── */
-function runCounter(el){
-  if(el.dataset.done)return;
-  el.dataset.done='1';
-  const target=+el.dataset.t, dur=1600, steps=60;
-  let cur=0;const inc=target/(dur/steps*steps/60);
-  const tick=()=>{
-    cur=Math.min(cur+inc,target);
-    el.textContent=Math.floor(cur).toLocaleString();
-    if(cur<target)requestAnimationFrame(tick);
-  };
-  tick();
-}
-const cntObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting)e.target.querySelectorAll('.cnt').forEach(runCounter);
-  });
-},{threshold:.2});
-document.querySelectorAll('.kpi-bar,.hero-right,.pbi-kpis,.agg-grid').forEach(el=>cntObs.observe(el));
-
-/* ── Project accordion ── */
-function toggleProj(id){
-  const card=document.getElementById(id);
-  const isOpen=card.classList.contains('open');
-  document.querySelectorAll('.proj-card').forEach(c=>c.classList.remove('open'));
-  if(!isOpen){
-    card.classList.add('open');
-    setTimeout(()=>drawProjectCharts(id),80);
-  }
-}
-
-/* ── Chart helpers ── */
-Chart.defaults.font.family='Instrument Sans';
-const PAL=['#6D4AFF','#0EA5A0','#F59E0B','#10B981','#F43F5E','#3B82F6','#8B5CF6','#06B6D4'];
-const GRID={color:'rgba(0,0,0,.045)'};
-const TICKS={color:'#A1A1AA',font:{size:10}};
-
-function mkLine(id,labels,datasets,maxY){
-  const c=document.getElementById(id);
-  if(!c||c._init)return;c._init=1;
-  new Chart(c,{type:'line',data:{labels,datasets:datasets.map((d,i)=>({
-    label:d.label||'',data:d.data,
-    borderColor:d.color||PAL[i],backgroundColor:(d.color||PAL[i])+'1A',
-    fill:true,tension:.42,pointRadius:3,pointBackgroundColor:d.color||PAL[i],borderWidth:2
-  }))},options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:datasets.length>1,labels:{color:'#71717A',font:{size:10},boxWidth:8,padding:12}}},
-    scales:{
-      x:{grid:GRID,ticks:TICKS,border:{display:false}},
-      y:{grid:GRID,ticks:TICKS,border:{display:false},max:maxY,beginAtZero:true}
-    }
-  }});
-}
-
-function mkBar(id,labels,data,colors,horiz){
-  const c=document.getElementById(id);
-  if(!c||c._init)return;c._init=1;
-  new Chart(c,{type:'bar',data:{labels,datasets:[{data,backgroundColor:colors||PAL,borderRadius:5,borderSkipped:false}]},
-  options:{
-    responsive:true,maintainAspectRatio:false,indexAxis:horiz?'y':'x',
-    plugins:{legend:{display:false}},
-    scales:{
-      x:{grid:horiz?GRID:{display:false},ticks:TICKS,border:{display:false},max:horiz?100:undefined},
-      y:{grid:horiz?{display:false}:GRID,ticks:TICKS,border:{display:false},beginAtZero:true}
-    }
-  }});
-}
-
-function mkDonut(id,labels,data,colors){
-  const c=document.getElementById(id);
-  if(!c||c._init)return;c._init=1;
-  new Chart(c,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors||PAL,borderWidth:0,hoverOffset:5}]},
-  options:{
-    responsive:true,maintainAspectRatio:false,cutout:'64%',
-    plugins:{legend:{position:'right',labels:{color:'#71717A',font:{size:10},boxWidth:8,padding:10}}}
-  }});
-}
-
-/* ── Hero chart ── */
-window.addEventListener('load',()=>{
-  mkLine('heroChart',
-    ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    [{label:'Engagement',data:[62,65,70,74,78,81,84,86,88,90,92,94],color:'#6D4AFF'},
-     {label:'Completion',data:[58,62,66,70,74,78,82,84,86,88,90,91],color:'#0EA5A0'}],100);
-  initPBICharts();
-  initAggCharts();
-});
-
-function initPBICharts(){
-  mkLine('pbiMain',
-    ['Q1 24','Q2 24','Q3 24','Q4 24','Q1 25','Q2 25'],
-    [{label:'Completion %',data:[68,73,78,83,87,89],color:'#6D4AFF'},
-     {label:'Engagement',data:[61,67,72,77,81,84],color:'#0EA5A0'},
-     {label:'Assessment Pass',data:[72,75,79,82,84,85],color:'#F59E0B'}],100);
-  mkDonut('pbiDonut',
-    ['Compliance','Onboarding','Skills','Digital Adoption','Assessments'],
-    [32,24,18,16,10],['#6D4AFF','#0EA5A0','#F59E0B','#10B981','#F43F5E']);
-  mkLine('pbiAssess',['Jan','Feb','Mar','Apr','May','Jun'],
-    [{label:'Pass Rate',data:[79,81,82,83,84,85],color:'#10B981'}],100);
-  mkBar('pbiDept',['Sales','Ops','Finance','IT','HR','L&D'],[91,85,88,94,79,97],
-    ['#6D4AFF','#0EA5A0','#F59E0B','#10B981','#F43F5E','#3B82F6'],true);
-  mkLine('pbiFunnel',['Enrolled','Started','50%','Completed','Assessed','Certified'],
-    [{label:'Learners',data:[4280,3980,3640,3766,3420,2980],color:'#F43F5E'}]);
-}
-
-function initAggCharts(){
-  mkBar('crossBar',
-    ['Compliance','LMS Analytics','Digital Adopt','Onboarding','Skills'],
-    [20,18,22,25,17],['#6D4AFF','#0EA5A0','#F59E0B','#10B981','#F43F5E']);
-  mkDonut('toolPie',
-    ['Storyline 360','Rise 360','Power BI','Whatfix','Moodle','Captivate','Other'],
-    [32,18,22,12,8,5,3],['#6D4AFF','#0EA5A0','#F59E0B','#10B981','#F43F5E','#3B82F6','#8B5CF6']);
-}
-
-function drawProjectCharts(id){
-  if(id==='pc1'){
-    mkBar('p1c1',['North','South','East','West','Central'],[96,91,94,89,97],['#6D4AFF','#0EA5A0','#F59E0B','#10B981','#F43F5E']);
-    mkLine('p1c2',['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'],
-      [{label:'%',data:[62,68,74,79,83,88,91,94],color:'#6D4AFF'}],100);
-  }
-  if(id==='pc2'){
-    mkLine('p2c1',['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-      [{label:'Completion %',data:[71,74,76,78,80,82,83,84,86,87,88,88],color:'#0EA5A0'}],100);
-    mkBar('p2c2',['Sales','Ops','Finance','IT','HR','L&D'],[91,85,88,94,79,97],
-      ['#6D4AFF','#0EA5A0','#F59E0B','#10B981','#F43F5E','#3B82F6'],true);
-  }
-  if(id==='pc3'){
-    mkLine('p3c1',['Day 1','Day 3','Day 5','Day 7','Day 10','Day 15','Day 20','Day 24'],
-      [{label:'%',data:[10,28,42,56,68,78,88,91],color:'#F59E0B'}],100);
-    mkBar('p3c2',['Sales','Ops','Finance','IT','HR'],[88,82,86,94,81],
-      ['#0EA5A0','#6D4AFF','#F59E0B','#10B981','#F43F5E'],true);
-  }
-  if(id==='pc4'){
-    mkLine('p4c1',['W1','W2','W3','W4','W6','W8','W10','W12'],
-      [{label:'Adoption %',data:[18,28,39,47,58,66,74,79],color:'#10B981'}],100);
-    mkBar('p4c2',['Login','Dashboard','Reports','Settings','Data Entry','Export'],
-      [45,72,38,88,61,29],['#10B981','#F43F5E','#10B981','#F43F5E','#F59E0B','#10B981']);
-  }
-  if(id==='pc5'){
-    mkBar('p5c1',['Compliance','Digital','Comm','Leadership','Analytics','Tech'],
-      [84,72,79,68,77,83],['#6D4AFF','#0EA5A0','#F59E0B','#10B981','#F43F5E','#3B82F6']);
-    mkLine('p5c2',['Q1 24','Q2 24','Q3 24','Q4 24','Q1 25'],
-      [{label:'Growth',data:[68,72,76,80,86],color:'#10B981'}]);
-  }
-}
-</script>
 </body>
 </html>
