@@ -1,1145 +1,1940 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pratibha Mishra | Enterprise Learning Experience Designer</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<title>Pratibha Mishra | Learning Experience Designer</title>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <style>
+<style>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      scroll-behavior:smooth;
-      font-family:'Inter',sans-serif;
-    }
+/* ======================================================
+ROOT
+====================================================== */
 
-    body{
-      overflow-x:hidden;
-      background:
-      radial-gradient(circle at top left,#ede9fe 0%,transparent 30%),
-      radial-gradient(circle at top right,#dbeafe 0%,transparent 30%),
-      radial-gradient(circle at bottom left,#fce7f3 0%,transparent 25%),
-      radial-gradient(circle at bottom right,#fef3c7 0%,transparent 25%),
-      #f8fafc;
-      color:#111827;
-    }
+:root{
 
-    .glass{
-      background:rgba(255,255,255,.62);
-      border:1px solid rgba(255,255,255,.45);
-      backdrop-filter:blur(16px);
-      box-shadow:0 10px 40px rgba(0,0,0,.08);
-    }
+--bg:#f7f5f1;
+--bg2:#f0f3ff;
+--bg3:#fdf7ef;
 
-    .navbar{
-      backdrop-filter:blur(14px);
-      background:rgba(255,255,255,.55);
-      border-bottom:1px solid rgba(255,255,255,.3);
-    }
+--card:#ffffff;
+--border:rgba(0,0,0,.06);
 
-    .gradient-text{
-      background:linear-gradient(90deg,#6d28d9,#2563eb);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
+--text:#18181b;
+--muted:#6b7280;
 
-    .fade-up{
-      opacity:0;
-      transform:translateY(35px);
-      transition:all .8s ease;
-    }
+--purple:#6D4AFF;
+--teal:#0EA5A0;
+--orange:#FF8A00;
+--pink:#FF4D8D;
+--blue:#4385F5;
+--green:#18B26B;
 
-    .fade-up.active{
-      opacity:1;
-      transform:translateY(0);
-    }
+--shadow:
+0 12px 40px rgba(0,0,0,.07);
 
-    .floating{
-      animation:floating 5s ease-in-out infinite;
-    }
+--radius:24px;
 
-    @keyframes floating{
-      0%{transform:translateY(0px);}
-      50%{transform:translateY(-12px);}
-      100%{transform:translateY(0px);}
-    }
+}
 
-    .tool-card{
-      transition:.4s ease;
-    }
+/* ======================================================
+RESET
+====================================================== */
 
-    .tool-card:hover{
-      transform:translateY(-10px) scale(1.03);
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    .project-card{
-      transition:.4s ease;
-    }
+html{
+scroll-behavior:smooth;
+}
 
-    .project-card:hover{
-      transform:translateY(-12px);
-      box-shadow:0 20px 50px rgba(0,0,0,.12);
-    }
+body{
 
-    .hero-grid{
-      background-image:
-      linear-gradient(rgba(99,102,241,.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(99,102,241,.05) 1px, transparent 1px);
-      background-size:40px 40px;
-    }
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
 
-    .glow-indigo{
-      box-shadow:0 0 25px rgba(99,102,241,.35);
-    }
+}
 
-    .glow-blue{
-      box-shadow:0 0 25px rgba(59,130,246,.35);
-    }
+img{
+max-width:100%;
+display:block;
+}
 
-    .glow-pink{
-      box-shadow:0 0 25px rgba(236,72,153,.35);
-    }
+a{
+text-decoration:none;
+color:inherit;
+}
 
-    .glow-yellow{
-      box-shadow:0 0 25px rgba(250,204,21,.35);
-    }
+/* ======================================================
+TYPOGRAPHY
+====================================================== */
 
-    .glow-green{
-      box-shadow:0 0 25px rgba(34,197,94,.35);
-    }
+.section-tag{
 
-    .dashboard-card{
-      background:linear-gradient(145deg,#ffffff,#eef2ff);
-    }
+display:inline-block;
 
-    .timeline-line{
-      background:linear-gradient(to bottom,#8b5cf6,#3b82f6);
-    }
+padding:.45rem 1rem;
 
-    .contact-bg{
-      background:#0f172a;
-      color:white;
-    }
+border-radius:100px;
 
-    .contact-card{
-      background:#111827;
-      border:1px solid rgba(255,255,255,.08);
-    }
+border:1px solid rgba(0,0,0,.08);
 
-  </style>
+font-size:.68rem;
+
+letter-spacing:.18em;
+
+text-transform:uppercase;
+
+color:#7b7b85;
+
+margin-bottom:1rem;
+
+}
+
+.section-title{
+
+font-family:'DM Serif Display',serif;
+
+font-size:clamp(2.5rem,5vw,5rem);
+
+line-height:.95;
+
+letter-spacing:-.05em;
+
+font-weight:400;
+
+margin-bottom:1rem;
+
+}
+
+.section-sub{
+
+max-width:650px;
+
+font-size:1rem;
+
+line-height:1.9;
+
+color:var(--muted);
+
+}
+
+/* ======================================================
+NAVBAR
+====================================================== */
+
+nav{
+
+position:fixed;
+
+top:0;
+left:0;
+width:100%;
+
+padding:1.3rem 0;
+
+z-index:999;
+
+backdrop-filter:blur(18px);
+
+background:rgba(247,245,241,.72);
+
+border-bottom:1px solid rgba(0,0,0,.04);
+
+}
+
+.nav-inner{
+
+width:min(1200px,92%);
+
+margin:auto;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+}
+
+.logo{
+
+font-family:'DM Serif Display',serif;
+
+font-size:1.5rem;
+
+letter-spacing:-.03em;
+
+}
+
+.logo span{
+color:var(--purple);
+}
+
+.nav-links{
+
+display:flex;
+
+gap:1rem;
+
+align-items:center;
+
+}
+
+.nav-btn{
+
+padding:.95rem 1.8rem;
+
+border-radius:100px;
+
+font-weight:600;
+
+font-size:.95rem;
+
+transition:.3s ease;
+
+display:flex;
+
+align-items:center;
+
+gap:.7rem;
+
+}
+
+/* buttons */
+
+.btn-dark{
+
+background:#111;
+
+color:white;
+
+box-shadow:
+0 12px 30px rgba(0,0,0,.14);
+
+}
+
+.btn-purple{
+
+background:
+linear-gradient(135deg,#7a5cff,#5f33ff);
+
+color:white;
+
+box-shadow:
+0 15px 35px rgba(109,74,255,.25);
+
+}
+
+.btn-white{
+
+background:white;
+
+border:1px solid rgba(0,0,0,.06);
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.05);
+
+}
+
+.btn-contact{
+
+background:
+linear-gradient(135deg,#fff7ed,#ffffff);
+
+border:1px solid rgba(255,138,0,.15);
+
+box-shadow:
+0 10px 25px rgba(255,138,0,.08);
+
+}
+
+.nav-btn:hover{
+
+transform:translateY(-4px);
+
+}
+
+/* ======================================================
+HERO
+====================================================== */
+
+.hero{
+
+padding-top:140px;
+
+padding-bottom:100px;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.hero-inner{
+
+width:min(1200px,92%);
+
+margin:auto;
+
+display:grid;
+
+grid-template-columns:1.1fr .9fr;
+
+gap:4rem;
+
+align-items:center;
+
+}
+
+.hero-title{
+
+font-family:'DM Serif Display',serif;
+
+font-size:clamp(4rem,8vw,7rem);
+
+line-height:.88;
+
+letter-spacing:-.06em;
+
+font-weight:400;
+
+margin-bottom:1.2rem;
+
+}
+
+.hero-title span{
+
+color:var(--purple);
+
+font-style:italic;
+
+}
+
+.hero-desc{
+
+max-width:580px;
+
+font-size:1rem;
+
+line-height:2;
+
+color:var(--muted);
+
+margin-bottom:2rem;
+
+}
+
+.hero-actions{
+
+display:flex;
+
+gap:1rem;
+
+flex-wrap:wrap;
+
+}
+
+/* ======================================================
+DASHBOARD HERO CARD
+====================================================== */
+
+.dashboard-wrapper{
+
+position:relative;
+
+height:520px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+.dashboard-card{
+
+width:100%;
+
+max-width:620px;
+
+background:white;
+
+padding:2rem;
+
+border-radius:32px;
+
+box-shadow:
+0 30px 60px rgba(0,0,0,.08);
+
+border:1px solid rgba(0,0,0,.04);
+
+position:relative;
+
+z-index:1;
+
+}
+
+.dashboard-card h4{
+
+font-size:.78rem;
+
+letter-spacing:.18em;
+
+text-transform:uppercase;
+
+margin-bottom:1rem;
+
+color:#8b8b95;
+
+}
+
+canvas{
+
+filter:
+drop-shadow(0 10px 24px rgba(0,0,0,.05));
+
+}
+
+/* floating cards */
+
+.floating{
+
+position:absolute;
+
+background:white;
+
+padding:1.5rem;
+
+border-radius:28px;
+
+box-shadow:
+0 25px 50px rgba(0,0,0,.09);
+
+z-index:3;
+
+}
+
+.float-a{
+
+top:10px;
+right:10px;
+
+width:190px;
+
+}
+
+.float-b{
+
+left:-20px;
+bottom:50px;
+
+width:200px;
+
+}
+
+.float-label{
+
+font-size:.72rem;
+
+letter-spacing:.18em;
+
+text-transform:uppercase;
+
+color:#9ca3af;
+
+margin-bottom:.5rem;
+
+}
+
+.float-number{
+
+font-family:'DM Serif Display',serif;
+
+font-size:3rem;
+
+line-height:1;
+
+margin-bottom:.3rem;
+
+}
+
+.float-purple{
+color:var(--purple);
+}
+
+.float-teal{
+color:var(--teal);
+}
+
+.float-sub{
+
+font-size:.9rem;
+
+color:#7b7b85;
+
+}
+
+/* ======================================================
+SECTION
+====================================================== */
+
+section{
+
+padding:120px 0;
+
+}
+
+.container{
+
+width:min(1200px,92%);
+
+margin:auto;
+
+}
+
+/* ======================================================
+PROJECTS
+====================================================== */
+
+.projects{
+
+background:linear-gradient(
+180deg,
+#f1f3ff 0%,
+#f7f5f1 100%
+);
+
+}
+
+.project-grid{
+
+display:grid;
+
+gap:2rem;
+
+margin-top:4rem;
+
+}
+
+.project-card{
+
+background:white;
+
+border-radius:30px;
+
+padding:2.2rem;
+
+border:1px solid rgba(0,0,0,.05);
+
+box-shadow:
+0 20px 50px rgba(0,0,0,.06);
+
+transition:.35s ease;
+
+}
+
+.project-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:
+0 35px 70px rgba(0,0,0,.09);
+
+}
+
+.project-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:flex-start;
+
+margin-bottom:2rem;
+
+gap:1rem;
+
+}
+
+.project-title{
+
+font-family:'DM Serif Display',serif;
+
+font-size:2rem;
+
+line-height:1.05;
+
+letter-spacing:-.04em;
+
+margin-bottom:.6rem;
+
+}
+
+.project-sub{
+
+color:var(--muted);
+
+line-height:1.8;
+
+font-size:.95rem;
+
+max-width:650px;
+
+}
+
+.project-badge{
+
+padding:.6rem 1rem;
+
+border-radius:100px;
+
+font-size:.72rem;
+
+font-weight:700;
+
+letter-spacing:.12em;
+
+text-transform:uppercase;
+
+white-space:nowrap;
+
+}
+
+.badge-purple{
+
+background:rgba(109,74,255,.1);
+
+color:var(--purple);
+
+}
+
+.badge-teal{
+
+background:rgba(14,165,160,.1);
+
+color:var(--teal);
+
+}
+
+.badge-orange{
+
+background:rgba(255,138,0,.1);
+
+color:var(--orange);
+
+}
+
+/* ======================================================
+PROJECT SECTIONS
+====================================================== */
+
+.project-layout{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:1.5rem;
+
+margin-bottom:1.5rem;
+
+}
+
+.project-box{
+
+background:
+linear-gradient(
+180deg,
+#ffffff 0%,
+#fafafa 100%
+);
+
+border:1px solid rgba(0,0,0,.04);
+
+padding:1.5rem;
+
+border-radius:24px;
+
+}
+
+.project-box h5{
+
+font-size:.8rem;
+
+letter-spacing:.16em;
+
+text-transform:uppercase;
+
+color:#8a8a95;
+
+margin-bottom:1rem;
+
+}
+
+.project-box ul{
+
+padding-left:1rem;
+
+display:flex;
+
+flex-direction:column;
+
+gap:.8rem;
+
+}
+
+.project-box li{
+
+line-height:1.8;
+
+color:#5f6470;
+
+}
+
+/* ======================================================
+TOOLS
+====================================================== */
+
+.tools-row{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:1rem;
+
+margin-top:1rem;
+
+}
+
+.tool-card{
+
+background:white;
+
+border-radius:22px;
+
+padding:1rem;
+
+display:flex;
+
+align-items:center;
+
+gap:1rem;
+
+border:1px solid rgba(0,0,0,.05);
+
+box-shadow:
+0 12px 25px rgba(0,0,0,.05);
+
+transition:.3s ease;
+
+}
+
+.tool-card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.tool-icon{
+
+width:58px;
+height:58px;
+
+border-radius:18px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:1.4rem;
+
+flex-shrink:0;
+
+}
+
+.tool-title{
+
+font-weight:700;
+
+margin-bottom:.2rem;
+
+}
+
+.tool-sub{
+
+font-size:.82rem;
+
+color:#8a8a95;
+
+}
+
+/* ======================================================
+REALISTIC ICON COLORS
+====================================================== */
+
+.storyline{
+background:linear-gradient(135deg,#d9eeff,#b9dcff);
+color:#0f6cbd;
+}
+
+.rise{
+background:linear-gradient(135deg,#ece6ff,#d7cbff);
+color:#6D4AFF;
+}
+
+.powerbi{
+background:linear-gradient(135deg,#fff6d6,#ffe38a);
+color:#f2a900;
+}
+
+.vyond{
+background:linear-gradient(135deg,#ffe8de,#ffc7af);
+color:#ff6a2b;
+}
+
+.sap{
+background:linear-gradient(135deg,#dff1ff,#bfdfff);
+color:#0085ff;
+}
+
+.whatfix{
+background:linear-gradient(135deg,#e4faef,#c1f0d7);
+color:#18B26B;
+}
+
+.moodle{
+background:linear-gradient(135deg,#fff1dc,#ffd7a3);
+color:#ff7f00;
+}
+
+.ga{
+background:linear-gradient(135deg,#e7f0ff,#c9dbff);
+color:#4385F5;
+}
+
+/* ======================================================
+CONTACT
+====================================================== */
+
+.contact{
+
+background:#121212;
+
+color:white;
+
+}
+
+.contact-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:4rem;
+
+margin-top:4rem;
+
+}
+
+.contact-card{
+
+background:rgba(255,255,255,.04);
+
+padding:1.3rem;
+
+border-radius:24px;
+
+display:flex;
+
+gap:1rem;
+
+align-items:center;
+
+border:1px solid rgba(255,255,255,.06);
+
+margin-bottom:1rem;
+
+transition:.3s ease;
+
+}
+
+.contact-card:hover{
+
+background:rgba(109,74,255,.12);
+
+transform:translateX(5px);
+
+}
+
+.contact-icon{
+
+width:52px;
+height:52px;
+
+border-radius:16px;
+
+background:rgba(109,74,255,.18);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:1.1rem;
+
+color:#8e6cff;
+
+}
+
+.contact-label{
+
+font-size:.72rem;
+
+letter-spacing:.18em;
+
+text-transform:uppercase;
+
+color:#8a8a95;
+
+margin-bottom:.3rem;
+
+}
+
+.contact-value{
+
+font-size:1rem;
+
+font-weight:600;
+
+}
+
+.consulting-box{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:flex-end;
+
+text-align:right;
+
+height:100%;
+
+}
+
+.consulting-box h2{
+
+font-family:'DM Serif Display',serif;
+
+font-size:4rem;
+
+line-height:.95;
+
+letter-spacing:-.05em;
+
+margin-bottom:1rem;
+
+}
+
+.consulting-box p{
+
+max-width:400px;
+
+color:#b4b4c0;
+
+line-height:1.9;
+
+}
+
+/* ======================================================
+FOOTER
+====================================================== */
+
+footer{
+
+padding:2rem 0;
+
+background:#121212;
+
+border-top:1px solid rgba(255,255,255,.06);
+
+text-align:center;
+
+color:#8a8a95;
+
+font-size:.92rem;
+
+}
+
+/* ======================================================
+RESPONSIVE
+====================================================== */
+
+@media(max-width:980px){
+
+.hero-inner,
+.contact-grid,
+.project-layout{
+
+grid-template-columns:1fr;
+
+}
+
+.dashboard-wrapper{
+
+margin-top:2rem;
+
+}
+
+.consulting-box{
+
+align-items:flex-start;
+text-align:left;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.hero-actions{
+flex-direction:column;
+}
+
+.nav-links{
+display:none;
+}
+
+.hero-title{
+font-size:4rem;
+}
+
+.section-title{
+font-size:3rem;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
+<!-- ======================================================
+NAV
+====================================================== -->
 
-<nav class="fixed top-0 left-0 w-full z-50 navbar">
+<nav>
 
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<div class="nav-inner">
 
-    <h1 class="font-black text-2xl gradient-text">
-      Pratibha Mishra
-    </h1>
+<div class="logo">
+Pratibha<span>.</span>
+</div>
 
-    <div class="hidden lg:flex items-center gap-8 text-gray-700 font-medium">
+<div class="nav-links">
 
-      <a href="#home">Home</a>
-      <a href="#projects">Projects</a>
-      <a href="#analytics">Analytics</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+<a href="#projects" class="nav-btn btn-dark">
+<i class="fa-solid fa-folder-open"></i>
+Case Studies
+</a>
 
-      <a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/"
-         target="_blank"
-         class="px-5 py-3 rounded-2xl bg-indigo-600 text-white font-semibold hover:scale-105 transition">
-         GitHub Portfolio
-      </a>
+<a href="#projects" class="nav-btn btn-purple">
+<i class="fa-solid fa-chart-line"></i>
+Projects
+</a>
 
-    </div>
+<a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/"
+target="_blank"
+class="nav-btn btn-white">
 
-  </div>
+<i class="fa-brands fa-github"></i>
+GitHub
+
+</a>
+
+<a href="#contact"
+class="nav-btn btn-contact">
+
+<i class="fa-solid fa-paper-plane"></i>
+Contact
+
+</a>
+
+</div>
+
+</div>
 
 </nav>
 
-<!-- HERO -->
+<!-- ======================================================
+HERO
+====================================================== -->
 
-<section id="home" class="min-h-screen hero-grid flex items-center pt-28">
+<section class="hero">
 
-  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+<div class="hero-inner">
 
-    <!-- LEFT -->
+<div>
 
-    <div class="fade-up">
+<div class="section-tag">
+Available for Full Time & Consulting
+</div>
 
-      <div class="inline-flex items-center gap-3 glass px-5 py-3 rounded-full">
+<h1 class="hero-title">
 
-        <div class="h-3 w-3 rounded-full bg-green-500 animate-pulse"></div>
+Pratibha
+<span>Mishra</span>
 
-        <p class="text-sm font-semibold text-indigo-700">
-          Enterprise Learning Experience Designer
-        </p>
+</h1>
 
-      </div>
+<p class="hero-desc">
 
-      <h1 class="text-5xl lg:text-7xl font-black leading-tight mt-8">
+Enterprise Learning Experience Designer specializing in instructional design, LMS ecosystems, SCORM/xAPI reporting, compliance learning simulations, onboarding transformation, digital adoption, and learning analytics dashboards using Power BI and enterprise reporting workflows.
 
-        Designing Enterprise Learning Ecosystems That Drive
-        <span class="gradient-text">
-          Workforce Readiness
-        </span>
+</p>
 
-      </h1>
+<div class="hero-actions">
 
-      <p class="mt-8 text-xl text-gray-600 leading-relaxed">
+<a href="#projects" class="nav-btn btn-dark">
+<i class="fa-solid fa-folder-open"></i>
+Case Studies
+</a>
 
-        Learning Experience Designer specializing in LMS analytics, onboarding journeys, compliance simulations, SCORM/xAPI ecosystems, Power BI reporting, workforce enablement, and enterprise learning operations.
+<a href="#projects" class="nav-btn btn-purple">
+<i class="fa-solid fa-chart-line"></i>
+Projects
+</a>
 
-      </p>
+<a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/"
+target="_blank"
+class="nav-btn btn-white">
 
-      <div class="mt-12 flex flex-wrap gap-5">
+<i class="fa-brands fa-github"></i>
+GitHub
 
-        <a href="#projects"
-           class="px-8 py-5 rounded-2xl bg-indigo-600 text-white font-semibold shadow-xl hover:scale-105 transition">
+</a>
 
-          View Projects
+<a href="#contact"
+class="nav-btn btn-contact">
 
-        </a>
+<i class="fa-solid fa-paper-plane"></i>
+Contact
 
-        <a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/"
-           target="_blank"
-           class="px-8 py-5 rounded-2xl glass font-semibold hover:scale-105 transition">
+</a>
 
-          GitHub Portfolio
+</div>
 
-        </a>
+</div>
 
-        <a href="#contact"
-           class="px-8 py-5 rounded-2xl border border-indigo-200 font-semibold hover:bg-indigo-50 transition">
+<div class="dashboard-wrapper">
 
-          Contact Me
+<div class="dashboard-card">
 
-        </a>
+<h4>
+Learner Engagement & Completion — 2026
+</h4>
 
-      </div>
+<canvas id="heroChart"></canvas>
 
-      <!-- KPI -->
+</div>
 
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-14">
+<div class="floating float-a">
 
-        <div class="glass rounded-3xl p-5">
+<div class="float-label">
+Compliance Rate
+</div>
 
-          <h2 class="text-3xl font-black text-indigo-600 counter" data-target="1500">0</h2>
-          <p class="text-gray-500 text-sm mt-2">Learners Enabled</p>
+<div class="float-number float-purple">
+94%
+</div>
 
-        </div>
+<div class="float-sub">
+↑ 21% vs baseline
+</div>
 
-        <div class="glass rounded-3xl p-5">
+</div>
 
-          <h2 class="text-3xl font-black text-blue-600 counter" data-target="87">0</h2>
-          <p class="text-gray-500 text-sm mt-2">Completion Rate</p>
+<div class="floating float-b">
 
-        </div>
+<div class="float-label">
+Learners Supported
+</div>
 
-        <div class="glass rounded-3xl p-5">
+<div class="float-number float-teal">
+1,500+
+</div>
 
-          <h2 class="text-3xl font-black text-pink-600 counter" data-target="34">0</h2>
-          <p class="text-gray-500 text-sm mt-2">Engagement Growth</p>
+<div class="float-sub">
+Enterprise platforms
+</div>
 
-        </div>
+</div>
 
-        <div class="glass rounded-3xl p-5">
+</div>
 
-          <h2 class="text-3xl font-black text-green-600 counter" data-target="41">0</h2>
-          <p class="text-gray-500 text-sm mt-2">Reporting Efficiency</p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- RIGHT -->
-
-    <div class="relative fade-up">
-
-      <div class="glass rounded-[38px] p-8 floating">
-
-        <div class="flex justify-between items-center mb-8">
-
-          <div>
-
-            <h2 class="font-black text-2xl">
-              Learning Analytics Dashboard
-            </h2>
-
-            <p class="text-gray-500 mt-2">
-              Power BI Workforce Readiness System
-            </p>
-
-          </div>
-
-          <div class="h-16 w-16 rounded-3xl bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center text-white text-2xl glow-indigo">
-
-            <i class="fa-solid fa-chart-line"></i>
-
-          </div>
-
-        </div>
-
-        <canvas id="heroChart" height="170"></canvas>
-
-        <div class="grid grid-cols-2 gap-5 mt-8">
-
-          <div class="dashboard-card rounded-3xl p-5">
-
-            <p class="text-gray-500 text-sm">Workforce Readiness</p>
-
-            <h3 class="text-3xl font-black mt-2 text-indigo-600">
-              92%
-            </h3>
-
-          </div>
-
-          <div class="dashboard-card rounded-3xl p-5">
-
-            <p class="text-gray-500 text-sm">LMS Adoption</p>
-
-            <h3 class="text-3xl font-black mt-2 text-pink-600">
-              +29%
-            </h3>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
-<!-- PROJECTS -->
+<!-- ======================================================
+PROJECTS
+====================================================== -->
 
-<section id="projects" class="py-28">
+<section class="projects" id="projects">
 
-  <div class="max-w-7xl mx-auto px-6">
+<div class="container">
 
-    <div class="text-center fade-up">
+<div class="section-tag">
+Enterprise Portfolio
+</div>
 
-      <h2 class="text-5xl font-black">
+<h2 class="section-title">
+Learning Transformation
+Case Studies
+</h2>
 
-        Enterprise Learning
-        <span class="gradient-text">
-          Case Studies
-        </span>
+<p class="section-sub">
 
-      </h2>
+A curated portfolio of enterprise instructional design, onboarding, compliance, digital adoption, analytics, LMS reporting, and workforce enablement initiatives aligned to real-world learning ecosystems.
 
-      <p class="text-gray-600 text-xl mt-6 max-w-4xl mx-auto leading-relaxed">
+</p>
 
-        Interactive enterprise learning ecosystems integrating instructional design, LMS reporting, Power BI analytics, onboarding workflows, workforce enablement, and SCORM/xAPI learning operations.
+<div class="project-grid">
 
-      </p>
+<!-- ======================================================
+PROJECT 1
+====================================================== -->
 
-    </div>
+<div class="project-card">
 
-    <div class="grid lg:grid-cols-2 gap-10 mt-20">
+<div class="project-top">
 
-      <!-- PROJECT -->
+<div>
 
-      <div class="glass rounded-[36px] p-8 project-card fade-up">
+<h3 class="project-title">
+Compliance Simulation & Workflow Readiness Program
+</h3>
 
-        <div class="flex justify-between items-center">
+<p class="project-sub">
 
-          <span class="px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 font-semibold text-sm">
-            Flagship Project
-          </span>
+Enterprise compliance learning ecosystem designed using Storyline 360, SCORM/xAPI tracking, branching scenarios, and Power BI learning intelligence dashboards to improve SOP adherence and operational readiness.
 
-          <div class="h-16 w-16 rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-2xl glow-indigo">
+</p>
 
-            <i class="fa-solid fa-shield-halved"></i>
+</div>
 
-          </div>
+<div class="project-badge badge-purple">
+Flagship
+</div>
 
-        </div>
+</div>
 
-        <h3 class="text-3xl font-black mt-8">
-          Compliance Simulation & Workflow Learning Program
-        </h3>
+<div class="project-layout">
 
-        <p class="text-gray-600 mt-5 leading-relaxed">
+<div class="project-box">
 
-          Designed interactive compliance simulations using Storyline 360 and SCORM workflows to improve learner decision-making, workflow adherence, and compliance readiness across enterprise learning ecosystems.
+<h5>
+Business Challenge
+</h5>
 
-        </p>
+<ul>
 
-        <div class="mt-8 grid grid-cols-3 gap-4">
+<li>Low SOP adherence across operational teams</li>
 
-          <div class="dashboard-card rounded-2xl p-4">
+<li>Audit readiness inconsistencies</li>
 
-            <h4 class="text-2xl font-black text-indigo-600">87%</h4>
-            <p class="text-xs text-gray-500 mt-1">Completion</p>
+<li>Static training causing low retention</li>
 
-          </div>
+<li>Limited manager visibility into completion data</li>
 
-          <div class="dashboard-card rounded-2xl p-4">
+<li>Lack of enterprise reporting workflows</li>
 
-            <h4 class="text-2xl font-black text-pink-600">+34%</h4>
-            <p class="text-xs text-gray-500 mt-1">Engagement</p>
+</ul>
 
-          </div>
+</div>
 
-          <div class="dashboard-card rounded-2xl p-4">
+<div class="project-box">
 
-            <h4 class="text-2xl font-black text-blue-600">1K+</h4>
-            <p class="text-xs text-gray-500 mt-1">Learners</p>
+<h5>
+Learning Strategy
+</h5>
 
-          </div>
+<ul>
 
-        </div>
+<li>Interactive compliance simulations</li>
 
-        <div class="mt-8">
+<li>Decision-based workflow learning</li>
 
-          <canvas id="project1"></canvas>
+<li>SCORM/xAPI event tracking</li>
 
-        </div>
+<li>Manager-level reporting dashboards</li>
 
-      </div>
+<li>Power BI learner intelligence integration</li>
 
-      <!-- PROJECT -->
+</ul>
 
-      <div class="glass rounded-[36px] p-8 project-card fade-up">
+</div>
 
-        <div class="flex justify-between items-center">
+</div>
 
-          <span class="px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-semibold text-sm">
-            Analytics Ecosystem
-          </span>
+<canvas id="projectChart1"></canvas>
 
-          <div class="h-16 w-16 rounded-3xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-2xl glow-blue">
+<div class="tools-row">
 
-            <i class="fa-solid fa-chart-pie"></i>
+<div class="tool-card">
 
-          </div>
+<div class="tool-icon storyline">
+<i class="fa-solid fa-film"></i>
+</div>
 
-        </div>
+<div>
 
-        <h3 class="text-3xl font-black mt-8">
-          LMS Learning Analytics Dashboard
-        </h3>
+<div class="tool-title">
+Storyline 360
+</div>
 
-        <p class="text-gray-600 mt-5 leading-relaxed">
+<div class="tool-sub">
+Interactive Simulations
+</div>
 
-          Power BI-based learner analytics dashboard designed to track learner completion, engagement, assessment performance, compliance tracking, and workforce readiness metrics.
+</div>
 
-        </p>
+</div>
 
-        <div class="mt-8">
+<div class="tool-card">
 
-          <canvas id="project2"></canvas>
+<div class="tool-icon rise">
+<i class="fa-solid fa-layer-group"></i>
+</div>
 
-        </div>
+<div>
 
-      </div>
+<div class="tool-title">
+Rise 360
+</div>
 
-      <!-- PROJECT -->
+<div class="tool-sub">
+Microlearning
+</div>
 
-      <div class="glass rounded-[36px] p-8 project-card fade-up">
+</div>
 
-        <div class="flex justify-between items-center">
+</div>
 
-          <span class="px-4 py-2 rounded-full bg-pink-100 text-pink-700 font-semibold text-sm">
-            Onboarding Ecosystem
-          </span>
+<div class="tool-card">
 
-          <div class="h-16 w-16 rounded-3xl bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center text-white text-2xl glow-pink">
+<div class="tool-icon powerbi">
+<i class="fa-brands fa-microsoft"></i>
+</div>
 
-            <i class="fa-solid fa-user-check"></i>
+<div>
 
-          </div>
+<div class="tool-title">
+Power BI
+</div>
 
-        </div>
+<div class="tool-sub">
+Learning Dashboards
+</div>
 
-        <h3 class="text-3xl font-black mt-8">
-          Digital Employee Onboarding & Readiness Journey
-        </h3>
+</div>
 
-        <p class="text-gray-600 mt-5 leading-relaxed">
+</div>
 
-          Enterprise onboarding architecture featuring role-based learning pathways, onboarding simulations, readiness tracking dashboards, AI-assisted learner support workflows, and workforce enablement journeys.
+<div class="tool-card">
 
-        </p>
+<div class="tool-icon vyond">
+<i class="fa-solid fa-circle-play"></i>
+</div>
 
-        <div class="mt-8">
+<div>
 
-          <canvas id="project3"></canvas>
+<div class="tool-title">
+Vyond
+</div>
 
-        </div>
+<div class="tool-sub">
+Animated Explainers
+</div>
 
-      </div>
+</div>
 
-      <!-- PROJECT -->
+</div>
 
-      <div class="glass rounded-[36px] p-8 project-card fade-up">
+</div>
 
-        <div class="flex justify-between items-center">
+</div>
 
-          <span class="px-4 py-2 rounded-full bg-purple-100 text-purple-700 font-semibold text-sm">
-            Workforce Intelligence
-          </span>
+<!-- ======================================================
+PROJECT 2
+====================================================== -->
 
-          <div class="h-16 w-16 rounded-3xl bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-white text-2xl glow-indigo">
+<div class="project-card">
 
-            <i class="fa-solid fa-brain"></i>
+<div class="project-top">
 
-          </div>
+<div>
 
-        </div>
+<h3 class="project-title">
+Digital Employee Onboarding & Readiness Journey
+</h3>
 
-        <h3 class="text-3xl font-black mt-8">
-          AI-Powered Learning Analytics & ROI Ecosystem
-        </h3>
+<p class="project-sub">
 
-        <p class="text-gray-600 mt-5 leading-relaxed">
+Role-based onboarding architecture designed to reduce time-to-productivity using guided learning pathways, onboarding dashboards, workflow simulations, and manager-driven learning checkpoints.
 
-          Centralized analytics architecture integrating LMS reporting workflows, Power BI dashboards, workforce readiness tracking, engagement metrics, and SCORM/xAPI analytics.
+</p>
 
-        </p>
+</div>
 
-        <div class="mt-8">
+<div class="project-badge badge-orange">
+Onboarding
+</div>
 
-          <canvas id="project4"></canvas>
+</div>
 
-        </div>
+<div class="project-layout">
 
-      </div>
+<div class="project-box">
 
-    </div>
+<h5>
+Operational Outcomes
+</h5>
 
-  </div>
+<ul>
+
+<li>Reduced onboarding friction points</li>
+
+<li>Improved learner readiness</li>
+
+<li>Higher completion rates</li>
+
+<li>Enhanced onboarding visibility</li>
+
+<li>Faster role alignment</li>
+
+</ul>
+
+</div>
+
+<div class="project-box">
+
+<h5>
+Experience Architecture
+</h5>
+
+<ul>
+
+<li>Preboarding learning journeys</li>
+
+<li>Role-specific modules</li>
+
+<li>Interactive assessments</li>
+
+<li>Manager approval workflows</li>
+
+<li>Feedback-driven learning paths</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<canvas id="projectChart2"></canvas>
+
+</div>
+
+<!-- ======================================================
+PROJECT 3
+====================================================== -->
+
+<div class="project-card">
+
+<div class="project-top">
+
+<div>
+
+<h3 class="project-title">
+Digital Adoption & Workflow Learning Ecosystem
+</h3>
+
+<p class="project-sub">
+
+Contextual learning ecosystem using Whatfix, SAP Enable Now, and workflow guidance systems to improve platform adoption and reduce support dependency.
+
+</p>
+
+</div>
+
+<div class="project-badge badge-teal">
+Digital Adoption
+</div>
+
+</div>
+
+<div class="tools-row">
+
+<div class="tool-card">
+
+<div class="tool-icon whatfix">
+<i class="fa-solid fa-route"></i>
+</div>
+
+<div>
+
+<div class="tool-title">
+Whatfix
+</div>
+
+<div class="tool-sub">
+Workflow Guidance
+</div>
+
+</div>
+
+</div>
+
+<div class="tool-card">
+
+<div class="tool-icon sap">
+<i class="fa-solid fa-database"></i>
+</div>
+
+<div>
+
+<div class="tool-title">
+SAP Enable Now
+</div>
+
+<div class="tool-sub">
+Enterprise Enablement
+</div>
+
+</div>
+
+</div>
+
+<div class="tool-card">
+
+<div class="tool-icon moodle">
+<i class="fa-solid fa-graduation-cap"></i>
+</div>
+
+<div>
+
+<div class="tool-title">
+Moodle LMS
+</div>
+
+<div class="tool-sub">
+Learning Platform
+</div>
+
+</div>
+
+</div>
+
+<div class="tool-card">
+
+<div class="tool-icon ga">
+<i class="fa-brands fa-google"></i>
+</div>
+
+<div>
+
+<div class="tool-title">
+Google Analytics 4
+</div>
+
+<div class="tool-sub">
+Engagement Tracking
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
-<!-- ANALYTICS -->
+<!-- ======================================================
+CONTACT
+====================================================== -->
 
-<section id="analytics" class="py-28">
+<section class="contact" id="contact">
 
-  <div class="max-w-7xl mx-auto px-6">
+<div class="container">
 
-    <div class="text-center fade-up">
+<div class="section-tag">
+Available Across Domains
+</div>
 
-      <h2 class="text-5xl font-black">
+<h2 class="section-title">
+Let’s Build Learning
+Experiences That Matter
+</h2>
 
-        Power BI &
-        <span class="gradient-text">
-          LMS Analytics
-        </span>
+<div class="contact-grid">
 
-      </h2>
+<div>
 
-      <p class="text-gray-600 text-xl mt-6">
-        Enterprise workforce visibility, learner engagement, completion trends, compliance tracking, and reporting dashboards.
-      </p>
+<div class="contact-card">
 
-    </div>
+<div class="contact-icon">
+<i class="fa-solid fa-envelope"></i>
+</div>
 
-    <div class="grid lg:grid-cols-3 gap-8 mt-20">
+<div>
 
-      <div class="glass rounded-[34px] p-8 fade-up">
+<div class="contact-label">
+Email
+</div>
 
-        <h3 class="font-bold text-xl mb-6">
-          Completion Trends
-        </h3>
+<div class="contact-value">
+pratibhamishra1996@gmail.com
+</div>
 
-        <canvas id="analytics1"></canvas>
+</div>
 
-      </div>
+</div>
 
-      <div class="glass rounded-[34px] p-8 fade-up">
+<div class="contact-card">
 
-        <h3 class="font-bold text-xl mb-6">
-          Workforce Readiness
-        </h3>
+<div class="contact-icon">
+<i class="fa-brands fa-linkedin"></i>
+</div>
 
-        <canvas id="analytics2"></canvas>
+<div>
 
-      </div>
+<div class="contact-label">
+LinkedIn
+</div>
 
-      <div class="glass rounded-[34px] p-8 fade-up">
+<div class="contact-value">
+linkedin.com/in/pratibhamishra
+</div>
 
-        <h3 class="font-bold text-xl mb-6">
-          Engagement Distribution
-        </h3>
+</div>
 
-        <canvas id="analytics3"></canvas>
+</div>
 
-      </div>
+<div class="contact-card">
 
-    </div>
+<div class="contact-icon">
+<i class="fa-brands fa-github"></i>
+</div>
 
-  </div>
+<div>
+
+<div class="contact-label">
+Portfolio
+</div>
+
+<div class="contact-value">
+pratibha1996mishra.github.io
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="consulting-box">
+
+<h2>
+Available for
+Consulting Inquiry
+</h2>
+
+<p>
+
+Open to enterprise instructional design, LMS consulting, onboarding transformation, digital adoption, compliance learning, analytics reporting, and learning experience strategy engagements across industries.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
-<!-- EXPERIENCE -->
+<footer>
 
-<section id="experience" class="py-28">
+© 2026 Pratibha Mishra · Available for Full Time & Consulting Opportunities
 
-  <div class="max-w-6xl mx-auto px-6">
-
-    <div class="text-center fade-up">
-
-      <h2 class="text-5xl font-black">
-
-        Professional
-        <span class="gradient-text">
-          Experience
-        </span>
-
-      </h2>
-
-    </div>
-
-    <div class="relative mt-24">
-
-      <div class="absolute left-5 top-0 bottom-0 w-1 rounded-full timeline-line"></div>
-
-      <div class="space-y-14">
-
-        <!-- ITEM -->
-
-        <div class="relative pl-20 fade-up">
-
-          <div class="absolute left-0 top-2 h-12 w-12 rounded-full bg-indigo-600 text-white flex items-center justify-center">
-
-            <i class="fa-solid fa-briefcase"></i>
-
-          </div>
-
-          <div class="glass rounded-[30px] p-8">
-
-            <h3 class="font-black text-2xl">
-              Now100 Solutions (PwC Project)
-            </h3>
-
-            <p class="text-indigo-600 font-semibold mt-2">
-              Consultant Instructional Designer
-            </p>
-
-            <p class="text-gray-600 mt-4 leading-relaxed">
-
-              Developed SCORM-compliant pharma compliance simulations, onboarding workflows, LMS delivery systems, and enterprise learner reporting ecosystems supporting 1,000+ learners.
-
-            </p>
-
-          </div>
-
-        </div>
-
-        <!-- ITEM -->
-
-        <div class="relative pl-20 fade-up">
-
-          <div class="absolute left-0 top-2 h-12 w-12 rounded-full bg-blue-600 text-white flex items-center justify-center">
-
-            <i class="fa-solid fa-graduation-cap"></i>
-
-          </div>
-
-          <div class="glass rounded-[30px] p-8">
-
-            <h3 class="font-black text-2xl">
-              Harjai Computers (LearningMate)
-            </h3>
-
-            <p class="text-blue-600 font-semibold mt-2">
-              Instructional Designer
-            </p>
-
-            <p class="text-gray-600 mt-4 leading-relaxed">
-
-              Built Storyline 360 and Rise 360 digital learning ecosystems, LMS-ready assessments, software walkthroughs, and WCAG-compliant enterprise training modules.
-
-            </p>
-
-          </div>
-
-        </div>
-
-        <!-- ITEM -->
-
-        <div class="relative pl-20 fade-up">
-
-          <div class="absolute left-0 top-2 h-12 w-12 rounded-full bg-pink-600 text-white flex items-center justify-center">
-
-            <i class="fa-solid fa-chart-line"></i>
-
-          </div>
-
-          <div class="glass rounded-[30px] p-8">
-
-            <h3 class="font-black text-2xl">
-              BrightChamps • iScholar • Narayana
-            </h3>
-
-            <p class="text-pink-600 font-semibold mt-2">
-              Learning Experience & Curriculum Design Ecosystems
-            </p>
-
-            <p class="text-gray-600 mt-4 leading-relaxed">
-
-              Designed learner pathways, onboarding journeys, assessment systems, competency mapping frameworks, and analytics-driven learning workflows.
-
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SKILLS -->
-
-<section id="skills" class="py-28">
-
-  <div class="max-w-7xl mx-auto px-6">
-
-    <div class="text-center fade-up">
-
-      <h2 class="text-5xl font-black">
-
-        Tools &
-        <span class="gradient-text">
-          Technology Stack
-        </span>
-
-      </h2>
-
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mt-20">
-
-      <!-- TOOL -->
-
-      <div class="glass rounded-[32px] p-8 text-center tool-card fade-up">
-
-        <div class="h-20 w-20 rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mx-auto glow-indigo">
-
-          <i class="fa-solid fa-layer-group text-4xl text-white"></i>
-
-        </div>
-
-        <h3 class="font-bold mt-6">
-          Storyline 360
-        </h3>
-
-      </div>
-
-      <div class="glass rounded-[32px] p-8 text-center tool-card fade-up">
-
-        <div class="h-20 w-20 rounded-3xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mx-auto glow-blue">
-
-          <i class="fa-solid fa-rocket text-4xl text-white"></i>
-
-        </div>
-
-        <h3 class="font-bold mt-6">
-          Rise 360
-        </h3>
-
-      </div>
-
-      <div class="glass rounded-[32px] p-8 text-center tool-card fade-up">
-
-        <div class="h-20 w-20 rounded-3xl bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center mx-auto glow-pink">
-
-          <i class="fa-solid fa-video text-4xl text-white"></i>
-
-        </div>
-
-        <h3 class="font-bold mt-6">
-          Camtasia
-        </h3>
-
-      </div>
-
-      <div class="glass rounded-[32px] p-8 text-center tool-card fade-up">
-
-        <div class="h-20 w-20 rounded-3xl bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center mx-auto glow-yellow">
-
-          <i class="fa-solid fa-chart-pie text-4xl text-white"></i>
-
-        </div>
-
-        <h3 class="font-bold mt-6">
-          Power BI
-        </h3>
-
-      </div>
-
-      <div class="glass rounded-[32px] p-8 text-center tool-card fade-up">
-
-        <div class="h-20 w-20 rounded-3xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mx-auto glow-green">
-
-          <i class="fa-solid fa-database text-4xl text-white"></i>
-
-        </div>
-
-        <h3 class="font-bold mt-6">
-          SCORM/xAPI
-        </h3>
-
-      </div>
-
-      <div class="glass rounded-[32px] p-8 text-center tool-card fade-up">
-
-        <div class="h-20 w-20 rounded-3xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center mx-auto glow-blue">
-
-          <i class="fa-solid fa-laptop-code text-4xl text-white"></i>
-
-        </div>
-
-        <h3 class="font-bold mt-6">
-          Moodle LMS
-        </h3>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact" class="py-28 contact-bg">
-
-  <div class="max-w-6xl mx-auto px-6 text-center">
-
-    <div class="fade-up">
-
-      <h2 class="text-5xl font-black">
-        Let’s Build Enterprise Learning Experiences
-      </h2>
-
-      <p class="text-gray-300 text-xl mt-8 max-w-4xl mx-auto leading-relaxed">
-
-        Available for enterprise learning design, LMS analytics, onboarding ecosystems, workforce enablement, compliance learning, and consulting engagements.
-
-      </p>
-
-    </div>
-
-    <div class="grid md:grid-cols-4 gap-8 mt-20">
-
-      <div class="contact-card rounded-[30px] p-8">
-
-        <div class="h-16 w-16 rounded-3xl bg-cyan-400 text-black flex items-center justify-center mx-auto">
-
-          <i class="fa-solid fa-location-dot text-2xl"></i>
-
-        </div>
-
-        <h3 class="font-bold text-xl mt-6">
-          Location
-        </h3>
-
-        <p class="text-gray-400 mt-3">
-          Bengaluru, India
-        </p>
-
-      </div>
-
-      <div class="contact-card rounded-[30px] p-8">
-
-        <div class="h-16 w-16 rounded-3xl bg-cyan-400 text-black flex items-center justify-center mx-auto">
-
-          <i class="fa-solid fa-envelope text-2xl"></i>
-
-        </div>
-
-        <h3 class="font-bold text-xl mt-6">
-          Email
-        </h3>
-
-        <p class="text-gray-400 mt-3 break-all">
-          pratibha1996mishra@gmail.com
-        </p>
-
-      </div>
-
-      <div class="contact-card rounded-[30px] p-8">
-
-        <div class="h-16 w-16 rounded-3xl bg-cyan-400 text-black flex items-center justify-center mx-auto">
-
-          <i class="fa-brands fa-linkedin text-2xl"></i>
-
-        </div>
-
-        <h3 class="font-bold text-xl mt-6">
-          LinkedIn
-        </h3>
-
-        <p class="text-gray-400 mt-3">
-          Professional Profile
-        </p>
-
-      </div>
-
-      <div class="contact-card rounded-[30px] p-8">
-
-        <div class="h-16 w-16 rounded-3xl bg-cyan-400 text-black flex items-center justify-center mx-auto">
-
-          <i class="fa-brands fa-github text-2xl"></i>
-
-        </div>
-
-        <h3 class="font-bold text-xl mt-6">
-          GitHub Portfolio
-        </h3>
-
-        <a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/"
-           target="_blank"
-           class="text-cyan-400 text-sm mt-3 inline-block">
-
-          Visit Portfolio
-
-        </a>
-
-      </div>
-
-    </div>
-
-    <div class="mt-20 flex flex-wrap justify-center gap-5">
-
-      <a href="#"
-         class="px-10 py-5 rounded-2xl bg-cyan-400 text-black font-bold hover:scale-105 transition">
-
-        Download Resume
-
-      </a>
-
-      <a href="https://pratibha1996mishra.github.io/pratibhamishra.portfolio/"
-         target="_blank"
-         class="px-10 py-5 rounded-2xl border border-cyan-400 text-cyan-400 font-bold hover:bg-cyan-400 hover:text-black transition">
-
-        View GitHub Portfolio
-
-      </a>
-
-    </div>
-
-    <p class="mt-20 text-gray-400 text-lg">
-
-      Available across domains | Available for Full-Time & Consulting Opportunities
-
-    </p>
-
-    <p class="mt-8 text-gray-500">
-
-      © 2026 Pratibha Mishra. All Rights Reserved.
-
-    </p>
-
-  </div>
-
-</section>
+</footer>
 
 <script>
 
-  // SCROLL ANIMATION
+/* ======================================================
+GRADIENTS
+====================================================== */
 
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('active');
-      }
-    });
-  });
+const ctxHero =
+document.getElementById('heroChart').getContext('2d');
 
-  document.querySelectorAll('.fade-up').forEach(el=>{
-    observer.observe(el);
-  });
+const gradientPurple =
+ctxHero.createLinearGradient(0,0,0,300);
 
-  // COUNTERS
+gradientPurple.addColorStop(0,'rgba(109,74,255,.45)');
+gradientPurple.addColorStop(1,'rgba(109,74,255,.02)');
 
-  const counters=document.querySelectorAll('.counter');
+const gradientTeal =
+ctxHero.createLinearGradient(0,0,0,300);
 
-  counters.forEach(counter=>{
+gradientTeal.addColorStop(0,'rgba(14,165,160,.35)');
+gradientTeal.addColorStop(1,'rgba(14,165,160,.02)');
 
-    counter.innerText='0';
+/* ======================================================
+HERO CHART
+====================================================== */
 
-    const updateCounter=()=>{
+new Chart(ctxHero,{
 
-      const target=+counter.getAttribute('data-target');
-      const c=+counter.innerText;
+type:'line',
 
-      const increment=target/80;
+data:{
 
-      if(c<target){
+labels:[
+'Jan',
+'Feb',
+'Mar',
+'Apr',
+'May',
+'Jun'
+],
 
-        counter.innerText=`${Math.ceil(c+increment)}`;
-        setTimeout(updateCounter,25);
+datasets:[
 
-      }else{
+{
 
-        counter.innerText=target;
+label:'Engagement',
 
-      }
+data:[62,70,76,81,87,91],
 
-    };
+borderColor:'#6D4AFF',
 
-    updateCounter();
+backgroundColor:gradientPurple,
 
-  });
+fill:true,
 
-  // CHARTS
+tension:.4,
 
-  new Chart(document.getElementById('heroChart'),{
-    type:'line',
-    data:{
-      labels:['Jan','Feb','Mar','Apr','May','Jun'],
-      datasets:[{
-        data:[42,58,63,76,84,92],
-        borderColor:'#6366f1',
-        backgroundColor:'rgba(99,102,241,.18)',
-        fill:true,
-        tension:.4
-      }]
-    },
-    options:{
-      plugins:{legend:{display:false}},
-      scales:{
-        x:{display:false},
-        y:{display:false}
-      }
-    }
-  });
+pointRadius:4
 
-  new Chart(document.getElementById('project1'),{
-    type:'bar',
-    data:{
-      labels:['Compliance','Simulation','Assessment','Readiness'],
-      datasets:[{
-        data:[87,91,78,82],
-        backgroundColor:['#6366f1','#3b82f6','#ec4899','#14b8a6'],
-        borderRadius:12
-      }]
-    },
-    options:{
-      plugins:{legend:{display:false}}
-    }
-  });
+},
 
-  new Chart(document.getElementById('project2'),{
-    type:'doughnut',
-    data:{
-      labels:['Completed','In Progress','Pending'],
-      datasets:[{
-        data:[62,24,14],
-        backgroundColor:['#6366f1','#06b6d4','#f59e0b']
-      }]
-    }
-  });
+{
 
-  new Chart(document.getElementById('project3'),{
-    type:'line',
-    data:{
-      labels:['Week1','Week2','Week3','Week4'],
-      datasets:[{
-        data:[25,52,74,93],
-        borderColor:'#ec4899',
-        backgroundColor:'rgba(236,72,153,.18)',
-        fill:true,
-        tension:.4
-      }]
-    },
-    options:{
-      plugins:{legend:{display:false}}
-    }
-  });
+label:'Completion',
 
-  new Chart(document.getElementById('project4'),{
-    type:'radar',
-    data:{
-      labels:['Engagement','Completion','Adoption','Reporting','Readiness'],
-      datasets:[{
-        data:[88,84,81,79,92],
-        backgroundColor:'rgba(139,92,246,.18)',
-        borderColor:'#8b5cf6'
-      }]
-    }
-  });
+data:[58,66,73,78,83,88],
 
-  new Chart(document.getElementById('analytics1'),{
-    type:'line',
-    data:{
-      labels:['Jan','Feb','Mar','Apr','May','Jun'],
-      datasets:[{
-        data:[52,60,69,77,84,92],
-        borderColor:'#3b82f6',
-        backgroundColor:'rgba(59,130,246,.18)',
-        fill:true
-      }]
-    },
-    options:{
-      plugins:{legend:{display:false}}
-    }
-  });
+borderColor:'#0EA5A0',
 
-  new Chart(document.getElementById('analytics2'),{
-    type:'bar',
-    data:{
-      labels:['HR','Sales','L&D','Ops'],
-      datasets:[{
-        data:[74,66,82,91],
-        backgroundColor:['#8b5cf6','#ec4899','#3b82f6','#14b8a6'],
-        borderRadius:12
-      }]
-    },
-    options:{
-      plugins:{legend:{display:false}}
-    }
-  });
+backgroundColor:gradientTeal,
 
-  new Chart(document.getElementById('analytics3'),{
-    type:'pie',
-    data:{
-      labels:['High','Medium','Low'],
-      datasets:[{
-        data:[56,31,13],
-        backgroundColor:['#6366f1','#06b6d4','#f59e0b']
-      }]
-    }
-  });
+fill:true,
+
+tension:.4,
+
+pointRadius:4
+
+}
+
+]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+legend:{
+display:true
+}
+},
+
+scales:{
+
+y:{
+grid:{
+color:'rgba(0,0,0,.05)'
+}
+},
+
+x:{
+grid:{
+display:false
+}
+}
+
+}
+
+}
+
+});
+
+/* ======================================================
+PROJECT CHART 1
+====================================================== */
+
+new Chart(
+document.getElementById('projectChart1'),
+{
+
+type:'bar',
+
+data:{
+
+labels:[
+'North',
+'South',
+'East',
+'West'
+],
+
+datasets:[{
+
+label:'Compliance',
+
+data:[91,94,89,96],
+
+backgroundColor:[
+'#6D4AFF',
+'#0EA5A0',
+'#FF8A00',
+'#FF4D8D'
+],
+
+borderRadius:16
+
+}]
+
+},
+
+options:{
+
+plugins:{
+legend:{
+display:false
+}
+},
+
+scales:{
+y:{
+grid:{
+color:'rgba(0,0,0,.04)'
+}
+}
+}
+
+}
+
+});
+
+/* ======================================================
+PROJECT CHART 2
+====================================================== */
+
+new Chart(
+document.getElementById('projectChart2'),
+{
+
+type:'line',
+
+data:{
+
+labels:[
+'Week 1',
+'Week 2',
+'Week 3',
+'Week 4',
+'Week 5'
+],
+
+datasets:[{
+
+label:'Readiness',
+
+data:[45,60,71,84,94],
+
+borderColor:'#6D4AFF',
+
+backgroundColor:gradientPurple,
+
+fill:true,
+
+tension:.4,
+
+pointRadius:4
+
+}]
+
+},
+
+options:{
+
+plugins:{
+legend:{
+display:false
+}
+},
+
+scales:{
+
+y:{
+grid:{
+color:'rgba(0,0,0,.04)'
+}
+},
+
+x:{
+grid:{
+display:false
+}
+}
+
+}
+
+}
+
+});
 
 </script>
 
 </body>
 </html>
-```
