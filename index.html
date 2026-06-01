@@ -501,7 +501,84 @@ section{position:relative;z-index:1}
   padding:3px 9px;border-radius:100px;margin-left:6px;
   border:1px solid rgba(180,170,220,0.3);
 }
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px;
+    margin-top:50px;
+}
 
+.course-card{
+    overflow:hidden;
+}
+
+.course-preview{
+    height:280px;
+    overflow:hidden;
+}
+
+.course-preview img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.course-content{
+    padding:28px;
+}
+
+.course-badge{
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:999px;
+    background:rgba(180,160,255,.15);
+    color:#b8a7ff;
+    font-size:.75rem;
+    margin-bottom:16px;
+}
+
+.course-badge.rise{
+    background:rgba(155,220,180,.15);
+    color:#9cdcaa;
+}
+
+.course-content h3{
+    margin-bottom:16px;
+}
+
+.course-content p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.course-tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.course-tags span{
+    padding:8px 12px;
+    border-radius:999px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    font-size:.75rem;
+}
+
+.course-actions{
+    display:flex;
+    gap:12px;
+    margin-top:24px;
+}
+
+@media(max-width:992px){
+
+.course-grid{
+    grid-template-columns:1fr;
+}
+
+}
 /* ===================== CASE STUDIES ===================== */
 #casestudies{}
 .cs-tabs{
@@ -1766,14 +1843,152 @@ footer a{color:var(--sage-d);text-decoration:none}
 </section>
 <section>
 
-<h2>Interactive Course Demo</h2>
+<!-- ===================== COURSE SHOWCASE ===================== -->
+<section id="course-showcase">
 
-<iframe
-src="https://pratibha1996mishra.github.io/changeprocessoverviewlillycourse/"
-width="100%"
-height="800"
-style="border:none;border-radius:20px;">
-</iframe>
+  <div class="section-inner section-pad">
+
+    <div class="fade-up">
+      <div class="section-eyebrow">
+        <i class="ti ti-device-desktop-analytics"></i>
+        Interactive Learning Portfolio
+      </div>
+
+      <h2 class="section-title">
+        Featured <em>Learning Experiences</em>
+      </h2>
+
+      <p class="section-sub">
+        Explore enterprise-grade learning solutions developed using
+        Articulate Storyline 360 and Rise 360.
+      </p>
+    </div>
+
+    <div class="course-grid">
+
+      <!-- Course 1 -->
+
+      <div class="glass-card course-card">
+
+        <div class="course-preview">
+
+          <img
+            src="images/change-process-preview.jpg"
+            alt="Course Preview">
+
+        </div>
+
+        <div class="course-content">
+
+          <div class="course-badge">
+            Storyline 360
+          </div>
+
+          <h3>
+            Change Process Overview
+          </h3>
+
+          <p>
+            Interactive compliance training focused on enterprise
+            change management workflows and risk mitigation.
+          </p>
+
+          <div class="course-tags">
+
+            <span>Pharma</span>
+            <span>SCORM</span>
+            <span>Simulation</span>
+
+          </div>
+
+          <div class="course-actions">
+
+            <a
+             href="https://pratibha1996mishra.github.io/changeprocessoverviewlillycourse/"
+             target="_blank"
+             class="demo-btn">
+
+             Launch Demo
+
+            </a>
+
+            <a
+             href="#case-study-1"
+             class="demo-btn secondary">
+
+             Case Study
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Course 2 -->
+
+      <div class="glass-card course-card">
+
+        <div class="course-preview">
+
+          <img
+            src="images/filter-validation-preview.jpg"
+            alt="Course Preview">
+
+        </div>
+
+        <div class="course-content">
+
+          <div class="course-badge rise">
+            Rise 360
+          </div>
+
+          <h3>
+            Sterilizing Filter Selection & Validation
+          </h3>
+
+          <p>
+            Responsive microlearning program covering filter
+            selection, validation principles, and GMP compliance.
+          </p>
+
+          <div class="course-tags">
+
+            <span>Rise 360</span>
+            <span>Microlearning</span>
+            <span>GMP</span>
+
+          </div>
+
+          <div class="course-actions">
+
+            <a
+             href="https://pratibha1996mishra.github.io/sterilizingfilterselectionverificationvalidationlillycourse/"
+             target="_blank"
+             class="demo-btn">
+
+             Launch Demo
+
+            </a>
+
+            <a
+             href="#case-study-2"
+             class="demo-btn secondary">
+
+             Case Study
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 <!-- ===================== AI-AUGMENTED ===================== -->
