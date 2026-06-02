@@ -501,7 +501,14 @@ section{position:relative;z-index:1}
   padding:3px 9px;border-radius:100px;margin-left:6px;
   border:1px solid rgba(180,170,220,0.3);
 }
-
+  
+/* ===================== INTERACTIVE COURSES SECTION ===================== */
+.course-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.course-card{padding:24px}
+.course-frame{width:100%;height:500px;border:none;border-radius:12px;background:#fff;margin:16px 0}
+.course-actions{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:768px){.course-grid{grid-template-columns:1fr}.course-frame{height:350px}}
+  
 /* ===================== CASE STUDIES ===================== */
 #casestudies{}
 .cs-tabs{
@@ -910,14 +917,7 @@ footer a{color:var(--sage-d);text-decoration:none}
 .sp-blush{background:rgba(220,185,185,0.2);color:#904040;border:1px solid rgba(220,185,185,0.3)}
 .sp-amber{background:rgba(220,200,160,0.2);color:#7a5820;border:1px solid rgba(220,200,160,0.3)}
 .sp-mint{background:rgba(160,215,200,0.2);color:#2a7868;border:1px solid rgba(160,215,200,0.3)}
-
-/* INTERACTIVE COURSES SECTION */
-.course-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.course-card{padding:24px}
-.course-frame{width:100%;height:500px;border:none;border-radius:12px;background:#fff;margin:16px 0}
-.course-actions{display:flex;gap:10px;flex-wrap:wrap}
-@media(max-width:768px){.course-grid{grid-template-columns:1fr}.course-frame{height:350px}}
-
+  
 </style>
 </head>
 <body>
@@ -929,9 +929,10 @@ footer a{color:var(--sage-d);text-decoration:none}
     <li><a href="#summary">About</a></li>
     <li><a href="#framework">Framework</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#learning">Interactive Courses</a></li>
     <li><a href="#casestudies">Case Studies</a></li>
-    <li><a href="#ai">AI & Ops</a></li>
-    <li><a href="#stack">Stack</a></li>
+    <li><a href="#ai">AI & Operations</a></li>
+    <li><a href="#stack">Tool Stack</a></li>
   </ul>
   <a href="mailto:pratibha1996mishra@gmail.com" class="nav-cta">
     <i class="ti ti-mail"></i> Hire Me
@@ -945,6 +946,7 @@ footer a{color:var(--sage-d);text-decoration:none}
   <a href="#framework" onclick="toggleMobileNav()">Framework</a>
   <a href="#experience" onclick="toggleMobileNav()">Experience</a>
   <a href="#casestudies" onclick="toggleMobileNav()">Case Studies</a>
+  <a href="#learning" onclick="toggleMobileNav()">Interactive Learning</a>
   <a href="#pbi" onclick="toggleMobileNav()">Dashboards</a>
   <a href="#stack" onclick="toggleMobileNav()">Stack</a>
   <a href="#contact" onclick="toggleMobileNav()">Contact</a>
@@ -1376,6 +1378,37 @@ footer a{color:var(--sage-d);text-decoration:none}
   </div>
 </section>
 
+  <!-- ===================== INTERACTIVE COURSES ===================== -->
+  <section id="interactive-courses">
+  <div class="section-inner section-pad">
+    <div class="fade-up">
+      <div class="section-eyebrow"><i class="ti ti-device-desktop"></i> Portfolio Showcase</div>
+      <h2 class="section-title">Interactive <em>eLearning Courses</em></h2>
+      <p class="section-sub">Live Articulate Rise 360 and Storyline 360 projects demonstrating instructional design, compliance training, learner engagement, and interactive learning experiences.</p>
+    </div>
+
+    <div class="course-grid">
+      <div class="glass-card course-card">
+        <h3>Rise 360 – Sterilizing Filter Selection, Verification & Validation</h3>
+        <p>Pharmaceutical compliance learning experience built in Articulate Rise 360.</p>
+        <iframe class="course-frame" src="https://pratibha1996mishra.github.io/sterilizingfilterselectionverificationvalidationlillycourse/"></iframe>
+        <div class="course-actions">
+          <a class="btn btn-dark" target="_blank" href="https://pratibha1996mishra.github.io/sterilizingfilterselectionverificationvalidationlillycourse/">Launch Course</a>
+        </div>
+      </div>
+
+      <div class="glass-card course-card">
+        <h3>Storyline 360 – Change Process Overview</h3>
+        <p>Interactive scenario-based learning module developed in Articulate Storyline 360.</p>
+        <iframe class="course-frame" src="https://pratibha1996mishra.github.io/changeprocessoverviewlillycourse/"></iframe>
+        <div class="course-actions">
+          <a class="btn btn-dark" target="_blank" href="https://pratibha1996mishra.github.io/changeprocessoverviewlillycourse/">Launch Course</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
 <!-- ===================== CASE STUDIES ===================== -->
 <section id="casestudies">
   <div class="section-inner section-pad">
@@ -1976,36 +2009,6 @@ footer a{color:var(--sage-d);text-decoration:none}
 </section>
 
 <!-- ===================== CERTIFICATIONS ===================== -->
-
-<section id="interactive-courses">
-  <div class="section-inner section-pad">
-    <div class="fade-up">
-      <div class="section-eyebrow"><i class="ti ti-device-desktop"></i> Portfolio Showcase</div>
-      <h2 class="section-title">Interactive <em>eLearning Courses</em></h2>
-      <p class="section-sub">Live Articulate Rise 360 and Storyline 360 projects demonstrating instructional design, compliance training, learner engagement, and interactive learning experiences.</p>
-    </div>
-
-    <div class="course-grid">
-      <div class="glass-card course-card">
-        <h3>Rise 360 – Sterilizing Filter Selection, Verification & Validation</h3>
-        <p>Pharmaceutical compliance learning experience built in Articulate Rise 360.</p>
-        <iframe class="course-frame" src="https://pratibha1996mishra.github.io/sterilizingfilterselectionverificationvalidationlillycourse/"></iframe>
-        <div class="course-actions">
-          <a class="btn btn-dark" target="_blank" href="https://pratibha1996mishra.github.io/sterilizingfilterselectionverificationvalidationlillycourse/">Launch Course</a>
-        </div>
-      </div>
-
-      <div class="glass-card course-card">
-        <h3>Storyline 360 – Change Process Overview</h3>
-        <p>Interactive scenario-based learning module developed in Articulate Storyline 360.</p>
-        <iframe class="course-frame" src="https://pratibha1996mishra.github.io/changeprocessoverviewlillycourse/"></iframe>
-        <div class="course-actions">
-          <a class="btn btn-dark" target="_blank" href="https://pratibha1996mishra.github.io/changeprocessoverviewlillycourse/">Launch Course</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="certifications">
   <div class="section-inner section-pad">
